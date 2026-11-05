@@ -1,0 +1,973 @@
+{
+  "contract_version": "0.3",
+  "comparison": {
+    "split_method": "10 repeated GroupShuffleSplit by SSUID",
+    "test_group_share": 0.25,
+    "weight": "FINYR2",
+    "logistic": "L2 regularized logistic regression",
+    "boosting": {
+      "estimator": "HistGradientBoostingClassifier",
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 20,
+      "l2_regularization": 1,
+      "early_stopping": true,
+      "hyperparameter_tuning": false
+    }
+  },
+  "tasks": {
+    "poverty_entry": {
+      "sample": {
+        "rows": 13464,
+        "positive": 587
+      },
+      "repeats": 10,
+      "metrics": {
+        "logistic": {
+          "unweighted": {
+            "roc_auc": {
+              "mean": 0.7310329110143653,
+              "std": 0.018519949094531127,
+              "min": 0.6992869447848402,
+              "max": 0.7631465512796451
+            },
+            "average_precision": {
+              "mean": 0.15759409052525547,
+              "std": 0.022953956576543973,
+              "min": 0.12893586203440527,
+              "max": 0.20925245472366485
+            },
+            "brier_score": {
+              "mean": 0.04137278653160835,
+              "std": 0.0035383295621540176,
+              "min": 0.03705995612757292,
+              "max": 0.04627217113255467
+            },
+            "log_loss": {
+              "mean": 0.17017401813985583,
+              "std": 0.011510725091833353,
+              "min": 0.1554523405202112,
+              "max": 0.18558815117357022
+            }
+          },
+          "weighted": {
+            "roc_auc": {
+              "mean": 0.7178215390413107,
+              "std": 0.02620871736839288,
+              "min": 0.6741436985975943,
+              "max": 0.7441583608818929
+            },
+            "average_precision": {
+              "mean": 0.1270920505072793,
+              "std": 0.025301840539827026,
+              "min": 0.09459847363510065,
+              "max": 0.1783410041742444
+            },
+            "brier_score": {
+              "mean": 0.03959717078549889,
+              "std": 0.004237325551146156,
+              "min": 0.03288255342728398,
+              "max": 0.044199573059938796
+            },
+            "log_loss": {
+              "mean": 0.16473107570501658,
+              "std": 0.013355679584631582,
+              "min": 0.1435168130078105,
+              "max": 0.18176976140930992
+            }
+          }
+        },
+        "hist_gradient_boosting": {
+          "unweighted": {
+            "roc_auc": {
+              "mean": 0.7631502698819036,
+              "std": 0.017876590385366233,
+              "min": 0.7266292379277888,
+              "max": 0.7835090881716616
+            },
+            "average_precision": {
+              "mean": 0.15313645292911662,
+              "std": 0.0207275367648832,
+              "min": 0.11916146524094866,
+              "max": 0.18112806122821026
+            },
+            "brier_score": {
+              "mean": 0.041206434683620105,
+              "std": 0.0029926394327930727,
+              "min": 0.037072066935861604,
+              "max": 0.04552965028390584
+            },
+            "log_loss": {
+              "mean": 0.16533661520005888,
+              "std": 0.009482627006698581,
+              "min": 0.1531746675803165,
+              "max": 0.17851566263279087
+            }
+          },
+          "weighted": {
+            "roc_auc": {
+              "mean": 0.743068537167469,
+              "std": 0.018410960926733444,
+              "min": 0.7016720643209318,
+              "max": 0.76779816773881
+            },
+            "average_precision": {
+              "mean": 0.11967334426213783,
+              "std": 0.01863949824566498,
+              "min": 0.09121457174548937,
+              "max": 0.14878635531981954
+            },
+            "brier_score": {
+              "mean": 0.039642533885600725,
+              "std": 0.003857744479702888,
+              "min": 0.033455819478508925,
+              "max": 0.044495246877574376
+            },
+            "log_loss": {
+              "mean": 0.16223630725707988,
+              "std": 0.012776923015701018,
+              "min": 0.13962781250848483,
+              "max": 0.1794620204573052
+            }
+          }
+        }
+      },
+      "runs": [
+        {
+          "seed": 699,
+          "test_rows": 3394,
+          "test_positive": 156,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.7104615067863986,
+              "average_precision": 0.15802317752674322,
+              "brier_score": 0.041643180609457514,
+              "log_loss": 0.17267465012365202
+            },
+            "weighted": {
+              "roc_auc": 0.6741436985975943,
+              "average_precision": 0.10973763712373788,
+              "brier_score": 0.037955249931545185,
+              "log_loss": 0.16295424292463254
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.745208145262191,
+              "average_precision": 0.12669647645805637,
+              "brier_score": 0.042240648331422985,
+              "log_loss": 0.17028285628316875
+            },
+            "weighted": {
+              "roc_auc": 0.7294324276031082,
+              "average_precision": 0.09121457174548937,
+              "brier_score": 0.03830547415916704,
+              "log_loss": 0.1586545592674641
+            },
+            "iterations": 39
+          }
+        },
+        {
+          "seed": 700,
+          "test_rows": 3322,
+          "test_positive": 143,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.746599735589984,
+              "average_precision": 0.15251037491280933,
+              "brier_score": 0.039223157146262455,
+              "log_loss": 0.16020219166211247
+            },
+            "weighted": {
+              "roc_auc": 0.7432670194406852,
+              "average_precision": 0.11479221069703208,
+              "brier_score": 0.040778270840961105,
+              "log_loss": 0.16582337633412697
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.7685620450640898,
+              "average_precision": 0.14535761489900328,
+              "brier_score": 0.03918439440727006,
+              "log_loss": 0.15831911506926322
+            },
+            "weighted": {
+              "roc_auc": 0.744500597790517,
+              "average_precision": 0.11380146228101697,
+              "brier_score": 0.040891935460553336,
+              "log_loss": 0.16694758809754015
+            },
+            "iterations": 61
+          }
+        },
+        {
+          "seed": 701,
+          "test_rows": 3362,
+          "test_positive": 151,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.7631465512796451,
+              "average_precision": 0.16743867701413842,
+              "brier_score": 0.040650999265426445,
+              "log_loss": 0.16867988907093326
+            },
+            "weighted": {
+              "roc_auc": 0.7405778071916856,
+              "average_precision": 0.1241230080105637,
+              "brier_score": 0.041151696318123106,
+              "log_loss": 0.16976022745655625
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.7835090881716616,
+              "average_precision": 0.16154932174307793,
+              "brier_score": 0.04053742871155941,
+              "log_loss": 0.16076117344897478
+            },
+            "weighted": {
+              "roc_auc": 0.7422772387432366,
+              "average_precision": 0.13141209243923124,
+              "brier_score": 0.04082715589138808,
+              "log_loss": 0.16605314169443824
+            },
+            "iterations": 42
+          }
+        },
+        {
+          "seed": 702,
+          "test_rows": 3329,
+          "test_positive": 139,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.7283417153424596,
+              "average_precision": 0.1703899113199696,
+              "brier_score": 0.037768654370729585,
+              "log_loss": 0.16073693711256812
+            },
+            "weighted": {
+              "roc_auc": 0.7234269809783926,
+              "average_precision": 0.11866813163117396,
+              "brier_score": 0.03288255342728398,
+              "log_loss": 0.1435168130078105
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.74943167722875,
+              "average_precision": 0.14519095333495577,
+              "brier_score": 0.03841242495542266,
+              "log_loss": 0.1569415223199103
+            },
+            "weighted": {
+              "roc_auc": 0.7502976994348772,
+              "average_precision": 0.10653274923132004,
+              "brier_score": 0.033455819478508925,
+              "log_loss": 0.13962781250848483
+            },
+            "iterations": 86
+          }
+        },
+        {
+          "seed": 703,
+          "test_rows": 3343,
+          "test_positive": 166,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.7237637992953875,
+              "average_precision": 0.15826432662167658,
+              "brier_score": 0.045056201452578555,
+              "log_loss": 0.18283949347084233
+            },
+            "weighted": {
+              "roc_auc": 0.7240513069494876,
+              "average_precision": 0.13166297539345842,
+              "brier_score": 0.041767358653529964,
+              "log_loss": 0.17158266641513537
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.7781996731022295,
+              "average_precision": 0.1749554447686643,
+              "brier_score": 0.04432823882021981,
+              "log_loss": 0.17393047046940324
+            },
+            "weighted": {
+              "roc_auc": 0.76779816773881,
+              "average_precision": 0.13555721609657367,
+              "brier_score": 0.041628270827916855,
+              "log_loss": 0.16575008634858837
+            },
+            "iterations": 69
+          }
+        },
+        {
+          "seed": 704,
+          "test_rows": 3378,
+          "test_positive": 168,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.7267986945557039,
+              "average_precision": 0.1293878958527181,
+              "brier_score": 0.0460810810892162,
+              "log_loss": 0.18558815117357022
+            },
+            "weighted": {
+              "roc_auc": 0.6898732599065939,
+              "average_precision": 0.09459847363510065,
+              "brier_score": 0.044051469779970646,
+              "log_loss": 0.18176976140930992
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.7724326880284824,
+              "average_precision": 0.18112806122821026,
+              "brier_score": 0.04435077280446584,
+              "log_loss": 0.17628690948547332
+            },
+            "weighted": {
+              "roc_auc": 0.7416813326000928,
+              "average_precision": 0.12624803890997172,
+              "brier_score": 0.043131643273692635,
+              "log_loss": 0.17566543067769888
+            },
+            "iterations": 101
+          }
+        },
+        {
+          "seed": 705,
+          "test_rows": 3331,
+          "test_positive": 140,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.745565653400188,
+              "average_precision": 0.20925245472366485,
+              "brier_score": 0.03750751317944071,
+              "log_loss": 0.1554523405202112
+            },
+            "weighted": {
+              "roc_auc": 0.7306406742634576,
+              "average_precision": 0.1783410041742444,
+              "brier_score": 0.035096830348199444,
+              "log_loss": 0.14792199790427174
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.7776626225545059,
+              "average_precision": 0.1547449026862642,
+              "brier_score": 0.037994530978113956,
+              "log_loss": 0.1531746675803165
+            },
+            "weighted": {
+              "roc_auc": 0.7449213445217979,
+              "average_precision": 0.12959998482372187,
+              "brier_score": 0.03570480667617466,
+              "log_loss": 0.14912516547156762
+            },
+            "iterations": 54
+          }
+        },
+        {
+          "seed": 706,
+          "test_rows": 3348,
+          "test_positive": 170,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.7267075111983119,
+              "average_precision": 0.14458779238599503,
+              "brier_score": 0.04627217113255467,
+              "log_loss": 0.18540490181877603
+            },
+            "weighted": {
+              "roc_auc": 0.7266184202410937,
+              "average_precision": 0.11787981374029743,
+              "brier_score": 0.044199573059938796,
+              "log_loss": 0.17809474554931515
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.7703587161736942,
+              "average_precision": 0.17584583425095227,
+              "brier_score": 0.04552965028390584,
+              "log_loss": 0.17851566263279087
+            },
+            "weighted": {
+              "roc_auc": 0.7649592752430401,
+              "average_precision": 0.14878635531981954,
+              "brier_score": 0.04316954794481472,
+              "log_loss": 0.17152569658998587
+            },
+            "iterations": 31
+          }
+        },
+        {
+          "seed": 707,
+          "test_rows": 3425,
+          "test_positive": 137,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.6992869447848402,
+              "average_precision": 0.12893586203440527,
+              "brier_score": 0.03705995612757292,
+              "log_loss": 0.15812053733483028
+            },
+            "weighted": {
+              "roc_auc": 0.6814578619622244,
+              "average_precision": 0.11733509049364937,
+              "brier_score": 0.0343858158594224,
+              "log_loss": 0.15027667499857594
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.7266292379277888,
+              "average_precision": 0.11916146524094866,
+              "brier_score": 0.037072066935861604,
+              "log_loss": 0.15504152658478415
+            },
+            "weighted": {
+              "roc_auc": 0.7016720643209318,
+              "average_precision": 0.09267563207460279,
+              "brier_score": 0.034815438266216595,
+              "log_loss": 0.14955157145772544
+            },
+            "iterations": 65
+          }
+        },
+        {
+          "seed": 708,
+          "test_rows": 3452,
+          "test_positive": 161,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.7396569979107335,
+              "average_precision": 0.15715043286043454,
+              "brier_score": 0.04246495094284444,
+              "log_loss": 0.17204108911106214
+            },
+            "weighted": {
+              "roc_auc": 0.7441583608818929,
+              "average_precision": 0.16378216017353542,
+              "brier_score": 0.04370288963601422,
+              "log_loss": 0.17561025105043138
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.7595088053056426,
+              "average_precision": 0.14673445468103294,
+              "brier_score": 0.04241419060795895,
+              "log_loss": 0.17011224812650366
+            },
+            "weighted": {
+              "roc_auc": 0.7431452236782784,
+              "average_precision": 0.12090533969963094,
+              "brier_score": 0.044495246877574376,
+              "log_loss": 0.1794620204573052
+            },
+            "iterations": 47
+          }
+        }
+      ],
+      "mean_change_boosting_minus_logistic": {
+        "unweighted": {
+          "roc_auc": 0.032117358867538304,
+          "average_precision": -0.004457637596138847,
+          "brier_score": -0.0001663518479882442,
+          "log_loss": -0.004837402939796953
+        },
+        "weighted": {
+          "roc_auc": 0.02524699812615827,
+          "average_precision": -0.007418706245141488,
+          "brier_score": 0.000045363100101836196,
+          "log_loss": -0.002494768447936696
+        }
+      }
+    },
+    "poverty_exit": {
+      "sample": {
+        "rows": 1570,
+        "positive": 757
+      },
+      "repeats": 10,
+      "metrics": {
+        "logistic": {
+          "unweighted": {
+            "roc_auc": {
+              "mean": 0.6922264592944584,
+              "std": 0.026389121871834648,
+              "min": 0.6390524048815506,
+              "max": 0.7208928900471189
+            },
+            "average_precision": {
+              "mean": 0.6793020767986393,
+              "std": 0.03995509055200551,
+              "min": 0.6075744954025587,
+              "max": 0.724672057948173
+            },
+            "brier_score": {
+              "mean": 0.22321323293440756,
+              "std": 0.009743392603520216,
+              "min": 0.21221863982739048,
+              "max": 0.24282584733108825
+            },
+            "log_loss": {
+              "mean": 0.6396366793100123,
+              "std": 0.023420421514570463,
+              "min": 0.6119298647286904,
+              "max": 0.684272564678833
+            }
+          },
+          "weighted": {
+            "roc_auc": {
+              "mean": 0.7063990689917491,
+              "std": 0.03328367425126044,
+              "min": 0.653007769584891,
+              "max": 0.7603715114299203
+            },
+            "average_precision": {
+              "mean": 0.6909193864984304,
+              "std": 0.04455876625235434,
+              "min": 0.6365666259507599,
+              "max": 0.7520283569230162
+            },
+            "brier_score": {
+              "mean": 0.21878852310792585,
+              "std": 0.011697096037293903,
+              "min": 0.19954571369393329,
+              "max": 0.2370232088661541
+            },
+            "log_loss": {
+              "mean": 0.6306151843142709,
+              "std": 0.02805088193980459,
+              "min": 0.5837890480983106,
+              "max": 0.6707636340797376
+            }
+          }
+        },
+        "hist_gradient_boosting": {
+          "unweighted": {
+            "roc_auc": {
+              "mean": 0.6750862040276332,
+              "std": 0.03059977239724422,
+              "min": 0.6273869346733668,
+              "max": 0.7328410304498452
+            },
+            "average_precision": {
+              "mean": 0.6530261683963083,
+              "std": 0.043244314413437665,
+              "min": 0.5924277069153124,
+              "max": 0.7105282401808543
+            },
+            "brier_score": {
+              "mean": 0.22875798404131906,
+              "std": 0.00816481642543084,
+              "min": 0.21418755476594736,
+              "max": 0.2415354983963009
+            },
+            "log_loss": {
+              "mean": 0.6500733490326361,
+              "std": 0.017978070217269083,
+              "min": 0.6186019525519152,
+              "max": 0.6778138084408938
+            }
+          },
+          "weighted": {
+            "roc_auc": {
+              "mean": 0.6715278771857296,
+              "std": 0.03451886359454474,
+              "min": 0.6215802862164279,
+              "max": 0.7270503115360423
+            },
+            "average_precision": {
+              "mean": 0.6554873793328985,
+              "std": 0.05603246492358854,
+              "min": 0.5870197660457285,
+              "max": 0.7420593933616499
+            },
+            "brier_score": {
+              "mean": 0.2292934203510919,
+              "std": 0.008707759577965673,
+              "min": 0.21349001404756052,
+              "max": 0.23898238145126058
+            },
+            "log_loss": {
+              "mean": 0.6512204304304243,
+              "std": 0.019258003492458684,
+              "min": 0.6160436182242248,
+              "max": 0.6708585564464651
+            }
+          }
+        }
+      },
+      "runs": [
+        {
+          "seed": 699,
+          "test_rows": 395,
+          "test_positive": 204,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.7145826917154297,
+              "average_precision": 0.7204882261775624,
+              "brier_score": 0.21630629069727775,
+              "log_loss": 0.6223085658318988
+            },
+            "weighted": {
+              "roc_auc": 0.7336689012602133,
+              "average_precision": 0.7506716437594345,
+              "brier_score": 0.20952180366390455,
+              "log_loss": 0.6097766393320703
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.6832717380145775,
+              "average_precision": 0.6747038533177343,
+              "brier_score": 0.23082656418337547,
+              "log_loss": 0.6540443059421751
+            },
+            "weighted": {
+              "roc_auc": 0.6927660464294496,
+              "average_precision": 0.7126462028395539,
+              "brier_score": 0.2313517812205418,
+              "log_loss": 0.6550119931802864
+            },
+            "iterations": 14
+          }
+        },
+        {
+          "seed": 700,
+          "test_rows": 386,
+          "test_positive": 175,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.7075964793500338,
+              "average_precision": 0.6559979750395923,
+              "brier_score": 0.21624703718376628,
+              "log_loss": 0.6210731751952594
+            },
+            "weighted": {
+              "roc_auc": 0.7235762131430126,
+              "average_precision": 0.6777672734173807,
+              "brier_score": 0.2125237962207284,
+              "log_loss": 0.614048663992864
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.656560595802302,
+              "average_precision": 0.619052545954971,
+              "brier_score": 0.23125296498642176,
+              "log_loss": 0.6553879665545631
+            },
+            "weighted": {
+              "roc_auc": 0.6612242404854161,
+              "average_precision": 0.6201679827163398,
+              "brier_score": 0.2315359626378898,
+              "log_loss": 0.6567921047692796
+            },
+            "iterations": 48
+          }
+        },
+        {
+          "seed": 701,
+          "test_rows": 392,
+          "test_positive": 191,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.6853950144565133,
+              "average_precision": 0.6745089305911325,
+              "brier_score": 0.22633152221159836,
+              "log_loss": 0.6531974588431843
+            },
+            "weighted": {
+              "roc_auc": 0.6876086845760814,
+              "average_precision": 0.706181458631754,
+              "brier_score": 0.22590277676619633,
+              "log_loss": 0.6496126420758186
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.7328410304498452,
+              "average_precision": 0.7105282401808543,
+              "brier_score": 0.21418755476594736,
+              "log_loss": 0.6186019525519152
+            },
+            "weighted": {
+              "roc_auc": 0.7270503115360423,
+              "average_precision": 0.7323968532940963,
+              "brier_score": 0.2150699312759168,
+              "log_loss": 0.6201034455084883
+            },
+            "iterations": 28
+          }
+        },
+        {
+          "seed": 702,
+          "test_rows": 392,
+          "test_positive": 196,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.6724802165764264,
+              "average_precision": 0.6748198950271815,
+              "brier_score": 0.2308231252344182,
+              "log_loss": 0.6539188613036709
+            },
+            "weighted": {
+              "roc_auc": 0.7016136875731842,
+              "average_precision": 0.6884167115924706,
+              "brier_score": 0.22124338469297306,
+              "log_loss": 0.6367056090157865
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.6560287380258226,
+              "average_precision": 0.6664974299154822,
+              "brier_score": 0.23560644312386747,
+              "log_loss": 0.6677347511415145
+            },
+            "weighted": {
+              "roc_auc": 0.6475784323587472,
+              "average_precision": 0.6554387141632452,
+              "brier_score": 0.23540685780944623,
+              "log_loss": 0.66774829499763
+            },
+            "iterations": 85
+          }
+        },
+        {
+          "seed": 703,
+          "test_rows": 383,
+          "test_positive": 177,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.6668860731720695,
+              "average_precision": 0.6075744954025587,
+              "brier_score": 0.2317173966494079,
+              "log_loss": 0.6610780048669237
+            },
+            "weighted": {
+              "roc_auc": 0.6841259601971293,
+              "average_precision": 0.6365666259507599,
+              "brier_score": 0.22592581948536303,
+              "log_loss": 0.6478130823372015
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.6591245680434424,
+              "average_precision": 0.5937564081768171,
+              "brier_score": 0.23098928033661975,
+              "log_loss": 0.6546131454562234
+            },
+            "weighted": {
+              "roc_auc": 0.6581517306888301,
+              "average_precision": 0.5971662614914199,
+              "brier_score": 0.23181529925758526,
+              "log_loss": 0.6562483602176697
+            },
+            "iterations": 19
+          }
+        },
+        {
+          "seed": 704,
+          "test_rows": 390,
+          "test_positive": 189,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.7208928900471189,
+              "average_precision": 0.7197185193516507,
+              "brier_score": 0.21221863982739048,
+              "log_loss": 0.6119298647286904
+            },
+            "weighted": {
+              "roc_auc": 0.7603715114299203,
+              "average_precision": 0.7341633219333403,
+              "brier_score": 0.19954571369393329,
+              "log_loss": 0.5837890480983106
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.6924372844770854,
+              "average_precision": 0.6613564672329273,
+              "brier_score": 0.22642478592674084,
+              "log_loss": 0.6450584470410462
+            },
+            "weighted": {
+              "roc_auc": 0.6884351323445143,
+              "average_precision": 0.6473511131554157,
+              "brier_score": 0.2270147695885184,
+              "log_loss": 0.6462597169996375
+            },
+            "iterations": 14
+          }
+        },
+        {
+          "seed": 705,
+          "test_rows": 401,
+          "test_positive": 197,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.7037921767691849,
+              "average_precision": 0.6789549416107499,
+              "brier_score": 0.22105865336259362,
+              "log_loss": 0.6406693809868829
+            },
+            "weighted": {
+              "roc_auc": 0.6857334544037071,
+              "average_precision": 0.6397086353665323,
+              "brier_score": 0.2274532721964726,
+              "log_loss": 0.6566904202898043
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.6510774360505623,
+              "average_precision": 0.6223443342982491,
+              "brier_score": 0.23476501937750804,
+              "log_loss": 0.6620614676702462
+            },
+            "weighted": {
+              "roc_auc": 0.6215802862164279,
+              "average_precision": 0.5870197660457285,
+              "brier_score": 0.23898238145126058,
+              "log_loss": 0.6708585564464651
+            },
+            "iterations": 13
+          }
+        },
+        {
+          "seed": 706,
+          "test_rows": 395,
+          "test_positive": 191,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.7180730931115902,
+              "average_precision": 0.724672057948173,
+              "brier_score": 0.21293446511721786,
+              "log_loss": 0.6141736174628031
+            },
+            "weighted": {
+              "roc_auc": 0.7457595899700618,
+              "average_precision": 0.7520283569230162,
+              "brier_score": 0.2048376921916398,
+              "log_loss": 0.5972629802387209
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.6921773945180167,
+              "average_precision": 0.6988614898383989,
+              "brier_score": 0.22103088392184986,
+              "log_loss": 0.63223401529015
+            },
+            "weighted": {
+              "roc_auc": 0.7191217773771675,
+              "average_precision": 0.7420593933616499,
+              "brier_score": 0.21349001404756052,
+              "log_loss": 0.6160436182242248
+            },
+            "iterations": 62
+          }
+        },
+        {
+          "seed": 707,
+          "test_rows": 406,
+          "test_positive": 203,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.6935135528646654,
+              "average_precision": 0.7068681300111579,
+              "brier_score": 0.2216693517293169,
+              "log_loss": 0.6337452992019772
+            },
+            "weighted": {
+              "roc_auc": 0.6885249177792897,
+              "average_precision": 0.6843736904395913,
+              "brier_score": 0.22390776330189338,
+              "log_loss": 0.639689123682396
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.6999563202213109,
+              "average_precision": 0.6907332081323359,
+              "brier_score": 0.22096084539455907,
+              "log_loss": 0.6331836302376347
+            },
+            "weighted": {
+              "roc_auc": 0.6625602153354447,
+              "average_precision": 0.6516394592767947,
+              "brier_score": 0.2301682778665164,
+              "log_loss": 0.6525182327941977
+            },
+            "iterations": 35
+          }
+        },
+        {
+          "seed": 708,
+          "test_rows": 409,
+          "test_positive": 199,
+          "logistic": {
+            "unweighted": {
+              "roc_auc": 0.6390524048815506,
+              "average_precision": 0.6294175968266342,
+              "brier_score": 0.24282584733108825,
+              "log_loss": 0.684272564678833
+            },
+            "weighted": {
+              "roc_auc": 0.653007769584891,
+              "average_precision": 0.6393161469700241,
+              "brier_score": 0.2370232088661541,
+              "log_loss": 0.6707636340797376
+            }
+          },
+          "hist_gradient_boosting": {
+            "unweighted": {
+              "roc_auc": 0.6273869346733668,
+              "average_precision": 0.5924277069153124,
+              "brier_score": 0.2415354983963009,
+              "log_loss": 0.6778138084408938
+            },
+            "weighted": {
+              "roc_auc": 0.6368105990852558,
+              "average_precision": 0.6089880469847399,
+              "brier_score": 0.23809892835568294,
+              "log_loss": 0.6706199811663633
+            },
+            "iterations": 39
+          }
+        }
+      ],
+      "mean_change_boosting_minus_logistic": {
+        "unweighted": {
+          "roc_auc": -0.017140255266825166,
+          "average_precision": -0.02627590840233096,
+          "brier_score": 0.005544751106911494,
+          "log_loss": 0.010436669722623804
+        },
+        "weighted": {
+          "roc_auc": -0.0348711918060195,
+          "average_precision": -0.035432007165531965,
+          "brier_score": 0.010504897243166056,
+          "log_loss": 0.02060524611615344
+        }
+      }
+    }
+  },
+  "provenance": {
+    "workflow_run_id": 42096047701,
+    "head_sha": "a8dff68b6c58849d220f6b3a250e789eaa2d4c7b",
+    "artifact_id": 13447193903,
+    "note": "Ten repeated household-grouped comparisons of FINYR2-weighted logistic regression and untuned histogram gradient boosting."
+  }
+}

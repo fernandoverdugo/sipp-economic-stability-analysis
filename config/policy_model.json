@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "basis": "Feature-ablation workflow run 42100179827",
+  "purpose": "Preferred policy-facing predictive specification for prospective poverty entry and exit benchmarking.",
+  "model_features": [
+    "education",
+    "months_employed",
+    "months_unemployed",
+    "mean_weekly_hours",
+    "annual_person_earnings",
+    "annual_person_income",
+    "baseline_poverty_ratio",
+    "housing_tenure",
+    "housing_assistance_status",
+    "snap_received_year"
+  ],
+  "audit_only_features": [
+    "age",
+    "sex",
+    "race",
+    "hispanic_origin",
+    "born_in_us",
+    "citizenship"
+  ],
+  "excluded_low_incremental_value": [
+    "person_net_worth",
+    "person_assets",
+    "person_debt"
+  ],
+  "rationale": {
+    "demographics": "Repeated ablation improved predictive metrics after removal; retain only for subgroup auditing.",
+    "assets": "Repeated ablation showed negligible incremental performance; exclude to simplify the model.",
+    "retained": "Income, employment, education, housing, and safety-net variables retained because ablation indicates meaningful prospective signal."
+  },
+  "safeguards": [
+    "SSUID-grouped train/test separation",
+    "FINYR2-weighted model fitting and sensitivity evaluation",
+    "preprocessing fit within training data only",
+    "demographic subgroup auditing remains mandatory",
+    "predictions are not causal estimates or automated eligibility decisions"
+  ]
+}

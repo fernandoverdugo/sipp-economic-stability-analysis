@@ -1,0 +1,89 @@
+name: subgroup-validation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "config/predictors.json"
+      - "src/build_features.py"
+      - "src/train_baselines.py"
+      - "src/validate_models.py"
+      - "src/policy_diagnostics.py"
+      - "src/validate_subgroups.py"
+      - "requirements.txt"
+      - "tests/test_subgroup_validation.py"
+      - ".github/workflows/subgroup-validation.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Run tests
+        run: python -m pytest -q
+
+      - name: Download full registered assets
+        run: python src/download_assets.py --mode all
+
+      - name: Build longitudinal panel
+        run: python src/build_panel.py
+
+      - name: Build baseline feature matrix
+        run: python src/build_features.py
+
+      - name: Run repeated subgroup validation
+        run: |
+          set -o pipefail
+          python src/validate_subgroups.py | tee subgroup_validation.log
+
+      - name: Validate subgroup output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(
+              Path("data/metadata/subgroup_validation.json").read_text()
+          )
+
+          assert result["contract_version"] == "0.3"
+
+          for task in ("poverty_entry", "poverty_exit"):
+              details = result["tasks"][task]
+              assert details["repeats"] == 10
+              assert len(details["splits"]) == 10
+              for domain in (
+                  "sex",
+                  "race",
+                  "hispanic_origin",
+                  "born_in_us",
+                  "age_band",
+              ):
+                  assert domain in details["aggregate"]
+          PY
+
+      - name: Upload subgroup artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: sipp-subgroup-validation
+          path: |
+            data/metadata/subgroup_validation.json
+            subgroup_validation.log

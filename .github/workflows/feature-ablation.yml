@@ -72,6 +72,7 @@ jobs:
               "without_assets",
               "without_safety_net_housing",
               "without_demographics",
+              "without_demographics_and_assets",
           }
 
           for task in ("poverty_entry", "poverty_exit"):

@@ -76,9 +76,9 @@ This separation has two advantages:
 
 This result does not prove that the remaining features are free of indirect demographic correlation. Subgroup auditing remains necessary because non-demographic predictors can still encode structural differences.
 
-## Next specification
+## Final specification
 
-The preferred candidate policy-facing specification is now defined in `config/policy_model.json`.
+The resulting specification is defined in `config/policy_model.json` and has now passed its own repeated validation and subgroup audit.
 
 It:
 
@@ -87,4 +87,4 @@ It:
 - excludes the asset block because it adds negligible incremental performance;
 - retains education, employment, income, housing, and safety-net predictors.
 
-The reduced specification should still be re-run through the full repeated validation and subgroup-diagnostic workflow before being treated as the final policy-facing benchmark.
+The validated 10-feature model is the preferred policy-facing logistic benchmark for the project.

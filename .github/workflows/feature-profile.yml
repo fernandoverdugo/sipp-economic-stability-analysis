@@ -1,0 +1,78 @@
+name: feature-profile
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "config/predictors.json"
+      - "src/build_features.py"
+      - "src/build_panel.py"
+      - "tests/test_feature_builder.py"
+      - ".github/workflows/feature-profile.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Run tests
+        run: python -m pytest -q
+
+      - name: Download full registered assets
+        run: python src/download_assets.py --mode all
+
+      - name: Build longitudinal panel
+        run: python src/build_panel.py
+
+      - name: Build baseline feature matrix
+        run: |
+          set -o pipefail
+          python src/build_features.py | tee feature_profile.log
+
+      - name: Validate feature profile
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(
+              Path("data/metadata/feature_profile.json").read_text()
+          )
+
+          assert result["rows"] == 15034
+          assert result["feature_count"] == 21
+          assert result["model_samples"]["poverty_entry"]["rows"] > 0
+          assert result["model_samples"]["poverty_exit"]["rows"] > 0
+          assert result["model_samples"]["poverty_entry"]["positive"] > 0
+          assert result["model_samples"]["poverty_exit"]["positive"] > 0
+
+          for feature in result["features"].values():
+              assert feature["observed"] + feature["missing"] == result["rows"]
+              assert 0 <= feature["missing_share"] <= 1
+          PY
+
+      - name: Upload feature artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: sipp-feature-profile
+          path: |
+            data/metadata/feature_profile.json
+            feature_profile.log

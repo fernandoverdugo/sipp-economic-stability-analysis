@@ -39,19 +39,18 @@ def safe_mean(values):
     return sum(observed) / len(observed) if observed else None
 
 
-def snap_any(begin_values, end_values):
-    pairs = [
-        (begin, end)
-        for begin, end in zip(begin_values, end_values)
-        if begin is not None or end is not None
-    ]
-    if not pairs:
+def housing_assistance_status(tenure, rent_subsidy, voucher):
+    if tenure is None:
         return None
-    return int(any(
-        (begin is not None and begin > 0)
-        or (end is not None and end > 0)
-        for begin, end in pairs
-    ))
+    if tenure == 1:
+        return 0
+    if rent_subsidy is None:
+        return None
+    if rent_subsidy != 1:
+        return 1
+    if voucher is None:
+        return None
+    return 3 if voucher == 1 else 2
 
 
 def feature_sources(contract):
@@ -162,10 +161,26 @@ def build_features(panel, people, contract):
                     numeric_values(source[variables[0]])
                 )
 
-            elif aggregation == "derive_any_receipt_from_spell_months":
-                features[name] = snap_any(
-                    numeric_values(source[variables[0]]),
-                    numeric_values(source[variables[1]]),
+            elif aggregation == "derive_housing_assistance_status":
+                tenure = unique_or_none(
+                    categorical_values(source[variables[0]]),
+                    variables[0],
+                    key,
+                )
+                subsidy = unique_or_none(
+                    categorical_values(source[variables[1]]),
+                    variables[1],
+                    key,
+                )
+                voucher = unique_or_none(
+                    categorical_values(source[variables[2]]),
+                    variables[2],
+                    key,
+                )
+                features[name] = housing_assistance_status(
+                    tenure,
+                    subsidy,
+                    voucher,
                 )
 
             else:

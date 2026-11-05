@@ -146,31 +146,36 @@ Large raw Census files will not be committed to Git history.
 
 ## Current milestone
 
-### Milestone 2 — verified data acquisition
+### Milestone 3 — longitudinal cohort construction
 **Complete**
 
-Implemented:
+The official 2024 and 2025 SIPP primary files have now been linked to the Census two-year longitudinal and replicate-weight files.
 
-- official Census source registry
-- exact 2024 and 2025 primary-data URLs
-- exact 2-year longitudinal-weight and longitudinal replicate-weight URLs
-- reproducible streaming downloader
-- SHA-256 checksum manifest generation
-- remote byte-range verification for large assets
-- lightweight metadata downloads in ordinary CI
-- schema validation for linkage, poverty, and longitudinal survey-design variables
-- automated verification of all 240 longitudinal replicate weights
-- GitHub Actions quality checks
+Validated panel profile:
 
-The initial variable contract is now explicit:
+| Measure | Result |
+| --- | ---: |
+| 2024 unique persons | 36,915 |
+| 2025 unique persons | 32,052 |
+| Linked persons with longitudinal weights | 18,207 |
+| Adult analytical cohort | **15,034** |
 
-- person key: `SSUID + PNUM`
-- annual family poverty ratio: `TFCYINCPOV`
-- two-year longitudinal person weight: `FINYR2`
-- replicate full weight: `REPWGT0`
-- replicate weights: `REPWGT1` through `REPWGT240`
+Initial weighted transition point estimates:
 
-See [`docs/ACQUISITION.md`](docs/ACQUISITION.md), [`docs/VARIABLES.md`](docs/VARIABLES.md), and [`docs/RESEARCH_DESIGN.md`](docs/RESEARCH_DESIGN.md).
+| Transition | Weighted share |
+| --- | ---: |
+| Stable above poverty | **86.28%** |
+| Entered poverty | **3.65%** |
+| Exited poverty | **4.88%** |
+| Persistent poverty | **5.20%** |
+
+Among adults above poverty at baseline, approximately **4.05%** entered poverty in the following year. Among adults below poverty at baseline, approximately **48.43%** exited poverty.
+
+These are point estimates only; replicate-weight uncertainty is reserved for Milestone 4.
+
+The panel builder validates annual-variable consistency across monthly SIPP records, links on `SSUID + PNUM`, checks `FINYR2` against `REPWGT0`, and writes the person-level panel outside Git history.
+
+See [`docs/PANEL_CONSTRUCTION.md`](docs/PANEL_CONSTRUCTION.md) and [`data/metadata/panel_profile.json`](data/metadata/panel_profile.json).
 
 ## Planned milestones
 
@@ -185,11 +190,12 @@ Research design, source provenance, transition-state logic, and reproducible sou
 Verified official asset registry, downloader, checksum generation, remote probing, and schema validation.
 
 ### Milestone 3 — longitudinal cohort construction
-**Next**
+**Complete**
 
-Identify stable person keys, link 2024 and 2025 records, merge longitudinal weights, and construct a validated person-level panel.
+Validated person-year collapse, `SSUID + PNUM` linkage, adult analytical cohort, longitudinal-weight integration, replicate full-weight validation, and transition-state construction.
 
 ### Milestone 4 — poverty transition analysis
+**Next**
 
 Select the official poverty measure, create transition outcomes, estimate weighted transition rates, and validate replicate-weight uncertainty.
 
@@ -228,10 +234,12 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 ├── docs/
 │   ├── ACQUISITION.md
 │   ├── DATA_SOURCES.md
+│   ├── PANEL_CONSTRUCTION.md
 │   ├── RESEARCH_DESIGN.md
 │   └── VARIABLES.md
 ├── src/
 │   ├── assets.py
+│   ├── build_panel.py
 │   ├── cohort.py
 │   ├── download_assets.py
 │   ├── registry.py
@@ -240,7 +248,8 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   └── verify_remote_assets.py
 ├── tests/
 │   ├── test_milestone1.py
-│   └── test_milestone2.py
+│   ├── test_milestone2.py
+│   └── test_milestone3.py
 ├── .gitignore
 ├── requirements.txt
 └── README.md

@@ -1,0 +1,114 @@
+{
+  "version": "0.2",
+  "authority": "U.S. Census Bureau",
+  "assets": [
+    {
+      "asset_id": "sipp_2024_primary",
+      "survey_year": 2024,
+      "asset_type": "primary_data",
+      "url": "https://www2.census.gov/programs-surveys/sipp/data/datasets/2024/pu2024_csv.zip",
+      "local_name": "pu2024_csv.zip",
+      "required": true,
+      "large": true
+    },
+    {
+      "asset_id": "sipp_2024_dictionary",
+      "survey_year": 2024,
+      "asset_type": "data_dictionary",
+      "url": "https://www2.census.gov/programs-surveys/sipp/tech-documentation/data-dictionaries/2024/2024_SIPP_Data_Dictionary.pdf",
+      "local_name": "2024_SIPP_Data_Dictionary.pdf",
+      "required": true,
+      "large": false
+    },
+    {
+      "asset_id": "sipp_2024_schema",
+      "survey_year": 2024,
+      "asset_type": "primary_schema",
+      "url": "https://www2.census.gov/programs-surveys/sipp/data/datasets/2024/pu2024_schema.json",
+      "local_name": "pu2024_schema.json",
+      "required": true,
+      "large": false
+    },
+    {
+      "asset_id": "sipp_2025_primary",
+      "survey_year": 2025,
+      "asset_type": "primary_data",
+      "url": "https://www2.census.gov/programs-surveys/sipp/data/datasets/2025/pu2025_csv.zip",
+      "local_name": "pu2025_csv.zip",
+      "required": true,
+      "large": true
+    },
+    {
+      "asset_id": "sipp_2025_dictionary",
+      "survey_year": 2025,
+      "asset_type": "data_dictionary",
+      "url": "https://www2.census.gov/programs-surveys/sipp/tech-documentation/data-dictionaries/2025/2025_SIPP_Data_Dictionary.pdf",
+      "local_name": "2025_SIPP_Data_Dictionary.pdf",
+      "required": true,
+      "large": false
+    },
+    {
+      "asset_id": "sipp_2025_schema",
+      "survey_year": 2025,
+      "asset_type": "primary_schema",
+      "url": "https://www2.census.gov/programs-surveys/sipp/data/datasets/2025/pu2025_schema.json",
+      "local_name": "pu2025_schema.json",
+      "required": true,
+      "large": false
+    },
+    {
+      "asset_id": "sipp_2025_2yr_longitudinal_weights",
+      "survey_year": 2025,
+      "asset_type": "two_year_longitudinal_weights",
+      "url": "https://www2.census.gov/programs-surveys/sipp/data/datasets/2025/lgtwgt2025yr2_csv.zip",
+      "local_name": "lgtwgt2025yr2_csv.zip",
+      "required": true,
+      "large": false
+    },
+    {
+      "asset_id": "sipp_2025_longitudinal_weight_dictionary",
+      "survey_year": 2025,
+      "asset_type": "longitudinal_weight_dictionary",
+      "url": "https://www2.census.gov/programs-surveys/sipp/tech-documentation/data-dictionaries/2025/lgtwgt2025_dictionary.txt",
+      "local_name": "lgtwgt2025_dictionary.txt",
+      "required": true,
+      "large": false
+    },
+    {
+      "asset_id": "sipp_2025_2yr_longitudinal_weight_schema",
+      "survey_year": 2025,
+      "asset_type": "longitudinal_weight_schema",
+      "url": "https://www2.census.gov/programs-surveys/sipp/data/datasets/2025/lgtwgt2025yr2_schema.json",
+      "local_name": "lgtwgt2025yr2_schema.json",
+      "required": true,
+      "large": false
+    },
+    {
+      "asset_id": "sipp_2025_2yr_longitudinal_replicates",
+      "survey_year": 2025,
+      "asset_type": "two_year_longitudinal_replicate_weights",
+      "url": "https://www2.census.gov/programs-surveys/sipp/data/datasets/2025/lgtrw2025yr2_csv.zip",
+      "local_name": "lgtrw2025yr2_csv.zip",
+      "required": true,
+      "large": false
+    },
+    {
+      "asset_id": "sipp_2025_longitudinal_replicate_dictionary",
+      "survey_year": 2025,
+      "asset_type": "longitudinal_replicate_dictionary",
+      "url": "https://www2.census.gov/programs-surveys/sipp/tech-documentation/data-dictionaries/2025/lgtrw2025_dictionary.txt",
+      "local_name": "lgtrw2025_dictionary.txt",
+      "required": true,
+      "large": false
+    },
+    {
+      "asset_id": "sipp_2025_2yr_longitudinal_replicate_schema",
+      "survey_year": 2025,
+      "asset_type": "longitudinal_replicate_schema",
+      "url": "https://www2.census.gov/programs-surveys/sipp/data/datasets/2025/lgtrw2025yr2_schema.json",
+      "local_name": "lgtrw2025yr2_schema.json",
+      "required": true,
+      "large": false
+    }
+  ]
+}

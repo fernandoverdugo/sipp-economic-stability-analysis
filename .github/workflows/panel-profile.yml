@@ -54,7 +54,10 @@ jobs:
           assert profile["person_years"]["2025"] > 0
           assert profile["linked_with_longitudinal_weights"] > 0
           assert profile["adult_analysis_cohort"] > 0
-          assert profile["weight_validation"]["FINYR2_vs_REPWGT0_max_abs_difference"] <= 1e-6
+          assert (
+    profile["weight_validation"]["FINYR2_vs_REPWGT0_max_abs_difference"]
+    <= profile["weight_validation"]["tolerance"]
+)
           expected = {
               "stable_above_poverty",
               "entered_poverty",

@@ -1,0 +1,71 @@
+# Feature Ablation
+
+Milestone 5 includes a repeated feature-ablation analysis to test whether model performance depends heavily on one predictor or feature domain.
+
+## Design
+
+Each ablation uses:
+
+- the same 10 household-grouped holdouts
+- the same FINYR2-weighted regularized logistic regression
+- the same preprocessing pipeline
+- no hyperparameter retuning
+
+The comparison therefore isolates the effect of removing feature blocks.
+
+## Weighted mean results
+
+### Poverty entry
+
+| Variant | ROC-AUC | Average precision | Change in ROC-AUC | Change in AP |
+| --- | ---: | ---: | ---: | ---: |
+| Full 19-feature model | 0.718 | 0.127 | — | — |
+| No baseline poverty ratio | 0.705 | 0.125 | -0.013 | -0.002 |
+| No income-resource block | 0.705 | 0.124 | -0.013 | -0.003 |
+| No asset block | 0.718 | 0.127 | +0.000 | -0.000 |
+| No safety-net/housing block | 0.706 | 0.099 | -0.012 | **-0.028** |
+| No demographic block | **0.720** | **0.133** | +0.002 | +0.006 |
+
+### Poverty exit
+
+| Variant | ROC-AUC | Average precision | Change in ROC-AUC | Change in AP |
+| --- | ---: | ---: | ---: | ---: |
+| Full 19-feature model | 0.706 | 0.691 | — | — |
+| No baseline poverty ratio | 0.670 | 0.648 | **-0.036** | **-0.043** |
+| No income-resource block | 0.665 | 0.644 | **-0.041** | **-0.047** |
+| No asset block | 0.707 | 0.687 | +0.000 | -0.004 |
+| No safety-net/housing block | 0.674 | 0.679 | -0.032 | -0.011 |
+| No demographic block | **0.713** | **0.696** | +0.006 | +0.005 |
+
+## Interpretation
+
+The ablation results show that the model is **not** simply a proxy for baseline poverty ratio.
+
+Baseline poverty ratio and the broader income-resource block matter substantially for predicting poverty exit, but their removal has a smaller effect on poverty-entry discrimination.
+
+Housing and safety-net information is particularly useful for poverty entry. Removing that block reduces weighted average precision from 0.127 to 0.099.
+
+The asset block contributes almost no incremental predictive value in this specification.
+
+Most importantly, removing the demographic block—age, sex, race, Hispanic origin, U.S.-born status, and citizenship—does not harm performance. Mean discrimination and average precision improve slightly on both tasks.
+
+## Policy-model implication
+
+Demographic characteristics are therefore better positioned as **audit variables rather than predictive inputs** in the next model specification.
+
+This separation has two advantages:
+
+1. it simplifies the predictive model without sacrificing performance;
+2. it preserves demographic fields for subgroup diagnostics without allowing them to directly determine predicted risk.
+
+This result does not prove that the remaining features are free of indirect demographic correlation. Subgroup auditing remains necessary because non-demographic predictors can still encode structural differences.
+
+## Next specification
+
+The next candidate policy-facing model should:
+
+- exclude the demographic predictor block from model fitting;
+- retain demographic variables only for evaluation and subgroup auditing;
+- consider removing the asset block because it adds negligible incremental performance;
+- retain income, employment, housing, and safety-net predictors;
+- re-run repeated validation and subgroup diagnostics on the reduced specification before treating it as the preferred policy-facing model.

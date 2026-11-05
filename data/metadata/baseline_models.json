@@ -1,0 +1,210 @@
+{
+  "contract_version": "0.3",
+  "random_state": 699,
+  "split_method": "GroupShuffleSplit by SSUID",
+  "test_group_share": 0.25,
+  "models": [
+    "prevalence_only",
+    "l2_regularized_logistic_regression"
+  ],
+  "tasks": {
+    "poverty_entry": {
+      "sample": {
+        "rows": 13464,
+        "positive": 587,
+        "prevalence": 0.04359774212715389
+      },
+      "split": {
+        "train_rows": 10070,
+        "test_rows": 3394,
+        "train_positive": 431,
+        "test_positive": 156,
+        "train_households": 5562,
+        "test_households": 1855,
+        "household_overlap": 0
+      },
+      "prevalence_baseline": {
+        "train_prevalence": 0.04280039721946376,
+        "metrics": {
+          "roc_auc": 0.5,
+          "average_precision": 0.04596346493812611,
+          "brier_score": 0.04386082982640061,
+          "log_loss": 0.18657317617204414
+        }
+      },
+      "regularized_logistic": {
+        "metrics": {
+          "roc_auc": 0.7236502431066977,
+          "average_precision": 0.17636290754918502,
+          "brier_score": 0.041332420401888045,
+          "log_loss": 0.17032985306151768
+        },
+        "transformed_feature_count": 49,
+        "top_absolute_coefficients": [
+          {
+            "feature": "baseline_poverty_ratio",
+            "coefficient": -0.9134609699007437
+          },
+          {
+            "feature": "education=46.0",
+            "coefficient": -0.8434152600591335
+          },
+          {
+            "feature": "education=33.0",
+            "coefficient": 0.7802541414681273
+          },
+          {
+            "feature": "snap_received_year=0.0",
+            "coefficient": -0.7718558046654246
+          },
+          {
+            "feature": "education=45.0",
+            "coefficient": -0.7553478926966458
+          },
+          {
+            "feature": "annual_person_earnings",
+            "coefficient": 0.540971385923072
+          },
+          {
+            "feature": "education=38.0",
+            "coefficient": 0.48129620773081344
+          },
+          {
+            "feature": "housing_assistance_status=2.0",
+            "coefficient": 0.4727745905298527
+          },
+          {
+            "feature": "education=44.0",
+            "coefficient": -0.45439087013528445
+          },
+          {
+            "feature": "housing_tenure=2.0",
+            "coefficient": -0.44693718102169755
+          },
+          {
+            "feature": "born_in_us=1.0",
+            "coefficient": -0.41528661793569077
+          },
+          {
+            "feature": "housing_tenure=1.0",
+            "coefficient": -0.40384419224310975
+          },
+          {
+            "feature": "housing_assistance_status=0.0",
+            "coefficient": -0.40384419224310975
+          },
+          {
+            "feature": "race=2.0",
+            "coefficient": -0.38798057712408907
+          },
+          {
+            "feature": "housing_tenure=3.0",
+            "coefficient": 0.36046495094457115
+          }
+        ]
+      }
+    },
+    "poverty_exit": {
+      "sample": {
+        "rows": 1570,
+        "positive": 757,
+        "prevalence": 0.4821656050955414
+      },
+      "split": {
+        "train_rows": 1175,
+        "test_rows": 395,
+        "train_positive": 553,
+        "test_positive": 204,
+        "train_households": 907,
+        "test_households": 303,
+        "household_overlap": 0
+      },
+      "prevalence_baseline": {
+        "train_prevalence": 0.4706382978723404,
+        "metrics": {
+          "roc_auc": 0.5,
+          "average_precision": 0.5164556962025316,
+          "brier_score": 0.25182844405223737,
+          "log_loss": 0.6968092746194251
+        }
+      },
+      "regularized_logistic": {
+        "metrics": {
+          "roc_auc": 0.72405297197413,
+          "average_precision": 0.7187028493465057,
+          "brier_score": 0.21345986796107214,
+          "log_loss": 0.616040955089936
+        },
+        "transformed_feature_count": 49,
+        "top_absolute_coefficients": [
+          {
+            "feature": "housing_tenure=3.0",
+            "coefficient": -0.8092081776500119
+          },
+          {
+            "feature": "education=35.0",
+            "coefficient": -0.6897778705983332
+          },
+          {
+            "feature": "annual_person_income",
+            "coefficient": -0.606892716259843
+          },
+          {
+            "feature": "annual_person_earnings",
+            "coefficient": 0.502337183791647
+          },
+          {
+            "feature": "education=44.0",
+            "coefficient": 0.49701093080589104
+          },
+          {
+            "feature": "race=3.0",
+            "coefficient": 0.4905318906881822
+          },
+          {
+            "feature": "snap_received_year=1.0",
+            "coefficient": -0.4860045023747933
+          },
+          {
+            "feature": "snap_received_year=0.0",
+            "coefficient": 0.450282705770359
+          },
+          {
+            "feature": "baseline_poverty_ratio",
+            "coefficient": 0.4325527657611085
+          },
+          {
+            "feature": "education=45.0",
+            "coefficient": -0.41077103212975735
+          },
+          {
+            "feature": "housing_tenure=2.0",
+            "coefficient": 0.3961368936905928
+          },
+          {
+            "feature": "education=37.0",
+            "coefficient": -0.37753938959348804
+          },
+          {
+            "feature": "housing_tenure=1.0",
+            "coefficient": 0.3773494873549728
+          },
+          {
+            "feature": "housing_assistance_status=0.0",
+            "coefficient": 0.3773494873549728
+          },
+          {
+            "feature": "missing_mean_weekly_hours",
+            "coefficient": -0.3757889509283618
+          }
+        ]
+      }
+    }
+  },
+  "provenance": {
+    "workflow_run_id": 42092125235,
+    "head_sha": "991165d502204c1a89e4d2a1fc9567e3e4641f46",
+    "artifact_id": 13445473830,
+    "note": "Generated from the validated 2024→2025 SIPP longitudinal cohort using the contract v0.3 baseline feature matrix."
+  }
+}

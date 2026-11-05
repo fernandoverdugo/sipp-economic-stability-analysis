@@ -42,6 +42,9 @@ jobs:
       - name: Validate official schemas
         run: python src/validate_schemas.py
 
+      - name: Validate prospective predictor contract
+        run: python src/validate_predictors.py
+
       - name: Validate discovery output
         run: |
           python - <<'PY'
@@ -66,4 +69,10 @@ jobs:
           )
           assert schema["longitudinal_weight"]["required_found"]
           assert schema["longitudinal_replicate"]["replicate_weights"] == 240
+
+          predictors = json.loads(
+              Path("data/metadata/predictor_validation.json").read_text()
+          )
+          assert predictors["all_variables_present_in_both_releases"]
+          assert predictors["predictor_count"] > 0
           PY

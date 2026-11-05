@@ -1,0 +1,75 @@
+name: panel-profile
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "src/build_panel.py"
+      - "config/assets.json"
+      - "src/download_assets.py"
+      - ".github/workflows/panel-profile.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Download full registered assets
+        run: python src/download_assets.py --mode all
+
+      - name: Build longitudinal panel profile
+        run: python src/build_panel.py | tee panel_profile.log
+
+      - name: Validate panel profile
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          profile = json.loads(
+              Path("data/metadata/panel_profile.json").read_text()
+          )
+          assert profile["person_years"]["2024"] > 0
+          assert profile["person_years"]["2025"] > 0
+          assert profile["linked_with_longitudinal_weights"] > 0
+          assert profile["adult_analysis_cohort"] > 0
+          assert profile["weight_validation"]["FINYR2_vs_REPWGT0_max_abs_difference"] <= 1e-6
+          expected = {
+              "stable_above_poverty",
+              "entered_poverty",
+              "exited_poverty",
+              "persistent_poverty",
+          }
+          assert expected <= set(profile["transition_counts_unweighted"])
+          PY
+
+      - name: Upload profile artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: sipp-panel-profile
+          path: |
+            data/metadata/panel_profile.json
+            data/metadata/checksums.json
+            panel_profile.log

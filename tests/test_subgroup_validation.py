@@ -35,4 +35,6 @@ def test_aggregate_subgroups_requires_repeated_support():
 
     assert result["sex"]["1"]["status"] == "reported"
     assert result["sex"]["1"]["reportable_splits"] == 6
-    assert result["sex"]["1"]["weighted_metrics"]["roc_auc"]["mean"] == 0.7
+    assert abs(
+        result["sex"]["1"]["weighted_metrics"]["roc_auc"]["mean"] - 0.7
+    ) < 1e-12

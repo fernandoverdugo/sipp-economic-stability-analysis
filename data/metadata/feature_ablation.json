@@ -1,0 +1,524 @@
+{
+  "contract_version": "0.3",
+  "method": {
+    "split_method": "10 repeated GroupShuffleSplit by SSUID",
+    "weight": "FINYR2",
+    "model": "weighted regularized logistic regression",
+    "ablations": {
+      "full": [],
+      "without_baseline_poverty_ratio": [
+        "baseline_poverty_ratio"
+      ],
+      "without_income_resources": [
+        "annual_person_earnings",
+        "annual_person_income",
+        "baseline_poverty_ratio"
+      ],
+      "without_assets": [
+        "person_net_worth",
+        "person_assets",
+        "person_debt"
+      ],
+      "without_safety_net_housing": [
+        "housing_tenure",
+        "housing_assistance_status",
+        "snap_received_year"
+      ],
+      "without_demographics": [
+        "age",
+        "sex",
+        "race",
+        "hispanic_origin",
+        "born_in_us",
+        "citizenship"
+      ]
+    },
+    "hyperparameter_retuning": false
+  },
+  "tasks": {
+    "poverty_entry": {
+      "full": {
+        "excluded_features": [],
+        "remaining_features": 19,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.7178215390413107,
+            "std": 0.02620871736839288,
+            "min": 0.6741436985975943,
+            "max": 0.7441583608818929
+          },
+          "average_precision": {
+            "mean": 0.1270920505072793,
+            "std": 0.025301840539827026,
+            "min": 0.09459847363510065,
+            "max": 0.1783410041742444
+          },
+          "brier_score": {
+            "mean": 0.03959717078549639,
+            "std": 0.004237325551139085,
+            "min": 0.032882553427292564,
+            "max": 0.04419957305988961
+          },
+          "log_loss": {
+            "mean": 0.16473107570499324,
+            "std": 0.013355679584583367,
+            "min": 0.1435168130078612,
+            "max": 0.1817697614093113
+          }
+        },
+        "change_from_full": {
+          "roc_auc": 0,
+          "average_precision": 0,
+          "brier_score": 0,
+          "log_loss": 0
+        }
+      },
+      "without_baseline_poverty_ratio": {
+        "excluded_features": [
+          "baseline_poverty_ratio"
+        ],
+        "remaining_features": 18,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.7051592538747433,
+            "std": 0.0210303685599082,
+            "min": 0.6670165417538879,
+            "max": 0.7287311314214132
+          },
+          "average_precision": {
+            "mean": 0.12488373501581831,
+            "std": 0.02406794810316556,
+            "min": 0.0987011050531714,
+            "max": 0.17896698197486013
+          },
+          "brier_score": {
+            "mean": 0.039621063377663635,
+            "std": 0.004271910292172118,
+            "min": 0.03304495329506995,
+            "max": 0.04440440648970054
+          },
+          "log_loss": {
+            "mean": 0.16516014941189022,
+            "std": 0.01383075668862509,
+            "min": 0.14464880413002057,
+            "max": 0.1809037151756641
+          }
+        },
+        "change_from_full": {
+          "roc_auc": -0.012662285166567422,
+          "average_precision": -0.0022083154914609993,
+          "brier_score": 0.000023892592167243376,
+          "log_loss": 0.00042907370689698743
+        }
+      },
+      "without_income_resources": {
+        "excluded_features": [
+          "annual_person_earnings",
+          "annual_person_income",
+          "baseline_poverty_ratio"
+        ],
+        "remaining_features": 16,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.7048207966772269,
+            "std": 0.020969221220035156,
+            "min": 0.6685281989665763,
+            "max": 0.7287336641567872
+          },
+          "average_precision": {
+            "mean": 0.12427603030788123,
+            "std": 0.023886006265348904,
+            "min": 0.09884597944339826,
+            "max": 0.17870307023142626
+          },
+          "brier_score": {
+            "mean": 0.03963258947501982,
+            "std": 0.004284023636742511,
+            "min": 0.03306387527620428,
+            "max": 0.044418502511473626
+          },
+          "log_loss": {
+            "mean": 0.1650231326978311,
+            "std": 0.01405089223760571,
+            "min": 0.1438036431121674,
+            "max": 0.1812346808290152
+          }
+        },
+        "change_from_full": {
+          "roc_auc": -0.013000742364083884,
+          "average_precision": -0.002816020199398084,
+          "brier_score": 0.000035418689523426805,
+          "log_loss": 0.00029205699283785247
+        }
+      },
+      "without_assets": {
+        "excluded_features": [
+          "person_net_worth",
+          "person_assets",
+          "person_debt"
+        ],
+        "remaining_features": 16,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.7178664139815052,
+            "std": 0.026036828601636967,
+            "min": 0.6755354291013784,
+            "max": 0.7446496932468782
+          },
+          "average_precision": {
+            "mean": 0.1269028617392575,
+            "std": 0.024486336778904497,
+            "min": 0.09518303472750525,
+            "max": 0.17473923720629603
+          },
+          "brier_score": {
+            "mean": 0.039586513108920876,
+            "std": 0.004219199374553517,
+            "min": 0.03293397927588689,
+            "max": 0.04427629517213727
+          },
+          "log_loss": {
+            "mean": 0.16470706304091678,
+            "std": 0.013260504275566904,
+            "min": 0.14379210275310245,
+            "max": 0.18137314658651543
+          }
+        },
+        "change_from_full": {
+          "roc_auc": 0.000044874940194450375,
+          "average_precision": -0.0001891887680218196,
+          "brier_score": -0.000010657676575515085,
+          "log_loss": -0.00002401266407645042
+        }
+      },
+      "without_safety_net_housing": {
+        "excluded_features": [
+          "housing_tenure",
+          "housing_assistance_status",
+          "snap_received_year"
+        ],
+        "remaining_features": 16,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.7059552758455556,
+            "std": 0.030153543788102505,
+            "min": 0.6526162634014991,
+            "max": 0.7399393979922431
+          },
+          "average_precision": {
+            "mean": 0.09863170145085494,
+            "std": 0.0191899552808304,
+            "min": 0.07146711203809783,
+            "max": 0.1241784644887513
+          },
+          "brier_score": {
+            "mean": 0.03997225648994416,
+            "std": 0.0038999773508369964,
+            "min": 0.033784840643012494,
+            "max": 0.04432696506063428
+          },
+          "log_loss": {
+            "mean": 0.16777960435020794,
+            "std": 0.011914221720924899,
+            "min": 0.14866419979230322,
+            "max": 0.1834670551521065
+          }
+        },
+        "change_from_full": {
+          "roc_auc": -0.011866263195755122,
+          "average_precision": -0.028460349056424375,
+          "brier_score": 0.0003750857044477682,
+          "log_loss": 0.00304852864521471
+        }
+      },
+      "without_demographics": {
+        "excluded_features": [
+          "age",
+          "sex",
+          "race",
+          "hispanic_origin",
+          "born_in_us",
+          "citizenship"
+        ],
+        "remaining_features": 13,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.7195296798767654,
+            "std": 0.020246949075246382,
+            "min": 0.6837110778274971,
+            "max": 0.7435048237529147
+          },
+          "average_precision": {
+            "mean": 0.13328948752454078,
+            "std": 0.02734591827733211,
+            "min": 0.10250740786151574,
+            "max": 0.19219259307790015
+          },
+          "brier_score": {
+            "mean": 0.03943336695081382,
+            "std": 0.00417249879861327,
+            "min": 0.03275231236873233,
+            "max": 0.04378763460918146
+          },
+          "log_loss": {
+            "mean": 0.16410038169282742,
+            "std": 0.013560757098913906,
+            "min": 0.1429827379280416,
+            "max": 0.1798372019047745
+          }
+        },
+        "change_from_full": {
+          "roc_auc": 0.0017081408354546745,
+          "average_precision": 0.00619743701726147,
+          "brier_score": -0.00016380383468257015,
+          "log_loss": -0.0006306940121658111
+        }
+      }
+    },
+    "poverty_exit": {
+      "full": {
+        "excluded_features": [],
+        "remaining_features": 19,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.7063809730088106,
+            "std": 0.03329532826100103,
+            "min": 0.653007769584891,
+            "max": 0.7603715114299203
+          },
+          "average_precision": {
+            "mean": 0.6909273081657087,
+            "std": 0.044555400779665515,
+            "min": 0.6365666259507599,
+            "max": 0.7520283569230162
+          },
+          "brier_score": {
+            "mean": 0.21879281399233852,
+            "std": 0.011700406853646423,
+            "min": 0.199545713583337,
+            "max": 0.23702320915074407
+          },
+          "log_loss": {
+            "mean": 0.6306510276862215,
+            "std": 0.028087297071481623,
+            "min": 0.5837890478434141,
+            "max": 0.670763634669524
+          }
+        },
+        "change_from_full": {
+          "roc_auc": 0,
+          "average_precision": 0,
+          "brier_score": 0,
+          "log_loss": 0
+        }
+      },
+      "without_baseline_poverty_ratio": {
+        "excluded_features": [
+          "baseline_poverty_ratio"
+        ],
+        "remaining_features": 18,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.6702292285007034,
+            "std": 0.032449091092868455,
+            "min": 0.5955828185925685,
+            "max": 0.704671533593888
+          },
+          "average_precision": {
+            "mean": 0.6475056065849774,
+            "std": 0.042889997563782624,
+            "min": 0.5838538856189017,
+            "max": 0.7046321783983609
+          },
+          "brier_score": {
+            "mean": 0.23096511435328457,
+            "std": 0.011209673761216255,
+            "min": 0.21854725615139212,
+            "max": 0.25476181044537505
+          },
+          "log_loss": {
+            "mean": 0.6585857506507193,
+            "std": 0.026881661043871737,
+            "min": 0.6263011576761458,
+            "max": 0.708492366231957
+          }
+        },
+        "change_from_full": {
+          "roc_auc": -0.03615174450810721,
+          "average_precision": -0.04342170158073133,
+          "brier_score": 0.012172300360946048,
+          "log_loss": 0.027934722964497838
+        }
+      },
+      "without_income_resources": {
+        "excluded_features": [
+          "annual_person_earnings",
+          "annual_person_income",
+          "baseline_poverty_ratio"
+        ],
+        "remaining_features": 16,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.665103347791869,
+            "std": 0.03119369718761003,
+            "min": 0.5946685895903261,
+            "max": 0.7049322175649209
+          },
+          "average_precision": {
+            "mean": 0.6442367537336411,
+            "std": 0.04126994738405846,
+            "min": 0.5866777365422691,
+            "max": 0.6990789676236646
+          },
+          "brier_score": {
+            "mean": 0.23195252866460175,
+            "std": 0.010904710638414687,
+            "min": 0.2190051432121425,
+            "max": 0.2551933816667156
+          },
+          "log_loss": {
+            "mean": 0.6597090989384982,
+            "std": 0.025802989527088715,
+            "min": 0.6281649123658474,
+            "max": 0.7095277419796958
+          }
+        },
+        "change_from_full": {
+          "roc_auc": -0.04127762521694167,
+          "average_precision": -0.0466905544320676,
+          "brier_score": 0.013159714672263234,
+          "log_loss": 0.029058071252276663
+        }
+      },
+      "without_assets": {
+        "excluded_features": [
+          "person_net_worth",
+          "person_assets",
+          "person_debt"
+        ],
+        "remaining_features": 16,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.7067364675634586,
+            "std": 0.03309059932617086,
+            "min": 0.6529894601890263,
+            "max": 0.7596722756230566
+          },
+          "average_precision": {
+            "mean": 0.6873315591236198,
+            "std": 0.04240857169320458,
+            "min": 0.6296089975364227,
+            "max": 0.7522409022820222
+          },
+          "brier_score": {
+            "mean": 0.21878006347099221,
+            "std": 0.011575817939610501,
+            "min": 0.19989950506953827,
+            "max": 0.2376856960490731
+          },
+          "log_loss": {
+            "mean": 0.6304777866721261,
+            "std": 0.027263719723228136,
+            "min": 0.5846370891884981,
+            "max": 0.6730034280182593
+          }
+        },
+        "change_from_full": {
+          "roc_auc": 0.00035549455464800594,
+          "average_precision": -0.003595749042088925,
+          "brier_score": -0.000012750521346305277,
+          "log_loss": -0.00017324101409543768
+        }
+      },
+      "without_safety_net_housing": {
+        "excluded_features": [
+          "housing_tenure",
+          "housing_assistance_status",
+          "snap_received_year"
+        ],
+        "remaining_features": 16,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.6739012329989089,
+            "std": 0.03499033440637224,
+            "min": 0.630112232217575,
+            "max": 0.7309822933880742
+          },
+          "average_precision": {
+            "mean": 0.6794688989810852,
+            "std": 0.04300217750503477,
+            "min": 0.6075931506333622,
+            "max": 0.7456943473976725
+          },
+          "brier_score": {
+            "mean": 0.2271183925559796,
+            "std": 0.010385492596778031,
+            "min": 0.2085766177020492,
+            "max": 0.23867954542213649
+          },
+          "log_loss": {
+            "mean": 0.6487067608306538,
+            "std": 0.024592714260456915,
+            "min": 0.607956881706335,
+            "max": 0.6812497813241367
+          }
+        },
+        "change_from_full": {
+          "roc_auc": -0.032479740009901725,
+          "average_precision": -0.011458409184623486,
+          "brier_score": 0.008325578563641078,
+          "log_loss": 0.018055733144432318
+        }
+      },
+      "without_demographics": {
+        "excluded_features": [
+          "age",
+          "sex",
+          "race",
+          "hispanic_origin",
+          "born_in_us",
+          "citizenship"
+        ],
+        "remaining_features": 13,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.7125497202427644,
+            "std": 0.03289302352367844,
+            "min": 0.663618156173188,
+            "max": 0.7587362004965688
+          },
+          "average_precision": {
+            "mean": 0.6956337035149337,
+            "std": 0.04710485480002764,
+            "min": 0.6352291356238177,
+            "max": 0.7618377795358734
+          },
+          "brier_score": {
+            "mean": 0.21674494890970036,
+            "std": 0.010864210072984682,
+            "min": 0.20121569924756685,
+            "max": 0.2322575592815729
+          },
+          "log_loss": {
+            "mean": 0.6247207612301546,
+            "std": 0.02524019179712378,
+            "min": 0.5894651649057994,
+            "max": 0.6588111339299954
+          }
+        },
+        "change_from_full": {
+          "roc_auc": 0.006168747233953775,
+          "average_precision": 0.004706395349225012,
+          "brier_score": -0.002047865082638156,
+          "log_loss": -0.005930266456066868
+        }
+      }
+    }
+  },
+  "provenance": {
+    "workflow_run_id": 42099337973,
+    "head_sha": "8057df75e534af8728863af4e4517594e97e6d22",
+    "artifact_id": 13449421582,
+    "note": "Ten repeated household-grouped FINYR2-weighted logistic-regression feature-ablation comparisons without retuning."
+  }
+}

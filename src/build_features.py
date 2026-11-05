@@ -53,6 +53,14 @@ def housing_assistance_status(tenure, rent_subsidy, voucher):
     return 3 if voucher == 1 else 2
 
 
+def annual_yes_no(value):
+    if value == 1:
+        return 1
+    if value == 2:
+        return 0
+    return None
+
+
 def feature_sources(contract):
     sources = []
     for predictor in contract["predictors"]:
@@ -182,6 +190,14 @@ def build_features(panel, people, contract):
                     subsidy,
                     voucher,
                 )
+
+            elif aggregation == "annual_yes_no_recode":
+                raw_value = unique_or_none(
+                    categorical_values(source[variables[0]]),
+                    variables[0],
+                    key,
+                )
+                features[name] = annual_yes_no(raw_value)
 
             else:
                 raise RuntimeError(

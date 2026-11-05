@@ -6,6 +6,25 @@ The project is designed as a methodological companion to the NHIS Healthcare Acc
 
 Rather than classifying a cross-sectional outcome measured at the same time as its predictors, the SIPP design preserves temporal ordering by using baseline characteristics to study economic status in a subsequent survey year.
 
+
+## Project snapshot
+
+- **15,034** adults in the validated two-year longitudinal cohort
+- **4.05%** poverty-entry rate among adults above poverty at baseline
+- **48.43%** poverty-exit rate among adults below poverty at baseline
+- **240** Census longitudinal replicate weights used for Fay-BRR uncertainty
+- **10-feature** preferred policy-facing model
+- weighted ROC-AUC: **0.720** for poverty entry and **0.712** for poverty exit
+- demographics excluded from prediction and retained for subgroup auditing only
+
+[Read the executive summary](docs/EXECUTIVE_SUMMARY.md)
+
+![Weighted poverty transition estimates](docs/figures/transition_rates.svg)
+
+![Validated policy model performance](docs/figures/policy_model_performance.svg)
+
+![Poverty-entry risk concentration](docs/figures/entry_risk_concentration.svg)
+
 ## Primary research question
 
 > Which baseline economic, employment, demographic, and safety-net characteristics are associated with entering or exiting poverty over time among U.S. adults observed longitudinally in SIPP?
@@ -19,7 +38,7 @@ The first analytical cohort uses respondents represented in both the **2024 and 
 - Census 2-year longitudinal weight: respondents with data in both releases
 - Census 2-year longitudinal replicate weights: variance estimation for that same cohort
 
-The project will use the Census longitudinal design rather than substituting cross-sectional survey weights for transition estimates.
+The project uses the Census longitudinal design rather than substituting cross-sectional survey weights for transition estimates.
 
 ## Primary outcomes
 
@@ -32,9 +51,7 @@ poverty       → above poverty    exited_poverty
 poverty       → poverty          persistent_poverty
 ```
 
-The exact poverty variable and threshold will be selected from official Census-created income-to-poverty measures after the SIPP dictionaries are programmatically reviewed.
-
-The project will prefer an official Census-derived poverty measure rather than manually rebuilding poverty thresholds.
+The analysis uses the official annual family income-to-poverty ratio `TFCYINCPOV`, with poverty defined as a ratio below 1.0.
 
 ## Why SIPP
 
@@ -57,33 +74,35 @@ Its longitudinal structure makes it possible to study **transitions and persiste
 
 Estimate nationally representative transition rates using the Census two-year longitudinal weight.
 
-Planned outputs include:
+Completed outputs include:
 
 - overall poverty-entry rate
 - overall poverty-exit rate
 - persistent poverty
 - stable-above-poverty prevalence
-- subgroup transition estimates
 - longitudinal replicate-weight uncertainty
 
 ### Prospective prediction
 
 Baseline-year characteristics will be used to predict following-year outcomes.
 
-Initial model families:
+Model families evaluated:
 
 1. prevalence-only baseline
 2. regularized logistic regression
-3. gradient-boosting benchmark
+3. histogram gradient-boosting benchmark
 
-Planned evaluation:
+Completed evaluation includes:
 
 - ROC-AUC
 - average precision
 - Brier score
+- log loss
 - calibration
 - risk concentration
 - subgroup diagnostics
+- repeated subgroup validation
+- feature ablation
 
 Predictive models will be treated as **prospective risk-ranking tools**, not causal models.
 
@@ -102,7 +121,7 @@ Potential predictor domains include:
 - nativity
 - demographic characteristics
 
-Predictors will be selected only after confirming their definitions and timing across releases.
+Predictor definitions and timing are validated against the registered Census schemas before modeling.
 
 ## Survey inference
 
@@ -266,13 +285,17 @@ Demographic variables remain available for subgroup auditing but are excluded fr
 
 Milestone 5 is complete: the repository now contains a reproducible baseline model, repeated validation, weighted sensitivity analysis, calibration testing, nonlinear benchmarking, risk concentration, subgroup auditing, repeated subgroup validation, feature ablation, and a validated policy-facing specification.
 
-### Milestone 6 — diagnostics and independent validation
+### Optional extensions
 
-Add calibration, subgroup diagnostics, risk concentration, sensitivity checks, and independent R validation of representative longitudinal estimates.
+The core longitudinal analysis and predictive modeling workflow are complete.
 
-### Milestone 7 — extended dynamics
+Future extensions could include:
 
-If supported cleanly by the data, expand to monthly hardship measures, event-history models, and the three- or four-year longitudinal cohorts.
+- independent R validation of representative longitudinal estimates
+- event-history models for monthly transitions
+- material-hardship outcomes
+- three- or four-year longitudinal cohorts
+- external validation on a later SIPP release
 
 ## Responsible interpretation
 
@@ -301,6 +324,8 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   └── transition-analysis.yml
 ├── config/
 │   ├── assets.json
+│   ├── policy_model.json
+│   ├── predictors.json
 │   └── source_registry.json
 ├── data/
 │   ├── metadata/
@@ -320,6 +345,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   └── raw/
 ├── docs/
 │   ├── ACQUISITION.md
+│   ├── EXECUTIVE_SUMMARY.md
 │   ├── BASELINE_MODELING.md
 │   ├── DATA_SOURCES.md
 │   ├── FEATURE_ABLATION.md
@@ -329,7 +355,8 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   ├── PANEL_CONSTRUCTION.md
 │   ├── RESEARCH_DESIGN.md
 │   ├── TRANSITION_ANALYSIS.md
-│   └── VARIABLES.md
+│   ├── VARIABLES.md
+│   └── figures/
 ├── src/
 │   ├── analyze_transitions.py
 │   ├── assets.py
@@ -397,6 +424,14 @@ Then run the replicate-weight transition analysis:
 
 ```bash
 python src/analyze_transitions.py
+```
+
+
+Validate the preferred policy-facing model:
+
+```bash
+python src/validate_policy_model.py
+python src/audit_policy_model.py
 ```
 
 No analytical microdata are committed to Git history.

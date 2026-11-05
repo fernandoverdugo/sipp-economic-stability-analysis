@@ -1,0 +1,86 @@
+name: transition-analysis
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "src/analyze_transitions.py"
+      - "src/build_panel.py"
+      - "config/assets.json"
+      - "requirements.txt"
+      - ".github/workflows/transition-analysis.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Download full registered assets
+        run: python src/download_assets.py --mode all
+
+      - name: Build longitudinal panel
+        run: python src/build_panel.py
+
+      - name: Estimate transitions with replicate-weight uncertainty
+        run: |
+          set -o pipefail
+          python src/analyze_transitions.py | tee transition_analysis.log
+
+      - name: Validate transition analysis
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(
+              Path("data/metadata/transition_analysis.json").read_text()
+          )
+          assert result["analytical_cohort"] == 15034
+          assert result["method"]["replicate_count"] == 240
+          assert result["method"]["fay_coefficient"] == 0.5
+          assert result["method"]["variance_scale_denominator"] == 60.0
+
+          expected = {
+              "stable_above_poverty_share",
+              "entered_poverty_share",
+              "exited_poverty_share",
+              "persistent_poverty_share",
+              "baseline_poverty_share",
+              "followup_poverty_share",
+              "poverty_entry_rate_among_baseline_nonpoor",
+              "poverty_exit_rate_among_baseline_poor",
+          }
+          assert expected == set(result["estimates"])
+
+          for estimate in result["estimates"].values():
+              assert 0 <= estimate["estimate"] <= 1
+              assert estimate["standard_error"] > 0
+              assert 0 <= estimate["ci95_lower"] <= estimate["estimate"]
+              assert estimate["estimate"] <= estimate["ci95_upper"] <= 1
+          PY
+
+      - name: Upload analysis artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: sipp-transition-analysis
+          path: |
+            data/metadata/transition_analysis.json
+            transition_analysis.log

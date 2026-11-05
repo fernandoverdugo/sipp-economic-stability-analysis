@@ -1,1 +1,255 @@
-# sipp-economic-stability-analysis
+# SIPP Economic Stability & Poverty Transitions
+
+A longitudinal public-policy analysis using the U.S. Census Bureau Survey of Income and Program Participation (SIPP) to study how adults move into and out of poverty over time.
+
+The project is designed as a methodological companion to the NHIS Healthcare Access Analysis, but it answers a different kind of question: **what happens next?**
+
+Rather than classifying a cross-sectional outcome measured at the same time as its predictors, the SIPP design preserves temporal ordering by using baseline characteristics to study economic status in a subsequent survey year.
+
+## Primary research question
+
+> Which baseline economic, employment, demographic, and safety-net characteristics are associated with entering or exiting poverty over time among U.S. adults observed longitudinally in SIPP?
+
+## Initial longitudinal design
+
+The first analytical cohort uses respondents represented in both the **2024 and 2025 SIPP releases**.
+
+- 2024 SIPP: reference period January–December 2023
+- 2025 SIPP: reference period January–December 2024
+- Census 2-year longitudinal weight: respondents with data in both releases
+- Census 2-year longitudinal replicate weights: variance estimation for that same cohort
+
+The project will use the Census longitudinal design rather than substituting cross-sectional survey weights for transition estimates.
+
+## Primary outcomes
+
+The initial annual transition framework defines four mutually exclusive states:
+
+```text
+above poverty → above poverty    stable_above_poverty
+above poverty → poverty          entered_poverty
+poverty       → above poverty    exited_poverty
+poverty       → poverty          persistent_poverty
+```
+
+The exact poverty variable and threshold will be selected from official Census-created income-to-poverty measures after the SIPP dictionaries are programmatically reviewed.
+
+The project will prefer an official Census-derived poverty measure rather than manually rebuilding poverty thresholds.
+
+## Why SIPP
+
+SIPP is specifically designed to measure changes in:
+
+- income
+- employment
+- program participation
+- health insurance
+- assets and liabilities
+- family and household composition
+- material hardship
+- economic well-being
+
+Its longitudinal structure makes it possible to study **transitions and persistence**, not just one-time differences between groups.
+
+## Methodological roadmap
+
+### Population analysis
+
+Estimate nationally representative transition rates using the Census two-year longitudinal weight.
+
+Planned outputs include:
+
+- overall poverty-entry rate
+- overall poverty-exit rate
+- persistent poverty
+- stable-above-poverty prevalence
+- subgroup transition estimates
+- longitudinal replicate-weight uncertainty
+
+### Prospective prediction
+
+Baseline-year characteristics will be used to predict following-year outcomes.
+
+Initial model families:
+
+1. prevalence-only baseline
+2. regularized logistic regression
+3. gradient-boosting benchmark
+
+Planned evaluation:
+
+- ROC-AUC
+- average precision
+- Brier score
+- calibration
+- risk concentration
+- subgroup diagnostics
+
+Predictive models will be treated as **prospective risk-ranking tools**, not causal models.
+
+## Candidate baseline domains
+
+Potential predictor domains include:
+
+- employment and labor-force status
+- earned and unearned income
+- public-program participation
+- health insurance
+- education
+- household and family structure
+- disability
+- assets and liabilities
+- nativity
+- demographic characteristics
+
+Predictors will be selected only after confirming their definitions and timing across releases.
+
+## Survey inference
+
+This project will explicitly separate descriptive population inference from predictive modeling.
+
+Population estimates will use:
+
+- Census two-year longitudinal weights
+- Census longitudinal replicate weights
+- documented replicate-weight variance estimation
+
+Predictive models may use longitudinal weights as sample weights where appropriate, but model coefficients and machine-learning feature effects will not automatically be interpreted as population-causal estimates.
+
+## Data architecture
+
+The repository separates source registration, asset discovery, downloading, validation, and analysis:
+
+```text
+official Census release pages
+          ↓
+source registry
+          ↓
+asset discovery
+          ↓
+downloads + checksums
+          ↓
+schema validation
+          ↓
+2024 / 2025 person records
+          ↓
+longitudinal linkage
+          ↓
+2-year weights + replicate weights
+          ↓
+transition outcomes
+          ↓
+population inference + prospective modeling
+```
+
+Large raw Census files will not be committed to Git history.
+
+## Current milestone
+
+### Milestone 1 — longitudinal design and source foundation
+**Current**
+
+Implemented:
+
+- official Census source registry
+- 2024 and 2025 SIPP release registration
+- explicit 2-year longitudinal-weight requirements
+- reproducible source-asset discovery
+- poverty-transition state logic
+- research-design documentation
+- raw/processed data separation
+- automated validation tests
+- GitHub Actions quality checks
+
+See [`docs/RESEARCH_DESIGN.md`](docs/RESEARCH_DESIGN.md) for the analytical design and [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md) for source provenance.
+
+## Planned milestones
+
+### Milestone 2 — verified data acquisition
+
+Resolve the official primary-data, dictionary, two-year longitudinal-weight, and two-year longitudinal replicate-weight assets; download them reproducibly; record checksums; and validate file schemas.
+
+### Milestone 3 — longitudinal cohort construction
+
+Identify stable person keys, link 2024 and 2025 records, merge longitudinal weights, and construct a validated person-level panel.
+
+### Milestone 4 — poverty transition analysis
+
+Select the official poverty measure, create transition outcomes, estimate weighted transition rates, and validate replicate-weight uncertainty.
+
+### Milestone 5 — prospective prediction
+
+Build baseline and machine-learning models using only baseline information to predict following-year poverty entry and exit.
+
+### Milestone 6 — diagnostics and independent validation
+
+Add calibration, subgroup diagnostics, risk concentration, sensitivity checks, and independent R validation of representative longitudinal estimates.
+
+### Milestone 7 — extended dynamics
+
+If supported cleanly by the data, expand to monthly hardship measures, event-history models, and the three- or four-year longitudinal cohorts.
+
+## Responsible interpretation
+
+This is an observational analysis.
+
+The project will not interpret associations as causal effects of government programs or demographic characteristics.
+
+Nativity may be examined descriptively, but SIPP does not identify refugees and foreign-born respondents will **not** be treated as a refugee proxy.
+
+## Repository structure
+
+```text
+.
+├── .github/workflows/
+│   └── quality-checks.yml
+├── config/
+│   └── source_registry.json
+├── data/
+│   ├── metadata/
+│   ├── processed/
+│   └── raw/
+├── docs/
+│   ├── DATA_SOURCES.md
+│   └── RESEARCH_DESIGN.md
+├── src/
+│   ├── cohort.py
+│   ├── registry.py
+│   └── source_discovery.py
+├── tests/
+│   └── test_milestone1.py
+├── .gitignore
+├── requirements.txt
+└── README.md
+```
+
+## Run locally
+
+Create an environment and install the current dependencies:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+Run tests:
+
+```bash
+python -m pytest -q
+```
+
+Discover candidate assets from the registered official Census pages:
+
+```bash
+python src/source_discovery.py
+```
+
+The discovery output is written to:
+
+```text
+data/metadata/discovered_assets.json
+```
+
+No analytical microdata are committed to Git history.

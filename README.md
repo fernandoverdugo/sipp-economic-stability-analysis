@@ -206,11 +206,25 @@ The dedicated workflow rebuilds the panel from official Census assets before pro
 ### Milestone 5 — prospective prediction
 **In progress**
 
-The baseline predictor contract is now frozen in `config/predictors.json` and validated against both registered Census primary-file schemas. It defines the first leakage-safe feature domains, monthly aggregation rules, explicit exclusions, and preprocessing constraints before model fitting.
+The baseline predictor contract is frozen in `config/predictors.json` and validated against both registered Census primary-file schemas. After a full-data profiling pass, universe-dependent assistance fields were refined before modeling; the current contract contains **19 baseline features**.
 
-The baseline feature builder is now implemented in `src/build_features.py`. It streams the 2024 person-month file, aggregates monthly employment and income measures, preserves missingness, and writes the person-level modeling matrix outside Git history.
+The feature builder streams the 2024 person-month file, constructs the leakage-safe baseline matrix, and preserves the full **15,034-person** analytical cohort. Modeling samples are:
 
-Next: validate the full-data feature profile, then build prevalence-only and regularized-logistic baselines before introducing gradient boosting.
+- poverty entry: **13,464 adults**, 587 entries
+- poverty exit: **1,570 adults**, 757 exits
+
+The first household-grouped holdout benchmark is now complete:
+
+| Task | Model | ROC-AUC | Average precision | Brier score | Log loss |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Poverty entry | Prevalence only | 0.500 | 0.046 | 0.0439 | 0.1866 |
+| Poverty entry | Regularized logistic | **0.724** | **0.176** | **0.0413** | **0.1703** |
+| Poverty exit | Prevalence only | 0.500 | 0.516 | 0.2518 | 0.6968 |
+| Poverty exit | Regularized logistic | **0.724** | **0.719** | **0.2135** | **0.6160** |
+
+Train/test separation is grouped by `SSUID`, so members of the same sampled household cannot appear on opposite sides of the holdout.
+
+Next: repeated household-grouped evaluation, calibration diagnostics, weighted sensitivity analysis, and a gradient-boosting benchmark.
 
 ### Milestone 6 — diagnostics and independent validation
 
@@ -233,6 +247,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 ```text
 .
 ├── .github/workflows/
+│   ├── baseline-models.yml
 │   ├── feature-profile.yml
 │   ├── panel-profile.yml
 │   ├── quality-checks.yml
@@ -242,12 +257,15 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   └── source_registry.json
 ├── data/
 │   ├── metadata/
+│   │   ├── baseline_models.json
+│   │   ├── feature_profile.json
 │   │   ├── panel_profile.json
 │   │   └── transition_analysis.json
 │   ├── processed/
 │   └── raw/
 ├── docs/
 │   ├── ACQUISITION.md
+│   ├── BASELINE_MODELING.md
 │   ├── DATA_SOURCES.md
 │   ├── PANEL_CONSTRUCTION.md
 │   ├── RESEARCH_DESIGN.md
@@ -265,6 +283,8 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   ├── validate_schemas.py
 │   └── verify_remote_assets.py
 ├── tests/
+│   ├── test_baseline_models.py
+│   ├── test_feature_builder.py
 │   ├── test_milestone1.py
 │   ├── test_milestone2.py
 │   ├── test_milestone3.py

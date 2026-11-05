@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" role="img" aria-labelledby="title desc">
+<title id="title">SIPP poverty transition estimates</title>
+<desc id="desc">Horizontal bars show weighted poverty transition shares. Stable above poverty 86.28 percent, persistent poverty 5.20 percent, exited poverty 4.88 percent, entered poverty 3.65 percent.</desc>
+<rect width="960" height="520" fill="#ffffff"/>
+<text x="60" y="58" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#111827">Weighted annual poverty transitions</text>
+<text x="60" y="88" font-family="Arial, sans-serif" font-size="16" fill="#4b5563">2024→2025 SIPP longitudinal adult cohort • n = 15,034</text>
+<line x1="250" y1="120" x2="250" y2="455" stroke="#d1d5db"/>
+<text x="60" y="174" font-family="Arial, sans-serif" font-size="18" fill="#111827">Stable above poverty</text>
+<rect x="250" y="150" width="604" height="34" rx="5" fill="#2563eb"/>
+<text x="866" y="174" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">86.28%</text>
+<text x="60" y="254" font-family="Arial, sans-serif" font-size="18" fill="#111827">Persistent poverty</text>
+<rect x="250" y="230" width="36" height="34" rx="5" fill="#7c3aed"/>
+<text x="300" y="254" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">5.20%</text>
+<text x="60" y="334" font-family="Arial, sans-serif" font-size="18" fill="#111827">Exited poverty</text>
+<rect x="250" y="310" width="34" height="34" rx="5" fill="#059669"/>
+<text x="298" y="334" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">4.88%</text>
+<text x="60" y="414" font-family="Arial, sans-serif" font-size="18" fill="#111827">Entered poverty</text>
+<rect x="250" y="390" width="26" height="34" rx="5" fill="#dc2626"/>
+<text x="290" y="414" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">3.65%</text>
+<text x="60" y="478" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">Estimates use FINYR2 and 240 Census longitudinal replicate weights with Fay's BRR.</text>
+</svg>

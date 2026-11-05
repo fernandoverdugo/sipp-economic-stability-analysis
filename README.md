@@ -243,7 +243,17 @@ Repeated subgroup validation is now complete across the same 10 household-groupe
 
 The repository reports these as model-review signals, not causal or fairness conclusions, and suppresses subgroup headlines that lack repeated event support.
 
-Next: feature-ablation sensitivity and performance-difference uncertainty.
+Feature-ablation sensitivity is now complete. Removing the demographic predictor block slightly improves both tasks, and removing the asset block has essentially no cost. A combined **10-feature lean specification** improves all four weighted metrics relative to the full 19-feature logistic model.
+
+The preferred policy-facing candidate is now defined in `config/policy_model.json`:
+
+- demographics are retained for subgroup auditing but excluded from risk-score fitting
+- asset variables are excluded for negligible incremental value
+- education, employment, income, housing, and safety-net variables remain predictive inputs
+
+The lean model raises weighted entry ROC-AUC from **0.718 to 0.720** and exit ROC-AUC from **0.706 to 0.712**, while also improving average precision, Brier score, and log loss on both tasks.
+
+Next: run the lean specification through its own repeated validation and subgroup-audit workflow before promoting it to the final policy-facing benchmark.
 
 ### Milestone 6 — diagnostics and independent validation
 
@@ -268,6 +278,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 ├── .github/workflows/
 │   ├── baseline-models.yml
 │   ├── boosting-benchmark.yml
+│   ├── feature-ablation.yml
 │   ├── feature-profile.yml
 │   ├── model-calibration.yml
 │   ├── model-validation.yml
@@ -284,6 +295,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   │   ├── baseline_models.json
 │   │   ├── boosting_benchmark.json
 │   │   ├── calibration_analysis.json
+│   │   ├── feature_ablation.json
 │   │   ├── feature_profile.json
 │   │   ├── model_validation.json
 │   │   ├── policy_diagnostics.json
@@ -296,6 +308,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   ├── ACQUISITION.md
 │   ├── BASELINE_MODELING.md
 │   ├── DATA_SOURCES.md
+│   ├── FEATURE_ABLATION.md
 │   ├── MODEL_SELECTION.md
 │   ├── MODEL_VALIDATION.md
 │   ├── POLICY_DIAGNOSTICS.md
@@ -309,6 +322,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   ├── benchmark_boosting.py
 │   ├── build_features.py
 │   ├── build_panel.py
+│   ├── feature_ablation.py
 │   ├── calibrate_models.py
 │   ├── policy_diagnostics.py
 │   ├── cohort.py

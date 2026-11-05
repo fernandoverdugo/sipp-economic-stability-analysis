@@ -171,11 +171,11 @@ Initial weighted transition point estimates:
 
 Among adults above poverty at baseline, approximately **4.05%** entered poverty in the following year. Among adults below poverty at baseline, approximately **48.43%** exited poverty.
 
-These are point estimates only; replicate-weight uncertainty is reserved for Milestone 4.
+These panel-profile values are point estimates. Milestone 4 now implements design-based standard errors and 95% confidence intervals using all 240 Census longitudinal replicate weights and Fay's BRR method.
 
 The panel builder validates annual-variable consistency across monthly SIPP records, links on `SSUID + PNUM`, checks `FINYR2` against `REPWGT0`, and writes the person-level panel outside Git history.
 
-See [`docs/PANEL_CONSTRUCTION.md`](docs/PANEL_CONSTRUCTION.md) and [`data/metadata/panel_profile.json`](data/metadata/panel_profile.json).
+See [`docs/PANEL_CONSTRUCTION.md`](docs/PANEL_CONSTRUCTION.md), [`docs/TRANSITION_ANALYSIS.md`](docs/TRANSITION_ANALYSIS.md), and [`data/metadata/panel_profile.json`](data/metadata/panel_profile.json).
 
 ## Planned milestones
 
@@ -195,9 +195,11 @@ Verified official asset registry, downloader, checksum generation, remote probin
 Validated person-year collapse, `SSUID + PNUM` linkage, adult analytical cohort, longitudinal-weight integration, replicate full-weight validation, and transition-state construction.
 
 ### Milestone 4 — poverty transition analysis
-**Next**
+**In progress**
 
-Select the official poverty measure, create transition outcomes, estimate weighted transition rates, and validate replicate-weight uncertainty.
+The official annual family poverty ratio is selected, transition outcomes are constructed, and the survey-inference pipeline now estimates weighted rates, Fay-BRR standard errors, and bounded 95% confidence intervals from `REPWGT1`–`REPWGT240`.
+
+The dedicated workflow rebuilds the panel from official Census assets before producing `data/metadata/transition_analysis.json`.
 
 ### Milestone 5 — prospective prediction
 
@@ -225,7 +227,8 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 .
 ├── .github/workflows/
 │   ├── panel-profile.yml
-│   └── quality-checks.yml
+│   ├── quality-checks.yml
+│   └── transition-analysis.yml
 ├── config/
 │   ├── assets.json
 │   └── source_registry.json
@@ -239,8 +242,10 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   ├── DATA_SOURCES.md
 │   ├── PANEL_CONSTRUCTION.md
 │   ├── RESEARCH_DESIGN.md
+│   ├── TRANSITION_ANALYSIS.md
 │   └── VARIABLES.md
 ├── src/
+│   ├── analyze_transitions.py
 │   ├── assets.py
 │   ├── build_panel.py
 │   ├── cohort.py
@@ -252,7 +257,8 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 ├── tests/
 │   ├── test_milestone1.py
 │   ├── test_milestone2.py
-│   └── test_milestone3.py
+│   ├── test_milestone3.py
+│   └── test_milestone4.py
 ├── .gitignore
 ├── requirements.txt
 └── README.md
@@ -285,6 +291,12 @@ The discovery output is written to:
 
 ```text
 data/metadata/discovered_assets.json
+```
+
+After the full Census assets have been downloaded and the panel has been built, run the replicate-weight transition analysis:
+
+```bash
+python src/analyze_transitions.py
 ```
 
 No analytical microdata are committed to Git history.

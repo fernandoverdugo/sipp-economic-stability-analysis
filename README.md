@@ -239,7 +239,11 @@ Policy-facing diagnostics are now implemented on the fixed household-grouped hol
 
 Subgroup diagnostics also identify review signals—for example, weighted entry discrimination varies substantially across some age bands. These are treated as prompts for repeated-split fairness analysis rather than definitive subgroup conclusions because some cells have limited positive events.
 
-Next: repeated subgroup uncertainty and feature-ablation sensitivity.
+Repeated subgroup validation is now complete across the same 10 household-grouped holdouts. Persistent review signals remain—for example, weighted poverty-entry ROC-AUC averages **0.661** for ages 18–29 versus **0.759** for ages 45–59, while weighted poverty-exit ROC-AUC averages **0.620** for ages 75+ versus **0.754** for ages 60–74. Sex-group discrimination is comparatively similar across repeated splits.
+
+The repository reports these as model-review signals, not causal or fairness conclusions, and suppresses subgroup headlines that lack repeated event support.
+
+Next: feature-ablation sensitivity and performance-difference uncertainty.
 
 ### Milestone 6 — diagnostics and independent validation
 
@@ -268,6 +272,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   ├── model-calibration.yml
 │   ├── model-validation.yml
 │   ├── policy-diagnostics.yml
+│   ├── subgroup-validation.yml
 │   ├── panel-profile.yml
 │   ├── quality-checks.yml
 │   └── transition-analysis.yml
@@ -282,6 +287,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   │   ├── feature_profile.json
 │   │   ├── model_validation.json
 │   │   ├── policy_diagnostics.json
+│   │   ├── subgroup_validation.json
 │   │   ├── panel_profile.json
 │   │   └── transition_analysis.json
 │   ├── processed/

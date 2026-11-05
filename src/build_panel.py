@@ -79,12 +79,23 @@ def selected_rows_from_zip(path, columns):
                 delimiter = "|" if header_line.count("|") > header_line.count(",") else ","
                 header = next(csv.reader([header_line], delimiter=delimiter))
                 reader = csv.reader(text, delimiter=delimiter)
-                missing = [column for column in columns if column not in header]
+                normalized_header = {
+                    name.strip().upper(): index
+                    for index, name in enumerate(header)
+                }
+                missing = [
+                    column
+                    for column in columns
+                    if column.upper() not in normalized_header
+                ]
                 if missing:
                     raise RuntimeError(
                         f"{Path(path).name} missing columns: {missing}"
                     )
-                indices = [header.index(column) for column in columns]
+                indices = [
+                    normalized_header[column.upper()]
+                    for column in columns
+                ]
                 for row in reader:
                     yield {
                         column: row[index]

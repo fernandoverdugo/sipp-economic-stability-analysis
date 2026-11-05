@@ -38,5 +38,25 @@
     "preprocessing fit within training data only",
     "demographic subgroup auditing remains mandatory",
     "predictions are not causal estimates or automated eligibility decisions"
-  ]
+  ],
+  "status": "validated_preferred_policy_benchmark",
+  "validation": {
+    "workflow_run_id": 42101998203,
+    "repeated_household_splits": 10,
+    "weighted_metrics": {
+      "poverty_entry": {
+        "roc_auc": 0.7203001222677143,
+        "average_precision": 0.13315638167782604,
+        "brier_score": 0.03941723444369864,
+        "log_loss": 0.16395555672168644
+      },
+      "poverty_exit": {
+        "roc_auc": 0.7123468069637172,
+        "average_precision": 0.6932298198065361,
+        "brier_score": 0.21698652871410556,
+        "log_loss": 0.6251048251629878
+      }
+    },
+    "conclusion": "Validated across ten SSUID-grouped holdouts; promoted as preferred policy-facing logistic benchmark."
+  }
 }

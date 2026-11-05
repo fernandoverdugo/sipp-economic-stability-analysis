@@ -1,0 +1,230 @@
+{
+  "version": "0.1",
+  "baseline_release": 2024,
+  "reference_year": 2023,
+  "outcome_release": 2025,
+  "purpose": "Prospective baseline predictor contract for 2024 to 2025 poverty-entry and poverty-exit models.",
+  "rules": {
+    "baseline_only": true,
+    "prohibit_followup_predictors": true,
+    "prohibit_identifiers": true,
+    "status_flags_not_model_features": true,
+    "missing_values": "Preserve missingness during feature construction; imputation is fit inside training folds only.",
+    "categorical_encoding": "Fit encoding inside training folds only.",
+    "scaling": "Fit continuous-feature scaling inside training folds only where required by the model."
+  },
+  "predictors": [
+    {
+      "feature": "age",
+      "domain": "demographics",
+      "source": [
+        "TAGE"
+      ],
+      "aggregation": "annual_constant",
+      "type": "continuous"
+    },
+    {
+      "feature": "sex",
+      "domain": "demographics",
+      "source": [
+        "ESEX"
+      ],
+      "aggregation": "annual_constant",
+      "type": "categorical"
+    },
+    {
+      "feature": "race",
+      "domain": "demographics",
+      "source": [
+        "ERACE"
+      ],
+      "aggregation": "annual_constant",
+      "type": "categorical"
+    },
+    {
+      "feature": "hispanic_origin",
+      "domain": "demographics",
+      "source": [
+        "EORIGIN"
+      ],
+      "aggregation": "annual_constant",
+      "type": "categorical"
+    },
+    {
+      "feature": "education",
+      "domain": "education",
+      "source": [
+        "EEDUC"
+      ],
+      "aggregation": "annual_constant",
+      "type": "ordinal_categorical"
+    },
+    {
+      "feature": "born_in_us",
+      "domain": "nativity",
+      "source": [
+        "EBORNUS"
+      ],
+      "aggregation": "annual_constant",
+      "type": "categorical"
+    },
+    {
+      "feature": "citizenship",
+      "domain": "nativity",
+      "source": [
+        "ECITIZEN"
+      ],
+      "aggregation": "annual_constant",
+      "type": "categorical"
+    },
+    {
+      "feature": "months_employed",
+      "domain": "employment",
+      "source": [
+        "RMESR"
+      ],
+      "aggregation": "count_months_employed_from_monthly_status",
+      "type": "continuous"
+    },
+    {
+      "feature": "months_unemployed",
+      "domain": "employment",
+      "source": [
+        "RMESR"
+      ],
+      "aggregation": "count_months_unemployed_from_monthly_status",
+      "type": "continuous"
+    },
+    {
+      "feature": "mean_weekly_hours",
+      "domain": "employment",
+      "source": [
+        "TMWKHRS"
+      ],
+      "aggregation": "mean_across_observed_months",
+      "type": "continuous"
+    },
+    {
+      "feature": "annual_person_earnings",
+      "domain": "income",
+      "source": [
+        "TPEARN"
+      ],
+      "aggregation": "sum_across_observed_months",
+      "type": "continuous"
+    },
+    {
+      "feature": "annual_person_income",
+      "domain": "income",
+      "source": [
+        "TPTOTINC"
+      ],
+      "aggregation": "sum_across_observed_months",
+      "type": "continuous"
+    },
+    {
+      "feature": "baseline_poverty_ratio",
+      "domain": "income",
+      "source": [
+        "TFCYINCPOV"
+      ],
+      "aggregation": "annual_constant",
+      "type": "continuous"
+    },
+    {
+      "feature": "housing_tenure",
+      "domain": "housing",
+      "source": [
+        "ETENURE"
+      ],
+      "aggregation": "annual_constant",
+      "type": "categorical"
+    },
+    {
+      "feature": "rent_subsidy",
+      "domain": "safety_net",
+      "source": [
+        "ERENTSUB"
+      ],
+      "aggregation": "annual_constant",
+      "type": "categorical"
+    },
+    {
+      "feature": "housing_voucher",
+      "domain": "safety_net",
+      "source": [
+        "EVOUCHER"
+      ],
+      "aggregation": "annual_constant",
+      "type": "categorical"
+    },
+    {
+      "feature": "energy_assistance",
+      "domain": "safety_net",
+      "source": [
+        "EENERGY_ASST"
+      ],
+      "aggregation": "annual_constant",
+      "type": "categorical"
+    },
+    {
+      "feature": "snap_receipt_observed",
+      "domain": "safety_net",
+      "source": [
+        "ESNAP_BMONTH",
+        "ESNAP_EMONTH"
+      ],
+      "aggregation": "derive_any_receipt_from_spell_months",
+      "type": "binary"
+    },
+    {
+      "feature": "person_net_worth",
+      "domain": "assets",
+      "source": [
+        "TNETWORTH"
+      ],
+      "aggregation": "annual_constant",
+      "type": "continuous"
+    },
+    {
+      "feature": "person_assets",
+      "domain": "assets",
+      "source": [
+        "TVAL_AST"
+      ],
+      "aggregation": "annual_constant",
+      "type": "continuous"
+    },
+    {
+      "feature": "person_debt",
+      "domain": "assets",
+      "source": [
+        "TDEBT_AST"
+      ],
+      "aggregation": "annual_constant",
+      "type": "continuous"
+    }
+  ],
+  "excluded": [
+    {
+      "pattern": "follow-up variables",
+      "reason": "Outcome-period leakage."
+    },
+    {
+      "pattern": "SSUID, PNUM, SHHADID",
+      "reason": "Identifiers are linkage keys, not substantive predictors."
+    },
+    {
+      "pattern": "FINYR2 and replicate weights",
+      "reason": "Survey weights support weighting and inference and are not model features."
+    },
+    {
+      "pattern": "allocation and status flags",
+      "reason": "Retained for diagnostics rather than used as default substantive predictors."
+    },
+    {
+      "pattern": "transition and follow-up poverty status",
+      "reason": "Direct outcome leakage."
+    }
+  ]
+}

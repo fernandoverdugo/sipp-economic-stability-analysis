@@ -1,3 +1,4 @@
 requests==2.34.2
 pytest==9.0.2
-pandas==2.3.3\nnumpy==2.4.0\n
+pandas==2.3.3
+numpy==2.4.0

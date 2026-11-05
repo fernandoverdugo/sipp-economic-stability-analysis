@@ -1,11 +1,8 @@
 # SIPP Economic Stability & Poverty Transitions
 
-A longitudinal public-policy analysis using the U.S. Census Bureau Survey of Income and Program Participation (SIPP) to study how adults move into and out of poverty over time.
+A longitudinal public-policy analysis using the U.S. Census Bureau Survey of Income and Program Participation (SIPP) to measure annual poverty transitions and build prospective poverty-entry and poverty-exit models.
 
-The project is designed as a methodological companion to the NHIS Healthcare Access Analysis, but it answers a different kind of question: **what happens next?**
-
-Rather than classifying a cross-sectional outcome measured at the same time as its predictors, the SIPP design preserves temporal ordering by using baseline characteristics to study economic status in a subsequent survey year.
-
+The project follows the same adults across the **2024 and 2025 SIPP releases**, preserving temporal ordering between baseline characteristics and following-year economic outcomes.
 
 ## Project snapshot
 
@@ -15,34 +12,29 @@ Rather than classifying a cross-sectional outcome measured at the same time as i
 - **240** Census longitudinal replicate weights used for Fay-BRR uncertainty
 - **10-feature** preferred policy-facing model
 - weighted ROC-AUC: **0.720** for poverty entry and **0.712** for poverty exit
-- demographics excluded from prediction and retained for subgroup auditing only
+- demographic variables excluded from prediction and retained for subgroup auditing only
 
 [Read the executive summary](docs/EXECUTIVE_SUMMARY.md)
 
 ![Weighted poverty transition estimates](docs/figures/transition_rates.svg)
 
-![Validated policy model performance](docs/figures/policy_model_performance.svg)
+## Research question
 
-![Poverty-entry risk concentration](docs/figures/entry_risk_concentration.svg)
+> Which baseline economic, employment, and safety-net characteristics are associated with entering or exiting poverty over time among U.S. adults observed longitudinally in SIPP?
 
-## Primary research question
+## Longitudinal design
 
-> Which baseline economic, employment, demographic, and safety-net characteristics are associated with entering or exiting poverty over time among U.S. adults observed longitudinally in SIPP?
+The analysis links respondents represented in both releases:
 
-## Initial longitudinal design
+- **2024 SIPP:** January–December 2023 reference period
+- **2025 SIPP:** January–December 2024 reference period
+- linkage key: `SSUID + PNUM`
+- population inference: Census two-year longitudinal person weight `FINYR2`
+- variance estimation: `REPWGT1`–`REPWGT240`
 
-The first analytical cohort uses respondents represented in both the **2024 and 2025 SIPP releases**.
+Poverty status uses the Census annual family income-to-poverty ratio `TFCYINCPOV`, with poverty defined as a ratio below 1.0.
 
-- 2024 SIPP: reference period January–December 2023
-- 2025 SIPP: reference period January–December 2024
-- Census 2-year longitudinal weight: respondents with data in both releases
-- Census 2-year longitudinal replicate weights: variance estimation for that same cohort
-
-The project uses the Census longitudinal design rather than substituting cross-sectional survey weights for transition estimates.
-
-## Primary outcomes
-
-The initial annual transition framework defines four mutually exclusive states:
+Four mutually exclusive annual transitions are constructed:
 
 ```text
 above poverty → above poverty    stable_above_poverty
@@ -51,135 +43,11 @@ poverty       → above poverty    exited_poverty
 poverty       → poverty          persistent_poverty
 ```
 
-The analysis uses the official annual family income-to-poverty ratio `TFCYINCPOV`, with poverty defined as a ratio below 1.0.
+## Population findings
 
-## Why SIPP
+The adult analytical cohort contains **15,034 people**.
 
-SIPP is specifically designed to measure changes in:
-
-- income
-- employment
-- program participation
-- health insurance
-- assets and liabilities
-- family and household composition
-- material hardship
-- economic well-being
-
-Its longitudinal structure makes it possible to study **transitions and persistence**, not just one-time differences between groups.
-
-## Methodological roadmap
-
-### Population analysis
-
-Estimate nationally representative transition rates using the Census two-year longitudinal weight.
-
-Completed outputs include:
-
-- overall poverty-entry rate
-- overall poverty-exit rate
-- persistent poverty
-- stable-above-poverty prevalence
-- longitudinal replicate-weight uncertainty
-
-### Prospective prediction
-
-Baseline-year characteristics will be used to predict following-year outcomes.
-
-Model families evaluated:
-
-1. prevalence-only baseline
-2. regularized logistic regression
-3. histogram gradient-boosting benchmark
-
-Completed evaluation includes:
-
-- ROC-AUC
-- average precision
-- Brier score
-- log loss
-- calibration
-- risk concentration
-- subgroup diagnostics
-- repeated subgroup validation
-- feature ablation
-
-Predictive models will be treated as **prospective risk-ranking tools**, not causal models.
-
-## Candidate baseline domains
-
-Potential predictor domains include:
-
-- employment and labor-force status
-- earned and unearned income
-- public-program participation
-- health insurance
-- education
-- household and family structure
-- disability
-- assets and liabilities
-- nativity
-- demographic characteristics
-
-Predictor definitions and timing are validated against the registered Census schemas before modeling.
-
-## Survey inference
-
-This project will explicitly separate descriptive population inference from predictive modeling.
-
-Population estimates will use:
-
-- Census two-year longitudinal weights
-- Census longitudinal replicate weights
-- documented replicate-weight variance estimation
-
-Predictive models may use longitudinal weights as sample weights where appropriate, but model coefficients and machine-learning feature effects will not automatically be interpreted as population-causal estimates.
-
-## Data architecture
-
-The repository separates source registration, asset discovery, downloading, validation, and analysis:
-
-```text
-official Census release pages
-          ↓
-source registry
-          ↓
-asset discovery
-          ↓
-downloads + checksums
-          ↓
-schema validation
-          ↓
-2024 / 2025 person records
-          ↓
-longitudinal linkage
-          ↓
-2-year weights + replicate weights
-          ↓
-transition outcomes
-          ↓
-population inference + prospective modeling
-```
-
-Large raw Census files will not be committed to Git history.
-
-## Current milestone
-
-### Milestone 3 — longitudinal cohort construction
-**Complete**
-
-The official 2024 and 2025 SIPP primary files have now been linked to the Census two-year longitudinal and replicate-weight files.
-
-Validated panel profile:
-
-| Measure | Result |
-| --- | ---: |
-| 2024 unique persons | 36,915 |
-| 2025 unique persons | 32,052 |
-| Linked persons with longitudinal weights | 18,207 |
-| Adult analytical cohort | **15,034** |
-
-Design-based longitudinal estimates:
+Design-based estimates use all 240 longitudinal replicate weights with Fay's BRR method.
 
 | Estimand | Estimate | SE | 95% CI |
 | --- | ---: | ---: | ---: |
@@ -189,205 +57,177 @@ Design-based longitudinal estimates:
 | Persistent poverty | **5.20%** | 0.22 pp | 4.76–5.63% |
 | Baseline poverty prevalence | **10.07%** | 0.33 pp | 9.42–10.72% |
 | Follow-up poverty prevalence | **8.84%** | 0.31 pp | 8.24–9.44% |
-| Poverty entry among baseline nonpoor adults | **4.05%** | 0.25 pp | 3.57–4.54% |
-| Poverty exit among baseline poor adults | **48.43%** | 1.72 pp | 45.06–51.81% |
+| Entry among baseline nonpoor adults | **4.05%** | 0.25 pp | 3.57–4.54% |
+| Exit among baseline poor adults | **48.43%** | 1.72 pp | 45.06–51.81% |
 
-Standard errors and confidence intervals use all 240 Census longitudinal replicate weights with Fay's BRR method.
+See [Panel Construction](docs/PANEL_CONSTRUCTION.md) and [Transition Analysis](docs/TRANSITION_ANALYSIS.md).
 
-The panel builder validates annual-variable consistency across monthly SIPP records, links on `SSUID + PNUM`, checks `FINYR2` against `REPWGT0`, and writes the person-level panel outside Git history.
+## Prospective prediction
 
-See [`docs/PANEL_CONSTRUCTION.md`](docs/PANEL_CONSTRUCTION.md), [`docs/TRANSITION_ANALYSIS.md`](docs/TRANSITION_ANALYSIS.md), and [`data/metadata/panel_profile.json`](data/metadata/panel_profile.json).
+Two separate binary tasks are modeled:
 
-## Planned milestones
+1. **Poverty entry:** baseline nonpoor adults → entered poverty the following year
+2. **Poverty exit:** baseline poor adults → exited poverty the following year
 
-### Milestone 1 — longitudinal design and source foundation
-**Complete**
+Modeling samples:
 
-Research design, source provenance, transition-state logic, and reproducible source discovery.
+- poverty entry: **13,464 adults**, 587 positive cases
+- poverty exit: **1,570 adults**, 757 positive cases
 
-### Milestone 2 — verified data acquisition
-**Complete**
+Train/test splits are grouped by `SSUID` so members of the same sampled household cannot appear on opposite sides of a holdout.
 
-Verified official asset registry, downloader, checksum generation, remote probing, and schema validation.
+Preprocessing is learned inside the training pipeline only.
 
-### Milestone 3 — longitudinal cohort construction
-**Complete**
+## Preferred policy-facing model
 
-Validated person-year collapse, `SSUID + PNUM` linkage, adult analytical cohort, longitudinal-weight integration, replicate full-weight validation, and transition-state construction.
+The final policy model is a FINYR2-weighted regularized logistic regression using 10 baseline features:
 
-### Milestone 4 — poverty transition analysis
-**Complete**
+- education
+- months employed
+- months unemployed
+- mean weekly hours
+- annual personal earnings
+- annual personal income
+- baseline poverty ratio
+- housing tenure
+- housing-assistance status
+- annual SNAP receipt
 
-The official annual family poverty ratio is selected, transition outcomes are constructed, and the survey-inference pipeline estimates weighted rates, Fay-BRR standard errors, and bounded 95% confidence intervals from `REPWGT1`–`REPWGT240`.
+The specification is stored in [`config/policy_model.json`](config/policy_model.json).
 
-The dedicated workflow rebuilds the panel from official Census assets before producing `data/metadata/transition_analysis.json`. The full-data workflow and the standard quality-check workflow both pass successfully.
+![Validated policy model performance](docs/figures/policy_model_performance.svg)
 
-### Milestone 5 — prospective prediction
-**Complete**
-
-The baseline predictor contract is frozen in `config/predictors.json` and validated against both registered Census primary-file schemas. After a full-data profiling pass, universe-dependent assistance fields were refined before modeling; the current contract contains **19 baseline features**.
-
-The feature builder streams the 2024 person-month file, constructs the leakage-safe baseline matrix, and preserves the full **15,034-person** analytical cohort. Modeling samples are:
-
-- poverty entry: **13,464 adults**, 587 entries
-- poverty exit: **1,570 adults**, 757 exits
-
-The first household-grouped holdout benchmark is now complete:
-
-| Task | Model | ROC-AUC | Average precision | Brier score | Log loss |
-| --- | --- | ---: | ---: | ---: | ---: |
-| Poverty entry | Prevalence only | 0.500 | 0.046 | 0.0439 | 0.1866 |
-| Poverty entry | Regularized logistic | **0.724** | **0.176** | **0.0413** | **0.1703** |
-| Poverty exit | Prevalence only | 0.500 | 0.516 | 0.2518 | 0.6968 |
-| Poverty exit | Regularized logistic | **0.724** | **0.719** | **0.2135** | **0.6160** |
-
-Train/test separation is grouped by `SSUID`, so members of the same sampled household cannot appear on opposite sides of the holdout.
-
-Repeated household-grouped validation, weighted sensitivity analysis, probability calibration, and a gradient-boosting benchmark are now complete.
-
-Across 10 household-grouped holdouts, the weighted logistic model averages ROC-AUC **0.718** for poverty entry and **0.706** for poverty exit. Gradient boosting raises weighted entry ROC-AUC to **0.743**, but slightly reduces entry average precision; for poverty exit, logistic regression remains better across ROC-AUC, average precision, Brier score, and log loss.
-
-A separate group-aware sigmoid-calibration analysis did not improve overall probability accuracy, so the project retains the raw logistic probabilities.
-
-Current model-selection conclusion:
-
-- **poverty exit:** regularized logistic regression remains the preferred benchmark
-- **poverty entry:** logistic regression remains the interpretable benchmark, with histogram gradient boosting retained as a nonlinear challenger
-
-Policy-facing diagnostics are now implemented on the fixed household-grouped holdout. For poverty entry, the highest-risk **10%** contains **32.1%** of observed entries (**27.1%** after longitudinal weighting), while the highest-risk 20% contains **48.7%** (**41.1% weighted**).
-
-Subgroup diagnostics also identify review signals—for example, weighted entry discrimination varies substantially across some age bands. These are treated as prompts for repeated-split fairness analysis rather than definitive subgroup conclusions because some cells have limited positive events.
-
-Repeated subgroup validation is now complete across the same 10 household-grouped holdouts. Persistent review signals remain—for example, weighted poverty-entry ROC-AUC averages **0.661** for ages 18–29 versus **0.759** for ages 45–59, while weighted poverty-exit ROC-AUC averages **0.620** for ages 75+ versus **0.754** for ages 60–74. Sex-group discrimination is comparatively similar across repeated splits.
-
-The repository reports these as model-review signals, not causal or fairness conclusions, and suppresses subgroup headlines that lack repeated event support.
-
-Feature-ablation sensitivity is now complete. Removing the demographic predictor block slightly improves both tasks, and removing the asset block has essentially no cost. A combined **10-feature lean specification** improves all four weighted metrics relative to the full 19-feature logistic model.
-
-The preferred policy-facing candidate is now defined in `config/policy_model.json`:
-
-- demographics are retained for subgroup auditing but excluded from risk-score fitting
-- asset variables are excluded for negligible incremental value
-- education, employment, income, housing, and safety-net variables remain predictive inputs
-
-The lean model raises weighted entry ROC-AUC from **0.718 to 0.720** and exit ROC-AUC from **0.706 to 0.712**, while also improving average precision, Brier score, and log loss on both tasks.
-
-The 10-feature lean specification has now passed its own repeated validation and subgroup audit and is promoted as the preferred policy-facing logistic benchmark.
-
-Across 10 household-grouped holdouts, the validated policy model averages:
+Across 10 household-grouped holdouts:
 
 | Task | Weighted ROC-AUC | Weighted average precision | Brier score | Log loss |
 | --- | ---: | ---: | ---: | ---: |
 | Poverty entry | **0.720** | **0.133** | **0.0394** | **0.1640** |
 | Poverty exit | **0.712** | **0.693** | **0.2170** | **0.6251** |
 
-Demographic variables remain available for subgroup auditing but are excluded from risk-score fitting. Asset variables are also excluded because repeated ablation showed negligible incremental value.
+## Model comparison and simplification
 
-Milestone 5 is complete: the repository now contains a reproducible baseline model, repeated validation, weighted sensitivity analysis, calibration testing, nonlinear benchmarking, risk concentration, subgroup auditing, repeated subgroup validation, feature ablation, and a validated policy-facing specification.
+The project evaluates more than one modeling choice instead of selecting a model from a single favorable split.
 
-### Optional extensions
+### Logistic vs. gradient boosting
 
-The core longitudinal analysis and predictive modeling workflow are complete.
+For poverty entry, histogram gradient boosting improves weighted ROC-AUC from **0.718 to 0.743**, but slightly reduces average precision.
 
-Future extensions could include:
+For poverty exit, logistic regression performs better across ROC-AUC, average precision, Brier score, and log loss.
 
-- independent R validation of representative longitudinal estimates
-- event-history models for monthly transitions
-- material-hardship outcomes
-- three- or four-year longitudinal cohorts
-- external validation on a later SIPP release
+The project therefore retains logistic regression as the interpretable policy-facing benchmark and treats boosting as a nonlinear challenger rather than an automatic replacement.
 
-## Responsible interpretation
+### Feature ablation
 
-This is an observational analysis.
+Repeated feature ablation shows:
 
-The project will not interpret associations as causal effects of government programs or demographic characteristics.
+- removing demographic predictors slightly improves performance;
+- removing asset variables has essentially no performance cost;
+- income and baseline poverty position are important for poverty exit;
+- housing and safety-net variables add meaningful signal for poverty entry.
 
-Nativity may be examined descriptively, but SIPP does not identify refugees and foreign-born respondents will **not** be treated as a refugee proxy.
+A combined 10-feature specification excluding demographics and assets improves all four weighted metrics relative to the original 19-feature logistic model.
 
-## Repository structure
+See [Feature Ablation](docs/FEATURE_ABLATION.md) and [Model Selection](docs/MODEL_SELECTION.md).
+
+## Responsible-use design
+
+Demographic fields are **not used to generate the preferred model's risk scores**.
+
+The following fields are retained only for subgroup auditing:
+
+- age
+- sex
+- race
+- Hispanic origin
+- nativity
+- citizenship
+
+This separation is supported by the ablation results rather than imposed after modeling.
+
+It does not imply that the remaining predictors are free of indirect demographic correlation, so subgroup auditing remains part of the validation workflow.
+
+## Risk concentration
+
+On the fixed household-grouped policy-diagnostics holdout:
+
+| Highest predicted-risk group | Observed entries captured | Weighted capture |
+| --- | ---: | ---: |
+| Top 5% | 20.5% | 14.9% |
+| Top 10% | **32.1%** | **27.1%** |
+| Top 20% | **48.7%** | **41.1%** |
+
+![Poverty-entry risk concentration](docs/figures/entry_risk_concentration.svg)
+
+These results show useful prospective concentration, but the model is **not** intended for automated eligibility, denial, enforcement, or other high-stakes individual decisions.
+
+## Subgroup diagnostics
+
+Repeated subgroup validation identifies performance differences that warrant review.
+
+Examples:
+
+- weighted entry ROC-AUC averages **0.661** for ages 18–29 versus **0.759** for ages 45–59;
+- weighted exit ROC-AUC averages **0.620** for ages 75+ versus **0.754** for ages 60–74;
+- sex-group discrimination is comparatively similar across repeated splits.
+
+Subgroups without enough repeated event support are suppressed rather than assigned unstable headline metrics.
+
+These results are model-review signals, not causal or fairness conclusions.
+
+See [Policy Diagnostics](docs/POLICY_DIAGNOSTICS.md).
+
+## Technical highlights
+
+- official Census source registration and verification
+- streaming processing for 4,000+ column SIPP files
+- person-month to person-year collapse with consistency checks
+- longitudinal linkage on `SSUID + PNUM`
+- two-year longitudinal weights
+- 240 replicate weights and Fay-BRR variance estimation
+- leakage-safe feature construction
+- household-grouped validation
+- weighted and unweighted predictive metrics
+- calibration testing
+- nonlinear model benchmark
+- risk-concentration analysis
+- subgroup auditing and repeated subgroup validation
+- feature ablation
+- reproducible GitHub Actions workflows
+
+## Repository layout
 
 ```text
 .
-├── .github/workflows/
-│   ├── baseline-models.yml
-│   ├── boosting-benchmark.yml
-│   ├── feature-ablation.yml
-│   ├── feature-profile.yml
-│   ├── model-calibration.yml
-│   ├── model-validation.yml
-│   ├── policy-diagnostics.yml
-│   ├── policy-model-validation.yml
-│   ├── subgroup-validation.yml
-│   ├── panel-profile.yml
-│   ├── quality-checks.yml
-│   └── transition-analysis.yml
+├── .github/workflows/         reproducible validation workflows
 ├── config/
 │   ├── assets.json
-│   ├── policy_model.json
-│   ├── predictors.json
+│   ├── policy_model.json      preferred 10-feature specification
+│   ├── predictors.json        full baseline feature contract
 │   └── source_registry.json
 ├── data/
-│   ├── metadata/
-│   │   ├── baseline_models.json
-│   │   ├── boosting_benchmark.json
-│   │   ├── calibration_analysis.json
-│   │   ├── feature_ablation.json
-│   │   ├── feature_profile.json
-│   │   ├── model_validation.json
-│   │   ├── policy_diagnostics.json
-│   │   ├── policy_model_subgroups.json
-│   │   ├── policy_model_validation.json
-│   │   ├── subgroup_validation.json
-│   │   ├── panel_profile.json
-│   │   └── transition_analysis.json
-│   ├── processed/
-│   └── raw/
+│   ├── metadata/              committed aggregate results
+│   ├── processed/             generated locally; not committed
+│   └── raw/                   downloaded locally; not committed
 ├── docs/
-│   ├── ACQUISITION.md
 │   ├── EXECUTIVE_SUMMARY.md
-│   ├── BASELINE_MODELING.md
-│   ├── DATA_SOURCES.md
 │   ├── FEATURE_ABLATION.md
 │   ├── MODEL_SELECTION.md
 │   ├── MODEL_VALIDATION.md
-│   ├── POLICY_DIAGNOSTICS.md
 │   ├── PANEL_CONSTRUCTION.md
-│   ├── RESEARCH_DESIGN.md
+│   ├── POLICY_DIAGNOSTICS.md
 │   ├── TRANSITION_ANALYSIS.md
-│   ├── VARIABLES.md
 │   └── figures/
-├── src/
-│   ├── analyze_transitions.py
-│   ├── assets.py
-│   ├── benchmark_boosting.py
-│   ├── build_features.py
-│   ├── build_panel.py
-│   ├── feature_ablation.py
-│   ├── calibrate_models.py
-│   ├── audit_policy_model.py
-│   ├── policy_diagnostics.py
-│   ├── cohort.py
-│   ├── download_assets.py
-│   ├── registry.py
-│   ├── source_discovery.py
-│   ├── validate_schemas.py
-│   └── verify_remote_assets.py
-├── tests/
-│   ├── test_baseline_models.py
-│   ├── test_feature_builder.py
-│   ├── test_milestone1.py
-│   ├── test_milestone2.py
-│   ├── test_milestone3.py
-│   └── test_milestone4.py
-├── .gitignore
+├── src/                       analysis and validation code
+├── tests/                     unit and milestone tests
 ├── requirements.txt
 └── README.md
 ```
 
-## Run locally
+No analytical microdata are committed to Git history.
 
-Create an environment and install the current dependencies:
+## Reproduce the analysis
+
+Create an environment:
 
 ```bash
 python3 -m venv .venv
@@ -402,36 +242,58 @@ Run tests:
 python -m pytest -q
 ```
 
-Discover candidate assets from the registered official Census pages:
+Download the registered Census assets:
 
 ```bash
-python src/source_discovery.py
+python src/download_assets.py --mode all
 ```
 
-The discovery output is written to:
-
-```text
-data/metadata/discovered_assets.json
-```
-
-After the full Census assets have been downloaded and the panel has been built, construct the baseline feature matrix:
+Build the longitudinal panel and feature matrix:
 
 ```bash
+python src/build_panel.py
 python src/build_features.py
 ```
 
-Then run the replicate-weight transition analysis:
+Run design-based transition analysis:
 
 ```bash
 python src/analyze_transitions.py
 ```
 
-
-Validate the preferred policy-facing model:
+Validate the preferred policy model:
 
 ```bash
 python src/validate_policy_model.py
 python src/audit_policy_model.py
 ```
 
-No analytical microdata are committed to Git history.
+## Documentation
+
+- [Executive Summary](docs/EXECUTIVE_SUMMARY.md)
+- [Research Design](docs/RESEARCH_DESIGN.md)
+- [Data Sources](docs/DATA_SOURCES.md)
+- [Panel Construction](docs/PANEL_CONSTRUCTION.md)
+- [Transition Analysis](docs/TRANSITION_ANALYSIS.md)
+- [Predictor Contract](docs/PREDICTOR_CONTRACT.md)
+- [Baseline Modeling](docs/BASELINE_MODELING.md)
+- [Model Validation](docs/MODEL_VALIDATION.md)
+- [Model Selection](docs/MODEL_SELECTION.md)
+- [Policy Diagnostics](docs/POLICY_DIAGNOSTICS.md)
+- [Feature Ablation](docs/FEATURE_ABLATION.md)
+
+## Interpretation boundaries
+
+This is an observational analysis.
+
+The project does not interpret associations as causal effects of government programs or demographic characteristics.
+
+SIPP does not identify refugees. Foreign-born respondents are **not** treated as a refugee proxy.
+
+The predictive models are intended as methodological demonstrations of prospective risk ranking and validation, not as decision systems for individual eligibility or service denial.
+
+## Status
+
+**Core analysis complete and portfolio-ready.**
+
+Optional future extensions include external validation on a later SIPP release, event-history models for monthly transitions, material-hardship outcomes, and longer longitudinal cohorts.

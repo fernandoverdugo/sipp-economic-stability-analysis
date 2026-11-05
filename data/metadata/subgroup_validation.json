@@ -1,0 +1,4714 @@
+{
+  "contract_version": "0.3",
+  "method": {
+    "split_method": "10 repeated GroupShuffleSplit by SSUID",
+    "seeds": [
+      699,
+      700,
+      701,
+      702,
+      703,
+      704,
+      705,
+      706,
+      707,
+      708
+    ],
+    "weight": "FINYR2",
+    "model": "weighted regularized logistic regression"
+  },
+  "tasks": {
+    "poverty_entry": {
+      "repeats": 10,
+      "reporting_rule": {
+        "minimum_rows_per_split": 50,
+        "minimum_positive_per_split": 10,
+        "minimum_reportable_splits": 5
+      },
+      "aggregate": {
+        "age_band": {
+          "18-29": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.6609935518296162,
+                "std": 0.05734120772015669,
+                "min": 0.5651758974983166,
+                "max": 0.7323033729966001
+              },
+              "average_precision": {
+                "mean": 0.13328757211430178,
+                "std": 0.04470712128330667,
+                "min": 0.0656327190007983,
+                "max": 0.1965341109362762
+              },
+              "brier_score": {
+                "mean": 0.051818163678556205,
+                "std": 0.012770604263393052,
+                "min": 0.026333743215207463,
+                "max": 0.06783235633789178
+              },
+              "log_loss": {
+                "mean": 0.20945783675444427,
+                "std": 0.04091243729724959,
+                "min": 0.12736418537925784,
+                "max": 0.25569495758523375
+              }
+            },
+            "rows": {
+              "mean": 437.9,
+              "std": 20.925529330886178,
+              "min": 411,
+              "max": 477
+            },
+            "positive": {
+              "mean": 26.7,
+              "std": 6.32543366980566,
+              "min": 14,
+              "max": 38
+            }
+          },
+          "30-44": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.719168607064449,
+                "std": 0.049284993546508,
+                "min": 0.616872378802071,
+                "max": 0.7710505632408446
+              },
+              "average_precision": {
+                "mean": 0.12264397198861095,
+                "std": 0.042841173079218225,
+                "min": 0.05988340022424671,
+                "max": 0.17803887478798097
+              },
+              "brier_score": {
+                "mean": 0.031582963436378265,
+                "std": 0.006837539170026354,
+                "min": 0.02024480443707903,
+                "max": 0.03992433949450395
+              },
+              "log_loss": {
+                "mean": 0.13752054394473928,
+                "std": 0.024161542444072488,
+                "min": 0.10052045930162837,
+                "max": 0.1702745216920938
+              }
+            },
+            "rows": {
+              "mean": 726.5,
+              "std": 22.623733850391126,
+              "min": 683,
+              "max": 756
+            },
+            "positive": {
+              "mean": 28.7,
+              "std": 5.271516754112509,
+              "min": 18,
+              "max": 36
+            }
+          },
+          "45-59": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7590124871570232,
+                "std": 0.0344723529628747,
+                "min": 0.7027663157610148,
+                "max": 0.8026267954206724
+              },
+              "average_precision": {
+                "mean": 0.13236548657449876,
+                "std": 0.04382743205705522,
+                "min": 0.08204525123017996,
+                "max": 0.24120601696255559
+              },
+              "brier_score": {
+                "mean": 0.03664566485210557,
+                "std": 0.0046331097545486005,
+                "min": 0.030128707313704046,
+                "max": 0.04379850220595797
+              },
+              "log_loss": {
+                "mean": 0.15247242811796421,
+                "std": 0.015834454898672377,
+                "min": 0.1276561654146475,
+                "max": 0.17848554336976022
+              }
+            },
+            "rows": {
+              "mean": 710.5,
+              "std": 26.95778592952734,
+              "min": 664,
+              "max": 754
+            },
+            "positive": {
+              "mean": 30,
+              "std": 3.6209268304000717,
+              "min": 25,
+              "max": 36
+            }
+          },
+          "60-74": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.6868263501895014,
+                "std": 0.06493039233627126,
+                "min": 0.5851561525723976,
+                "max": 0.7842258648063257
+              },
+              "average_precision": {
+                "mean": 0.15926728318064537,
+                "std": 0.057143640295934425,
+                "min": 0.07427759805903138,
+                "max": 0.24877517171608654
+              },
+              "brier_score": {
+                "mean": 0.03781961787464053,
+                "std": 0.006646708121413025,
+                "min": 0.026331410417522273,
+                "max": 0.04767259128768799
+              },
+              "log_loss": {
+                "mean": 0.1603719025536776,
+                "std": 0.022112531071174422,
+                "min": 0.12418112224175398,
+                "max": 0.1925148852332085
+              }
+            },
+            "rows": {
+              "mean": 1004,
+              "std": 28.178005607210743,
+              "min": 942,
+              "max": 1030
+            },
+            "positive": {
+              "mean": 42.9,
+              "std": 8.11651266109884,
+              "min": 28,
+              "max": 55
+            }
+          },
+          "75+": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7474629646859763,
+                "std": 0.05956469014982763,
+                "min": 0.6345506367722695,
+                "max": 0.8212323097036593
+              },
+              "average_precision": {
+                "mean": 0.2208472456257212,
+                "std": 0.09452054716829016,
+                "min": 0.1078400694699563,
+                "max": 0.38345928209236874
+              },
+              "brier_score": {
+                "mean": 0.04921771513557402,
+                "std": 0.010437457079025088,
+                "min": 0.03235910275433059,
+                "max": 0.06823598483673737
+              },
+              "log_loss": {
+                "mean": 0.1923285706915079,
+                "std": 0.03321895295256739,
+                "min": 0.1382228136116096,
+                "max": 0.25259044356840893
+              }
+            },
+            "rows": {
+              "mean": 489.5,
+              "std": 20.22237484679889,
+              "min": 456,
+              "max": 511
+            },
+            "positive": {
+              "mean": 24.8,
+              "std": 5.513619500836089,
+              "min": 16,
+              "max": 31
+            }
+          }
+        },
+        "born_in_us": {
+          "1": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7328509835654122,
+                "std": 0.0388327831311034,
+                "min": 0.6640334813020917,
+                "max": 0.7763237720476942
+              },
+              "average_precision": {
+                "mean": 0.1229416823310753,
+                "std": 0.026442302982569256,
+                "min": 0.0878736473438601,
+                "max": 0.16287915084456844
+              },
+              "brier_score": {
+                "mean": 0.03529699803840629,
+                "std": 0.00445200008247997,
+                "min": 0.028584994289617853,
+                "max": 0.04170238436035253
+              },
+              "log_loss": {
+                "mean": 0.14904323675270076,
+                "std": 0.014616075111300576,
+                "min": 0.1272514532381862,
+                "max": 0.17172780049572237
+              }
+            },
+            "rows": {
+              "mean": 2777.8,
+              "std": 53.70661039387982,
+              "min": 2719,
+              "max": 2852
+            },
+            "positive": {
+              "mean": 113,
+              "std": 11.440668201153676,
+              "min": 100,
+              "max": 130
+            }
+          },
+          "2": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.6443627853545214,
+                "std": 0.04688850189880282,
+                "min": 0.5602806215504643,
+                "max": 0.7078091529025813
+              },
+              "average_precision": {
+                "mean": 0.16270809666422884,
+                "std": 0.05472989289777795,
+                "min": 0.0850312607538163,
+                "max": 0.24693461508524545
+              },
+              "brier_score": {
+                "mean": 0.0587025527784472,
+                "std": 0.011847354877219171,
+                "min": 0.038087192143035915,
+                "max": 0.07770863365009435
+              },
+              "log_loss": {
+                "mean": 0.23434992577144348,
+                "std": 0.03937616994846709,
+                "min": 0.1651873580223087,
+                "max": 0.305974998532517
+              }
+            },
+            "rows": {
+              "mean": 590.6,
+              "std": 27.35040117520115,
+              "min": 545,
+              "max": 629
+            },
+            "positive": {
+              "mean": 40.1,
+              "std": 4.557045826702499,
+              "min": 33,
+              "max": 48
+            }
+          }
+        },
+        "hispanic_origin": {
+          "1": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.6403040475313597,
+                "std": 0.056983214477644505,
+                "min": 0.5557099304132438,
+                "max": 0.7311402481316228
+              },
+              "average_precision": {
+                "mean": 0.12179817955328638,
+                "std": 0.03043545530143482,
+                "min": 0.08064419296461492,
+                "max": 0.16555494410996266
+              },
+              "brier_score": {
+                "mean": 0.061289303557634546,
+                "std": 0.01348751278613331,
+                "min": 0.044010024903854236,
+                "max": 0.08200651386654988
+              },
+              "log_loss": {
+                "mean": 0.24232184447959235,
+                "std": 0.04283119273896926,
+                "min": 0.1866193268410252,
+                "max": 0.31089575529228697
+              }
+            },
+            "rows": {
+              "mean": 524.2,
+              "std": 26.359902208552377,
+              "min": 483,
+              "max": 563
+            },
+            "positive": {
+              "mean": 37.3,
+              "std": 8.273787255879592,
+              "min": 24,
+              "max": 51
+            }
+          },
+          "2": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7297478754571658,
+                "std": 0.03483436333762664,
+                "min": 0.6583971095877126,
+                "max": 0.7661199761921548
+              },
+              "average_precision": {
+                "mean": 0.13604645776857918,
+                "std": 0.03631177172328712,
+                "min": 0.10083260492751156,
+                "max": 0.22193787909282583
+              },
+              "brier_score": {
+                "mean": 0.03516463307910152,
+                "std": 0.0032115445645842164,
+                "min": 0.030379203070708113,
+                "max": 0.04043455806687444
+              },
+              "log_loss": {
+                "mean": 0.14885930012176493,
+                "std": 0.011118412108137557,
+                "min": 0.13393383374480738,
+                "max": 0.16820119542920997
+              }
+            },
+            "rows": {
+              "mean": 2844.2,
+              "std": 49.68746767993359,
+              "min": 2785,
+              "max": 2914
+            },
+            "positive": {
+              "mean": 115.8,
+              "std": 8.189424074174367,
+              "min": 101,
+              "max": 129
+            }
+          }
+        },
+        "race": {
+          "1": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7276206932822509,
+                "std": 0.03834254109976011,
+                "min": 0.6352627017133905,
+                "max": 0.7798956319212333
+              },
+              "average_precision": {
+                "mean": 0.11727739820539126,
+                "std": 0.020757459915846654,
+                "min": 0.073012329658575,
+                "max": 0.139885520936218
+              },
+              "brier_score": {
+                "mean": 0.03727924357195128,
+                "std": 0.005008321604011381,
+                "min": 0.027616281941978744,
+                "max": 0.04192506296221929
+              },
+              "log_loss": {
+                "mean": 0.1563346941237727,
+                "std": 0.014886642449180731,
+                "min": 0.12985908578890543,
+                "max": 0.1722532085440894
+              }
+            },
+            "rows": {
+              "mean": 2758.8,
+              "std": 51.18333061977633,
+              "min": 2693,
+              "max": 2838
+            },
+            "positive": {
+              "mean": 113.5,
+              "std": 12.340088240275179,
+              "min": 89,
+              "max": 127
+            }
+          },
+          "2": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.6515547688225013,
+                "std": 0.0847909456725875,
+                "min": 0.5219267489243806,
+                "max": 0.7838852557933711
+              },
+              "average_precision": {
+                "mean": 0.17225593090019703,
+                "std": 0.09364576328175336,
+                "min": 0.06442314282388979,
+                "max": 0.3625229968100373
+              },
+              "brier_score": {
+                "mean": 0.03774718304352416,
+                "std": 0.015262656686948256,
+                "min": 0.016392028589774666,
+                "max": 0.06926261925111597
+              },
+              "log_loss": {
+                "mean": 0.16354070097295062,
+                "std": 0.05948966812355456,
+                "min": 0.08800395454471947,
+                "max": 0.29932505192501246
+              }
+            },
+            "rows": {
+              "mean": 265.8,
+              "std": 20.852924122157173,
+              "min": 233,
+              "max": 296
+            },
+            "positive": {
+              "mean": 16.4,
+              "std": 3.0623157540948935,
+              "min": 10,
+              "max": 20
+            }
+          },
+          "3": {
+            "reportable_splits": 9,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7439905633801707,
+                "std": 0.08327702372740217,
+                "min": 0.6485452531105097,
+                "max": 0.8863406216354385
+              },
+              "average_precision": {
+                "mean": 0.2652476921874985,
+                "std": 0.15898498840829042,
+                "min": 0.10718539188605458,
+                "max": 0.5693433748734852
+              },
+              "brier_score": {
+                "mean": 0.05441916223075724,
+                "std": 0.024835375890636224,
+                "min": 0.021544344722802797,
+                "max": 0.10282796874651551
+              },
+              "log_loss": {
+                "mean": 0.2132427507447554,
+                "std": 0.08146074909281338,
+                "min": 0.11167143344799148,
+                "max": 0.3755762210017355
+              }
+            },
+            "rows": {
+              "mean": 232.88888888888889,
+              "std": 18.258179293432057,
+              "min": 195,
+              "max": 256
+            },
+            "positive": {
+              "mean": 15.444444444444445,
+              "std": 5.294126724756197,
+              "min": 10,
+              "max": 25
+            }
+          },
+          "4": {
+            "reportable_splits": 4,
+            "total_splits": 10,
+            "status": "insufficient_repeated_support"
+          }
+        },
+        "sex": {
+          "1": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7304119603372308,
+                "std": 0.04066286424143712,
+                "min": 0.6698410944153358,
+                "max": 0.7904030788542071
+              },
+              "average_precision": {
+                "mean": 0.13440238427977652,
+                "std": 0.042521866043613674,
+                "min": 0.0957135431024072,
+                "max": 0.21424405922279266
+              },
+              "brier_score": {
+                "mean": 0.038897887713269144,
+                "std": 0.005023770612059684,
+                "min": 0.03008926589676008,
+                "max": 0.04598650040938721
+              },
+              "log_loss": {
+                "mean": 0.16121051932424302,
+                "std": 0.015181579644455443,
+                "min": 0.1374807738575544,
+                "max": 0.17907719131361716
+              }
+            },
+            "rows": {
+              "mean": 1649.5,
+              "std": 26.513099487695595,
+              "min": 1614,
+              "max": 1709
+            },
+            "positive": {
+              "mean": 69.1,
+              "std": 6.539622822966678,
+              "min": 59,
+              "max": 78
+            }
+          },
+          "2": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7058356794412114,
+                "std": 0.03834108899917569,
+                "min": 0.6529273870366256,
+                "max": 0.7606697697031738
+              },
+              "average_precision": {
+                "mean": 0.13033115166137849,
+                "std": 0.02222306802034928,
+                "min": 0.09773308802262955,
+                "max": 0.15339838064017344
+              },
+              "brier_score": {
+                "mean": 0.04026616642388948,
+                "std": 0.004544158224285615,
+                "min": 0.03485883227134441,
+                "max": 0.047219002725096174
+              },
+              "log_loss": {
+                "mean": 0.16814028283961452,
+                "std": 0.015647957765097843,
+                "min": 0.14924786075101082,
+                "max": 0.1917947703913849
+              }
+            },
+            "rows": {
+              "mean": 1718.9,
+              "std": 22.35794663599003,
+              "min": 1690,
+              "max": 1764
+            },
+            "positive": {
+              "mean": 84,
+              "std": 8.615231988880057,
+              "min": 76,
+              "max": 100
+            }
+          }
+        }
+      },
+      "splits": [
+        {
+          "seed": 699,
+          "rows": 3394,
+          "positive": 156,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 1664,
+                "positive": 78,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.671825531096343,
+                  "average_precision": 0.12926114980738354,
+                  "brier_score": 0.04116033398730354,
+                  "log_loss": 0.17440770307279904
+                }
+              },
+              "2": {
+                "rows": 1730,
+                "positive": 78,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6800667127823091,
+                  "average_precision": 0.10435312263078196,
+                  "brier_score": 0.03485883227134441,
+                  "log_loss": 0.15188910526951507
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 2766,
+                "positive": 120,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7431520339119417,
+                  "average_precision": 0.11420678099438698,
+                  "brier_score": 0.03466740457190108,
+                  "log_loss": 0.14608583885026694
+                }
+              },
+              "2": {
+                "rows": 269,
+                "positive": 20,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5219267489243806,
+                  "average_precision": 0.11765578812208106,
+                  "brier_score": 0.06926261925111597,
+                  "log_loss": 0.29932505192501246
+                }
+              },
+              "3": {
+                "rows": 245,
+                "positive": 10,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7916562325466256,
+                  "average_precision": 0.449824664852876,
+                  "brier_score": 0.021544344722802797,
+                  "log_loss": 0.11167143344799148
+                }
+              },
+              "4": {
+                "rows": 114,
+                "positive": 6,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 483,
+                "positive": 34,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7056166500262079,
+                  "average_precision": 0.09205999273672737,
+                  "brier_score": 0.04954297448541562,
+                  "log_loss": 0.19530960753114196
+                }
+              },
+              "2": {
+                "rows": 2911,
+                "positive": 122,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6583971095877126,
+                  "average_precision": 0.11558914021635494,
+                  "brier_score": 0.03572983280569962,
+                  "log_loss": 0.15674041015931597
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 2849,
+                "positive": 123,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6771525321470018,
+                  "average_precision": 0.09151300554319655,
+                  "brier_score": 0.03792639489069633,
+                  "log_loss": 0.16246587285234407
+                }
+              },
+              "2": {
+                "rows": 545,
+                "positive": 33,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7078091529025813,
+                  "average_precision": 0.21115267432917006,
+                  "brier_score": 0.038087192143035915,
+                  "log_loss": 0.1651873580223087
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 447,
+                "positive": 28,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5651758974983166,
+                  "average_precision": 0.12895345531364608,
+                  "brier_score": 0.05330221089376834,
+                  "log_loss": 0.22321854796072163
+                }
+              },
+              "30-44": {
+                "rows": 742,
+                "positive": 31,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.616872378802071,
+                  "average_precision": 0.05988340022424671,
+                  "brier_score": 0.036049385142957024,
+                  "log_loss": 0.15984616488549472
+                }
+              },
+              "45-59": {
+                "rows": 725,
+                "positive": 31,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.774021254253711,
+                  "average_precision": 0.1256628614182212,
+                  "brier_score": 0.030128707313704046,
+                  "log_loss": 0.1276561654146475
+                }
+              },
+              "60-74": {
+                "rows": 979,
+                "positive": 48,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7223083249373663,
+                  "average_precision": 0.1844680785311258,
+                  "brier_score": 0.03770039690834381,
+                  "log_loss": 0.16225225724853054
+                }
+              },
+              "75+": {
+                "rows": 501,
+                "positive": 18,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7270131910857572,
+                  "average_precision": 0.16422176040109807,
+                  "brier_score": 0.03235910275433059,
+                  "log_loss": 0.1382228136116096
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 700,
+          "rows": 3322,
+          "positive": 143,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 1626,
+                "positive": 66,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7499132371562954,
+                  "average_precision": 0.10134397127634259,
+                  "brier_score": 0.04215815824071497,
+                  "log_loss": 0.17056584611095724
+                }
+              },
+              "2": {
+                "rows": 1696,
+                "positive": 77,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7418224368816518,
+                  "average_precision": 0.13852664238217638,
+                  "brier_score": 0.03938568518112448,
+                  "log_loss": 0.161037264507466
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 2693,
+                "positive": 111,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7798956319212333,
+                  "average_precision": 0.139885520936218,
+                  "brier_score": 0.041530469472377964,
+                  "log_loss": 0.16567929065404072
+                }
+              },
+              "2": {
+                "rows": 296,
+                "positive": 10,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6349630624282843,
+                  "average_precision": 0.09629907828813128,
+                  "brier_score": 0.016392028589774666,
+                  "log_loss": 0.08800395454471947
+                }
+              },
+              "3": {
+                "rows": 213,
+                "positive": 8,
+                "status": "insufficient_events"
+              },
+              "4": {
+                "rows": 120,
+                "positive": 14,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6422447585321772,
+                  "average_precision": 0.18737201503886297,
+                  "brier_score": 0.1258480683393602,
+                  "log_loss": 0.4668250736585163
+                }
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 494,
+                "positive": 42,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6690481149606426,
+                  "average_precision": 0.1476622980370516,
+                  "brier_score": 0.07623825366540221,
+                  "log_loss": 0.2858757767785941
+                }
+              },
+              "2": {
+                "rows": 2828,
+                "positive": 101,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.752778635504512,
+                  "average_precision": 0.12193718655297363,
+                  "brier_score": 0.03420123485584447,
+                  "log_loss": 0.14355633346126181
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 2719,
+                "positive": 102,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7724691961637294,
+                  "average_precision": 0.1308145750151567,
+                  "brier_score": 0.03534168548000562,
+                  "log_loss": 0.1460124161833499
+                }
+              },
+              "2": {
+                "rows": 603,
+                "positive": 41,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6394639863879219,
+                  "average_precision": 0.11403204390853727,
+                  "brier_score": 0.0628475041596279,
+                  "log_loss": 0.2462438374887128
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 411,
+                "positive": 23,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6839633740189539,
+                  "average_precision": 0.08831940671530489,
+                  "brier_score": 0.053017039866378034,
+                  "log_loss": 0.2100105182314827
+                }
+              },
+              "30-44": {
+                "rows": 683,
+                "positive": 30,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7710505632408446,
+                  "average_precision": 0.10950780806445665,
+                  "brier_score": 0.03546299831023066,
+                  "log_loss": 0.14690611506885617
+                }
+              },
+              "45-59": {
+                "rows": 726,
+                "positive": 27,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.8026267954206724,
+                  "average_precision": 0.12183607827450874,
+                  "brier_score": 0.03304547485705971,
+                  "log_loss": 0.1347908049721438
+                }
+              },
+              "60-74": {
+                "rows": 1016,
+                "positive": 47,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7109900094251714,
+                  "average_precision": 0.1962088610757646,
+                  "brier_score": 0.04767259128768799,
+                  "log_loss": 0.1904311426357171
+                }
+              },
+              "75+": {
+                "rows": 486,
+                "positive": 16,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6345506367722695,
+                  "average_precision": 0.1078400694699563,
+                  "brier_score": 0.0365302959150483,
+                  "log_loss": 0.15923712510589463
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 701,
+          "rows": 3362,
+          "positive": 151,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 1658,
+                "positive": 71,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7479643046646027,
+                  "average_precision": 0.11109548295659083,
+                  "brier_score": 0.04013589877894701,
+                  "log_loss": 0.16562129489530872
+                }
+              },
+              "2": {
+                "rows": 1704,
+                "positive": 80,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7335082413030807,
+                  "average_precision": 0.14681179983353476,
+                  "brier_score": 0.04215877660779294,
+                  "log_loss": 0.17386364102269458
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 2838,
+                "positive": 114,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7522437466986414,
+                  "average_precision": 0.13959952923452162,
+                  "brier_score": 0.03701260822214525,
+                  "log_loss": 0.1562482673180607
+                }
+              },
+              "2": {
+                "rows": 233,
+                "positive": 17,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6987421407132484,
+                  "average_precision": 0.26396112079914913,
+                  "brier_score": 0.050615898695891184,
+                  "log_loss": 0.20076827282799714
+                }
+              },
+              "3": {
+                "rows": 195,
+                "positive": 15,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6485452531105097,
+                  "average_precision": 0.10718539188605458,
+                  "brier_score": 0.0705763748292211,
+                  "log_loss": 0.26321224404258126
+                }
+              },
+              "4": {
+                "rows": 96,
+                "positive": 5,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 553,
+                "positive": 39,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.637448633510907,
+                  "average_precision": 0.16555494410996266,
+                  "brier_score": 0.06542357703788011,
+                  "log_loss": 0.2629791564513953
+                }
+              },
+              "2": {
+                "rows": 2809,
+                "positive": 112,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7661199761921548,
+                  "average_precision": 0.11603226314831937,
+                  "brier_score": 0.0358252933174913,
+                  "log_loss": 0.14930356862378474
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 2808,
+                "positive": 108,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7763237720476942,
+                  "average_precision": 0.1214428431390408,
+                  "brier_score": 0.03390485235728937,
+                  "log_loss": 0.1427577687389636
+                }
+              },
+              "2": {
+                "rows": 554,
+                "positive": 43,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6156729922873303,
+                  "average_precision": 0.14663799291110824,
+                  "brier_score": 0.07770863365009435,
+                  "log_loss": 0.305974998532517
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 450,
+                "positive": 31,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7323033729966001,
+                  "average_precision": 0.1581901732471993,
+                  "brier_score": 0.06783235633789178,
+                  "log_loss": 0.25514209389804715
+                }
+              },
+              "30-44": {
+                "rows": 732,
+                "positive": 34,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7700262335847546,
+                  "average_precision": 0.17796428225074432,
+                  "brier_score": 0.036183206279033625,
+                  "log_loss": 0.15015920260073717
+                }
+              },
+              "45-59": {
+                "rows": 700,
+                "positive": 28,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7388907745067519,
+                  "average_precision": 0.1077335935196102,
+                  "brier_score": 0.03511681726036789,
+                  "log_loss": 0.15706355856873094
+                }
+              },
+              "60-74": {
+                "rows": 1010,
+                "positive": 28,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5991976489493949,
+                  "average_precision": 0.07427759805903138,
+                  "brier_score": 0.026331410417522273,
+                  "log_loss": 0.12418112224175398
+                }
+              },
+              "75+": {
+                "rows": 470,
+                "positive": 30,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.8212323097036593,
+                  "average_precision": 0.20995762772666116,
+                  "brier_score": 0.051526511834001525,
+                  "log_loss": 0.19197062773524887
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 702,
+          "rows": 3329,
+          "positive": 139,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 1614,
+                "positive": 59,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6698410944153358,
+                  "average_precision": 0.09585617975572962,
+                  "brier_score": 0.03008926589676008,
+                  "log_loss": 0.1374807738575544
+                }
+              },
+              "2": {
+                "rows": 1715,
+                "positive": 80,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7606697697031738,
+                  "average_precision": 0.1438055356106551,
+                  "brier_score": 0.03553470060516294,
+                  "log_loss": 0.14924786075101082
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 2749,
+                "positive": 106,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.732889443069767,
+                  "average_precision": 0.12844465787860318,
+                  "brier_score": 0.031264174780161955,
+                  "log_loss": 0.13813836664432505
+                }
+              },
+              "2": {
+                "rows": 252,
+                "positive": 13,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5644662155981246,
+                  "average_precision": 0.08595167721525623,
+                  "brier_score": 0.026999681514500502,
+                  "log_loss": 0.12873410451064546
+                }
+              },
+              "3": {
+                "rows": 226,
+                "positive": 12,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7091219152918483,
+                  "average_precision": 0.18645414703918833,
+                  "brier_score": 0.04257758012834661,
+                  "log_loss": 0.17350405899603988
+                }
+              },
+              "4": {
+                "rows": 102,
+                "positive": 8,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 537,
+                "positive": 26,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7311402481316228,
+                  "average_precision": 0.12722006528566235,
+                  "brier_score": 0.04420572654042377,
+                  "log_loss": 0.1866193268410252
+                }
+              },
+              "2": {
+                "rows": 2792,
+                "positive": 113,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7169732117959761,
+                  "average_precision": 0.12045384224433034,
+                  "brier_score": 0.030379203070708113,
+                  "log_loss": 0.13398762076676962
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 2730,
+                "positive": 101,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7288993323757048,
+                  "average_precision": 0.11752233917624215,
+                  "brier_score": 0.028584994289617853,
+                  "log_loss": 0.1272514532381862
+                }
+              },
+              "2": {
+                "rows": 599,
+                "positive": 38,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6617283344659166,
+                  "average_precision": 0.1327414973383988,
+                  "brier_score": 0.05040628884421546,
+                  "log_loss": 0.20984047533183572
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 416,
+                "positive": 14,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6323683398862563,
+                  "average_precision": 0.0656327190007983,
+                  "brier_score": 0.026333743215207463,
+                  "log_loss": 0.12736418537925784
+                }
+              },
+              "30-44": {
+                "rows": 702,
+                "positive": 28,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7178783859468489,
+                  "average_precision": 0.17251404957857838,
+                  "brier_score": 0.02710884939550312,
+                  "log_loss": 0.12192988255976009
+                }
+              },
+              "45-59": {
+                "rows": 676,
+                "positive": 25,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7713677643991904,
+                  "average_precision": 0.14310242108879467,
+                  "brier_score": 0.033543458528816975,
+                  "log_loss": 0.14984009959448663
+                }
+              },
+              "60-74": {
+                "rows": 1029,
+                "positive": 41,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7842258648063257,
+                  "average_precision": 0.24877517171608654,
+                  "brier_score": 0.0342182496087912,
+                  "log_loss": 0.14143976274635345
+                }
+              },
+              "75+": {
+                "rows": 506,
+                "positive": 31,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6615277386849687,
+                  "average_precision": 0.14180061370122532,
+                  "brier_score": 0.055391339386873364,
+                  "log_loss": 0.2198533647787069
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 703,
+          "rows": 3343,
+          "positive": 166,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 1631,
+                "positive": 73,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7717798013623637,
+                  "average_precision": 0.16318707036889082,
+                  "brier_score": 0.03883538406461201,
+                  "log_loss": 0.1577909974146606
+                }
+              },
+              "2": {
+                "rows": 1712,
+                "positive": 93,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6822526046344115,
+                  "average_precision": 0.1127887284199647,
+                  "brier_score": 0.04457957162325392,
+                  "log_loss": 0.18481099062499434
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 2720,
+                "positive": 127,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7270598913106541,
+                  "average_precision": 0.1252724430779273,
+                  "brier_score": 0.04166997729463419,
+                  "log_loss": 0.171437081609344
+                }
+              },
+              "2": {
+                "rows": 292,
+                "positive": 18,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7838852557933711,
+                  "average_precision": 0.3625229968100373,
+                  "brier_score": 0.030245875495932287,
+                  "log_loss": 0.12783300823115698
+                }
+              },
+              "3": {
+                "rows": 219,
+                "positive": 11,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6909794384215056,
+                  "average_precision": 0.2979747186120769,
+                  "brier_score": 0.0401742975249046,
+                  "log_loss": 0.1690076490251116
+                }
+              },
+              "4": {
+                "rows": 112,
+                "positive": 10,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6192315702711825,
+                  "average_precision": 0.15220665520184373,
+                  "brier_score": 0.09074505534439721,
+                  "log_loss": 0.3455044077481601
+                }
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 503,
+                "positive": 45,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6713736338416595,
+                  "average_precision": 0.15636619144466812,
+                  "brier_score": 0.07403765817405777,
+                  "log_loss": 0.27672912780428754
+                }
+              },
+              "2": {
+                "rows": 2840,
+                "positive": 121,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7217215369339167,
+                  "average_precision": 0.12667609967772217,
+                  "brier_score": 0.03525639846439054,
+                  "log_loss": 0.1503679756838589
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 2766,
+                "positive": 118,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7176396755762945,
+                  "average_precision": 0.1050723726640182,
+                  "brier_score": 0.034626145746123174,
+                  "log_loss": 0.14808282147397073
+                }
+              },
+              "2": {
+                "rows": 577,
+                "positive": 48,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6837501311206788,
+                  "average_precision": 0.20026269199165408,
+                  "brier_score": 0.07435227091580865,
+                  "log_loss": 0.2788110036056964
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 415,
+                "positive": 24,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.726978728065152,
+                  "average_precision": 0.16354316142901018,
+                  "brier_score": 0.048936007299310115,
+                  "log_loss": 0.19247876207942433
+                }
+              },
+              "30-44": {
+                "rows": 741,
+                "positive": 30,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7324437630138898,
+                  "average_precision": 0.1269678083632752,
+                  "brier_score": 0.039214887664948385,
+                  "log_loss": 0.16120119763178112
+                }
+              },
+              "45-59": {
+                "rows": 696,
+                "positive": 32,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7027663157610148,
+                  "average_precision": 0.1241509212600662,
+                  "brier_score": 0.03615307762557317,
+                  "log_loss": 0.15688949637503508
+                }
+              },
+              "60-74": {
+                "rows": 980,
+                "positive": 55,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7130962675504378,
+                  "average_precision": 0.1980892000603779,
+                  "brier_score": 0.0408132922985604,
+                  "log_loss": 0.1688482652354631
+                }
+              },
+              "75+": {
+                "rows": 511,
+                "positive": 25,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7439785937381114,
+                  "average_precision": 0.15920072412939765,
+                  "brier_score": 0.05134908138071189,
+                  "log_loss": 0.20327669754449526
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 704,
+          "rows": 3378,
+          "positive": 168,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 1653,
+                "positive": 74,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7318704042019916,
+                  "average_precision": 0.0957135431024072,
+                  "brier_score": 0.04268245164394034,
+                  "log_loss": 0.17164549605529067
+                }
+              },
+              "2": {
+                "rows": 1725,
+                "positive": 94,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6529273870366256,
+                  "average_precision": 0.10616648987612498,
+                  "brier_score": 0.04540706632257598,
+                  "log_loss": 0.1917947703913849
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 2770,
+                "positive": 122,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7030077072310781,
+                  "average_precision": 0.09780091538718814,
+                  "brier_score": 0.041397477041377403,
+                  "log_loss": 0.1722532085440894
+                }
+              },
+              "2": {
+                "rows": 246,
+                "positive": 17,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5976734366913093,
+                  "average_precision": 0.06442314282388979,
+                  "brier_score": 0.03709985974867983,
+                  "log_loss": 0.1658386725037906
+                }
+              },
+              "3": {
+                "rows": 249,
+                "positive": 17,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.665198140147387,
+                  "average_precision": 0.11373642836049441,
+                  "brier_score": 0.06081901798705762,
+                  "log_loss": 0.2343443697830333
+                }
+              },
+              "4": {
+                "rows": 113,
+                "positive": 12,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6875988081495268,
+                  "average_precision": 0.24273022353828083,
+                  "brier_score": 0.08824067809972432,
+                  "log_loss": 0.32633812542390606
+                }
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 542,
+                "positive": 39,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.597301737009724,
+                  "average_precision": 0.09085040118263797,
+                  "brier_score": 0.06203901124494638,
+                  "log_loss": 0.2492486391224675
+                }
+              },
+              "2": {
+                "rows": 2836,
+                "positive": 129,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7031586475333127,
+                  "average_precision": 0.10083260492751156,
+                  "brier_score": 0.04043455806687444,
+                  "log_loss": 0.16820119542920997
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 2749,
+                "positive": 130,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7226440075508468,
+                  "average_precision": 0.1067701249976465,
+                  "brier_score": 0.04170238436035253,
+                  "log_loss": 0.17172780049572237
+                }
+              },
+              "2": {
+                "rows": 629,
+                "positive": 38,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5810262620816801,
+                  "average_precision": 0.09746656666595549,
+                  "brier_score": 0.05384743439835177,
+                  "log_loss": 0.22364592861342178
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 477,
+                "positive": 29,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6324011359916468,
+                  "average_precision": 0.07566729166440399,
+                  "brier_score": 0.05234258373923817,
+                  "log_loss": 0.21388508136621134
+                }
+              },
+              "30-44": {
+                "rows": 720,
+                "positive": 36,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6700925232522466,
+                  "average_precision": 0.07670634709260901,
+                  "brier_score": 0.03992433949450395,
+                  "log_loss": 0.1702745216920938
+                }
+              },
+              "45-59": {
+                "rows": 711,
+                "positive": 35,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7817648976529668,
+                  "average_precision": 0.15503097670537663,
+                  "brier_score": 0.041132327632406096,
+                  "log_loss": 0.1617129515696564
+                }
+              },
+              "60-74": {
+                "rows": 1014,
+                "positive": 46,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6192566970778434,
+                  "average_precision": 0.10471352740347942,
+                  "brier_score": 0.04481348480671718,
+                  "log_loss": 0.1925148852332085
+                }
+              },
+              "75+": {
+                "rows": 456,
+                "positive": 22,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7657372329861729,
+                  "average_precision": 0.14944856590616584,
+                  "brier_score": 0.04378419255175804,
+                  "log_loss": 0.17105145266353244
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 705,
+          "rows": 3331,
+          "positive": 140,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 1641,
+                "positive": 63,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7564743741849669,
+                  "average_precision": 0.21424405922279266,
+                  "brier_score": 0.034177423700950706,
+                  "log_loss": 0.143398533495367
+                }
+              },
+              "2": {
+                "rows": 1690,
+                "positive": 77,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7078284789470584,
+                  "average_precision": 0.15012451297100798,
+                  "brier_score": 0.035998833815912304,
+                  "log_loss": 0.15235983897831382
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 2697,
+                "positive": 99,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7230025337884638,
+                  "average_precision": 0.11343556732402735,
+                  "brier_score": 0.03532999719808184,
+                  "log_loss": 0.14928035219351693
+                }
+              },
+              "2": {
+                "rows": 261,
+                "positive": 17,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.649067502460853,
+                  "average_precision": 0.19406780064382648,
+                  "brier_score": 0.028869693908431537,
+                  "log_loss": 0.12996335580885776
+                }
+              },
+              "3": {
+                "rows": 239,
+                "positive": 13,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.8863406216354385,
+                  "average_precision": 0.5693433748734852,
+                  "brier_score": 0.027561167417859724,
+                  "log_loss": 0.11916849184453424
+                }
+              },
+              "4": {
+                "rows": 134,
+                "positive": 11,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.8535864855258827,
+                  "average_precision": 0.45431296002468063,
+                  "brier_score": 0.06408403777640176,
+                  "log_loss": 0.23117850694392797
+                }
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 514,
+                "positive": 33,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5648865432685765,
+                  "average_precision": 0.0969371049814627,
+                  "brier_score": 0.052688309193851056,
+                  "log_loss": 0.21877102036678545
+                }
+              },
+              "2": {
+                "rows": 2817,
+                "positive": 107,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7611155587236239,
+                  "average_precision": 0.22193787909282583,
+                  "brier_score": 0.03162363501892138,
+                  "log_loss": 0.13393383374480738
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 2732,
+                "positive": 100,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7481381815968362,
+                  "average_precision": 0.16287915084456844,
+                  "brier_score": 0.0316251465225965,
+                  "log_loss": 0.13443230608958412
+                }
+              },
+              "2": {
+                "rows": 599,
+                "positive": 40,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6479749923729944,
+                  "average_precision": 0.24693461508524545,
+                  "brier_score": 0.05061146343642781,
+                  "log_loss": 0.2082061797282912
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 430,
+                "positive": 23,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6961325802297388,
+                  "average_precision": 0.18317298467044005,
+                  "brier_score": 0.04047093578459541,
+                  "log_loss": 0.1675316148042234
+                }
+              },
+              "30-44": {
+                "rows": 717,
+                "positive": 22,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7051197947242395,
+                  "average_precision": 0.12668275767789874,
+                  "brier_score": 0.02024480443707903,
+                  "log_loss": 0.10052045930162837
+                }
+              },
+              "45-59": {
+                "rows": 664,
+                "positive": 28,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7498794601283701,
+                  "average_precision": 0.1283951910688777,
+                  "brier_score": 0.03862712164719956,
+                  "log_loss": 0.15679550694949468
+                }
+              },
+              "60-74": {
+                "rows": 1018,
+                "positive": 39,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6911973948951033,
+                  "average_precision": 0.2146795346697849,
+                  "brier_score": 0.03526005042312886,
+                  "log_loss": 0.15059685176749993
+                }
+              },
+              "75+": {
+                "rows": 502,
+                "positive": 28,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.8054609258884242,
+                  "average_precision": 0.3483724249313719,
+                  "brier_score": 0.05640846266843427,
+                  "log_loss": 0.21166638868094706
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 706,
+          "rows": 3348,
+          "positive": 170,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 1638,
+                "positive": 70,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7052889763323011,
+                  "average_precision": 0.09864653079925044,
+                  "brier_score": 0.04119203593340474,
+                  "log_loss": 0.17054884899527895
+                }
+              },
+              "2": {
+                "rows": 1710,
+                "positive": 100,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.748023158942736,
+                  "average_precision": 0.14960321622673603,
+                  "brier_score": 0.047219002725096174,
+                  "log_loss": 0.1856704804270165
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 2735,
+                "positive": 124,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.748985047483995,
+                  "average_precision": 0.10840550969486529,
+                  "brier_score": 0.04192506296221929,
+                  "log_loss": 0.16850038616872376
+                }
+              },
+              "2": {
+                "rows": 269,
+                "positive": 15,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5943102818480712,
+                  "average_precision": 0.16896986490970015,
+                  "brier_score": 0.04155745632027465,
+                  "log_loss": 0.1788641358373647
+                }
+              },
+              "3": {
+                "rows": 231,
+                "positive": 23,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6837772201686904,
+                  "average_precision": 0.1285594735439084,
+                  "brier_score": 0.0577602281286046,
+                  "log_loss": 0.23303840857231273
+                }
+              },
+              "4": {
+                "rows": 113,
+                "positive": 8,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 563,
+                "positive": 51,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.626228747526909,
+                  "average_precision": 0.11964249720945695,
+                  "brier_score": 0.08200651386654988,
+                  "log_loss": 0.31089575529228697
+                }
+              },
+              "2": {
+                "rows": 2785,
+                "positive": 119,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7482999873189238,
+                  "average_precision": 0.12537126842017574,
+                  "brier_score": 0.0359270549384723,
+                  "log_loss": 0.14903662192944064
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 2734,
+                "positive": 126,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7692298259248432,
+                  "average_precision": 0.14908935233464662,
+                  "brier_score": 0.04049986348880524,
+                  "log_loss": 0.16297263888537367
+                }
+              },
+              "2": {
+                "rows": 614,
+                "positive": 44,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5602806215504643,
+                  "average_precision": 0.0850312607538163,
+                  "brier_score": 0.059813602754736475,
+                  "log_loss": 0.2419151665739677
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 452,
+                "positive": 38,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6865634084357556,
+                  "average_precision": 0.13821442396529393,
+                  "brier_score": 0.06554831310236282,
+                  "log_loss": 0.25093820640196757
+                }
+              },
+              "30-44": {
+                "rows": 721,
+                "positive": 29,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7373220016613861,
+                  "average_precision": 0.17803887478798097,
+                  "brier_score": 0.02992863721372645,
+                  "log_loss": 0.1307567023490367
+                }
+              },
+              "45-59": {
+                "rows": 724,
+                "positive": 36,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7038627664745112,
+                  "average_precision": 0.08204525123017996,
+                  "brier_score": 0.04379850220595797,
+                  "log_loss": 0.17848554336976022
+                }
+              },
+              "60-74": {
+                "rows": 942,
+                "positive": 40,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7429870882764735,
+                  "average_precision": 0.12775554771108105,
+                  "brier_score": 0.03921583054930002,
+                  "log_loss": 0.15898060752041696
+                }
+              },
+              "75+": {
+                "rows": 509,
+                "positive": 27,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7564763308339127,
+                  "average_precision": 0.2474989568296094,
+                  "brier_score": 0.05291512064935581,
+                  "log_loss": 0.20399576299211744
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 707,
+          "rows": 3425,
+          "positive": 137,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 1661,
+                "positive": 61,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7087588011039013,
+                  "average_precision": 0.14524029685015663,
+                  "brier_score": 0.032561424476670785,
+                  "log_loss": 0.14156850803159648
+                }
+              },
+              "2": {
+                "rows": 1764,
+                "positive": 76,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6592792734999204,
+                  "average_precision": 0.09773308802262955,
+                  "brier_score": 0.036138983324909994,
+                  "log_loss": 0.1586448766656524
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 2782,
+                "positive": 89,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6352627017133905,
+                  "average_precision": 0.073012329658575,
+                  "brier_score": 0.027616281941978744,
+                  "log_loss": 0.12985908578890543
+                }
+              },
+              "2": {
+                "rows": 287,
+                "positive": 17,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7425410030555095,
+                  "average_precision": 0.13093046695390928,
+                  "brier_score": 0.027829102424603125,
+                  "log_loss": 0.12334324132548304
+                }
+              },
+              "3": {
+                "rows": 236,
+                "positive": 25,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7854337699758243,
+                  "average_precision": 0.29672162291234194,
+                  "brier_score": 0.10282796874651551,
+                  "log_loss": 0.3755762210017355
+                }
+              },
+              "4": {
+                "rows": 120,
+                "positive": 6,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 515,
+                "positive": 24,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5557099304132438,
+                  "average_precision": 0.08064419296461492,
+                  "brier_score": 0.044010024903854236,
+                  "log_loss": 0.1934936229206059
+                }
+              },
+              "2": {
+                "rows": 2910,
+                "positive": 113,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7055645529047265,
+                  "average_precision": 0.13340334937780504,
+                  "brier_score": 0.03256666399138927,
+                  "log_loss": 0.14210787991317236
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 2852,
+                "positive": 103,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6640334813020917,
+                  "average_precision": 0.0878736473438601,
+                  "brier_score": 0.02986471699508893,
+                  "log_loss": 0.13531744211098695
+                }
+              },
+              "2": {
+                "rows": 573,
+                "positive": 34,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6600909317155483,
+                  "average_precision": 0.19952705432105705,
+                  "brier_score": 0.05448297759343132,
+                  "log_loss": 0.21677336790000465
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 431,
+                "positive": 27,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5790084852697678,
+                  "average_precision": 0.1965341109362762,
+                  "brier_score": 0.04496389982233342,
+                  "log_loss": 0.19831439983787305
+                }
+              },
+              "30-44": {
+                "rows": 751,
+                "positive": 29,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7002582590545635,
+                  "average_precision": 0.08271994088757674,
+                  "brier_score": 0.029008904593720096,
+                  "log_loss": 0.13018700494265198
+                }
+              },
+              "45-59": {
+                "rows": 729,
+                "positive": 27,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7752913349829319,
+                  "average_precision": 0.09449155421679649,
+                  "brier_score": 0.03250460982894777,
+                  "log_loss": 0.1350314062288838
+                }
+              },
+              "60-74": {
+                "rows": 1022,
+                "positive": 34,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5851561525723976,
+                  "average_precision": 0.10176008940737827,
+                  "brier_score": 0.029636689508196038,
+                  "log_loss": 0.13987010917008574
+                }
+              },
+              "75+": {
+                "rows": 492,
+                "positive": 20,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7717184325308888,
+                  "average_precision": 0.29667243106935787,
+                  "brier_score": 0.04367705937848911,
+                  "log_loss": 0.17142103023411792
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 708,
+          "rows": 3452,
+          "positive": 161,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 1709,
+                "positive": 76,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7904030788542071,
+                  "average_precision": 0.18943555865822093,
+                  "brier_score": 0.04598650040938721,
+                  "log_loss": 0.17907719131361716
+                }
+              },
+              "2": {
+                "rows": 1743,
+                "positive": 85,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6919787306811467,
+                  "average_precision": 0.15339838064017344,
+                  "brier_score": 0.041380211761721596,
+                  "log_loss": 0.1720839997580967
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 2838,
+                "positive": 123,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7307081956933439,
+                  "average_precision": 0.13271072786759971,
+                  "brier_score": 0.040378982234635104,
+                  "log_loss": 0.16586506346645405
+                }
+              },
+              "2": {
+                "rows": 253,
+                "positive": 20,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7279720407118606,
+                  "average_precision": 0.23777737243598973,
+                  "brier_score": 0.04859961448603779,
+                  "log_loss": 0.1927332122144783
+                }
+              },
+              "3": {
+                "rows": 256,
+                "positive": 13,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.8348624791237071,
+                  "average_precision": 0.23742940760706047,
+                  "brier_score": 0.0659314805915026,
+                  "log_loss": 0.23966187998945865
+                }
+              },
+              "4": {
+                "rows": 105,
+                "positive": 5,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 538,
+                "positive": 40,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6442862366241049,
+                  "average_precision": 0.14104410758061903,
+                  "brier_score": 0.06270098646396445,
+                  "log_loss": 0.2432964116873335
+                }
+              },
+              "2": {
+                "rows": 2914,
+                "positive": 121,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7633495380767993,
+                  "average_precision": 0.17823094402777317,
+                  "brier_score": 0.03970245626122377,
+                  "log_loss": 0.1613575615060279
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 2839,
+                "positive": 119,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7519798309690799,
+                  "average_precision": 0.15643941225237695,
+                  "brier_score": 0.03889379625348739,
+                  "log_loss": 0.1594118474585258
+                }
+              },
+              "2": {
+                "rows": 613,
+                "positive": 42,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6858304486600978,
+                  "average_precision": 0.1932945693373458,
+                  "brier_score": 0.06486815988874241,
+                  "log_loss": 0.2469009419176789
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 450,
+                "positive": 30,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6750401959039747,
+                  "average_precision": 0.13464799420064477,
+                  "brier_score": 0.0654345467244766,
+                  "log_loss": 0.25569495758523375
+                }
+              },
+              "30-44": {
+                "rows": 756,
+                "positive": 18,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7706221673636454,
+                  "average_precision": 0.11545445095874295,
+                  "brier_score": 0.02270362183208028,
+                  "log_loss": 0.10342418841535299
+                }
+              },
+              "45-59": {
+                "rows": 754,
+                "positive": 31,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7896535079901096,
+                  "average_precision": 0.24120601696255559,
+                  "brier_score": 0.04240655162102251,
+                  "log_loss": 0.16645874813680292
+                }
+              },
+              "60-74": {
+                "rows": 1030,
+                "positive": 51,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6998480534045,
+                  "average_precision": 0.1419452231723441,
+                  "brier_score": 0.042534182938157514,
+                  "log_loss": 0.1746040217377467
+                }
+              },
+              "75+": {
+                "rows": 462,
+                "positive": 31,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7869342546355965,
+                  "average_precision": 0.38345928209236874,
+                  "brier_score": 0.06823598483673737,
+                  "log_loss": 0.25259044356840893
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "poverty_exit": {
+      "repeats": 10,
+      "reporting_rule": {
+        "minimum_rows_per_split": 50,
+        "minimum_positive_per_split": 10,
+        "minimum_reportable_splits": 5
+      },
+      "aggregate": {
+        "age_band": {
+          "18-29": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.6597698681008505,
+                "std": 0.05367565703985183,
+                "min": 0.5935194636375407,
+                "max": 0.7659460336094724
+              },
+              "average_precision": {
+                "mean": 0.7163630860011401,
+                "std": 0.06691186450088896,
+                "min": 0.5870360141134127,
+                "max": 0.8188479694426777
+              },
+              "brier_score": {
+                "mean": 0.23019972221585805,
+                "std": 0.01501318966393769,
+                "min": 0.20478439880610222,
+                "max": 0.2520193515566659
+              },
+              "log_loss": {
+                "mean": 0.6538870782760557,
+                "std": 0.03423429678824366,
+                "min": 0.6002269393414368,
+                "max": 0.7055878084592239
+              }
+            },
+            "rows": {
+              "mean": 70.7,
+              "std": 6.848357467305573,
+              "min": 60,
+              "max": 81
+            },
+            "positive": {
+              "mean": 39.1,
+              "std": 5.6460408940936455,
+              "min": 28,
+              "max": 45
+            }
+          },
+          "30-44": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.6888056145842374,
+                "std": 0.07032659424212305,
+                "min": 0.5620587586080854,
+                "max": 0.7791978763418956
+              },
+              "average_precision": {
+                "mean": 0.6915330981164342,
+                "std": 0.10434194973866846,
+                "min": 0.49068732372224655,
+                "max": 0.8148618023380463
+              },
+              "brier_score": {
+                "mean": 0.22738871138585554,
+                "std": 0.023371219821597105,
+                "min": 0.19476701797531565,
+                "max": 0.2669738102086877
+              },
+              "log_loss": {
+                "mean": 0.6555405320420779,
+                "std": 0.05815590459388132,
+                "min": 0.5764567776687828,
+                "max": 0.7678033385766854
+              }
+            },
+            "rows": {
+              "mean": 76.9,
+              "std": 7.6077445920442,
+              "min": 65,
+              "max": 89
+            },
+            "positive": {
+              "mean": 38.8,
+              "std": 7.067924416372572,
+              "min": 25,
+              "max": 46
+            }
+          },
+          "45-59": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7492968793937786,
+                "std": 0.059632091212886026,
+                "min": 0.6684350252885823,
+                "max": 0.877893781309045
+              },
+              "average_precision": {
+                "mean": 0.689176884587631,
+                "std": 0.0998374981270904,
+                "min": 0.5056363688067608,
+                "max": 0.8613947342230017
+              },
+              "brier_score": {
+                "mean": 0.20041008621345519,
+                "std": 0.02102851925534373,
+                "min": 0.15221092816953927,
+                "max": 0.22724317323881194
+              },
+              "log_loss": {
+                "mean": 0.5910517069208108,
+                "std": 0.04818563215155737,
+                "min": 0.4802122690672773,
+                "max": 0.661710879611233
+              }
+            },
+            "rows": {
+              "mean": 76.3,
+              "std": 9.95601437434791,
+              "min": 61,
+              "max": 95
+            },
+            "positive": {
+              "mean": 33,
+              "std": 7.3484692283495345,
+              "min": 23,
+              "max": 43
+            }
+          },
+          "60-74": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7537055598983032,
+                "std": 0.04237494702337587,
+                "min": 0.673142811589136,
+                "max": 0.8229018135712144
+              },
+              "average_precision": {
+                "mean": 0.7385638570697194,
+                "std": 0.052199996329731685,
+                "min": 0.623906167083552,
+                "max": 0.804044414232285
+              },
+              "brier_score": {
+                "mean": 0.2006817415989144,
+                "std": 0.0178336714996794,
+                "min": 0.173337719325412,
+                "max": 0.23230420171048655
+              },
+              "log_loss": {
+                "mean": 0.5849560554500959,
+                "std": 0.0413351181649192,
+                "min": 0.5262202154997949,
+                "max": 0.6587211464701103
+              }
+            },
+            "rows": {
+              "mean": 116.1,
+              "std": 7.294594650226365,
+              "min": 104,
+              "max": 124
+            },
+            "positive": {
+              "mean": 55.3,
+              "std": 6.18331087147762,
+              "min": 45,
+              "max": 64
+            }
+          },
+          "75+": {
+            "reportable_splits": 8,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.6197783220563509,
+                "std": 0.09226575062351343,
+                "min": 0.470562503455546,
+                "max": 0.7363074279383279
+              },
+              "average_precision": {
+                "mean": 0.6416438217310074,
+                "std": 0.05459618547881179,
+                "min": 0.5670372484930474,
+                "max": 0.7517757193262913
+              },
+              "brier_score": {
+                "mean": 0.25205002471875876,
+                "std": 0.03550686154234476,
+                "min": 0.20892771874033522,
+                "max": 0.31116461540621526
+              },
+              "log_loss": {
+                "mean": 0.7034298138836858,
+                "std": 0.07961490954919904,
+                "min": 0.6029950546862677,
+                "max": 0.8287819547087162
+              }
+            },
+            "rows": {
+              "mean": 57.125,
+              "std": 4.998213966722799,
+              "min": 52,
+              "max": 67
+            },
+            "positive": {
+              "mean": 27.5,
+              "std": 3.5050983275386565,
+              "min": 24,
+              "max": 33
+            }
+          }
+        },
+        "born_in_us": {
+          "1": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7153864822082239,
+                "std": 0.031100906393644136,
+                "min": 0.6734935705764785,
+                "max": 0.7626738633608048
+              },
+              "average_precision": {
+                "mean": 0.6997850643557244,
+                "std": 0.047660241262963844,
+                "min": 0.6345820155919781,
+                "max": 0.7613283382457949
+              },
+              "brier_score": {
+                "mean": 0.21554660648747923,
+                "std": 0.010923006664940048,
+                "min": 0.19841581542711909,
+                "max": 0.23129555907347105
+              },
+              "log_loss": {
+                "mean": 0.6231244237123847,
+                "std": 0.02721278289962487,
+                "min": 0.5803739588653373,
+                "max": 0.6673421597317977
+              }
+            },
+            "rows": {
+              "mean": 295.3,
+              "std": 7.46919600016554,
+              "min": 287,
+              "max": 311
+            },
+            "positive": {
+              "mean": 144.9,
+              "std": 10.224697767877759,
+              "min": 127,
+              "max": 163
+            }
+          },
+          "2": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.6872733114592326,
+                "std": 0.06425219309158732,
+                "min": 0.6046147265036103,
+                "max": 0.7881794382138405
+              },
+              "average_precision": {
+                "mean": 0.6880739574167551,
+                "std": 0.07633925151522718,
+                "min": 0.5709381580846721,
+                "max": 0.8065931779816444
+              },
+              "brier_score": {
+                "mean": 0.22739742133886032,
+                "std": 0.020491583552753375,
+                "min": 0.19744585140241047,
+                "max": 0.25960854940191824
+              },
+              "log_loss": {
+                "mean": 0.6504813101820626,
+                "std": 0.04751053455919423,
+                "min": 0.582075923056023,
+                "max": 0.727118458240911
+              }
+            },
+            "rows": {
+              "mean": 99.6,
+              "std": 9.299940262651631,
+              "min": 84,
+              "max": 116
+            },
+            "positive": {
+              "mean": 47.3,
+              "std": 5.578729445153459,
+              "min": 39,
+              "max": 55
+            }
+          }
+        },
+        "hispanic_origin": {
+          "1": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.6403520708705643,
+                "std": 0.06622178275950012,
+                "min": 0.5435379376405102,
+                "max": 0.7281492592337051
+              },
+              "average_precision": {
+                "mean": 0.6350373217773941,
+                "std": 0.10200545046432805,
+                "min": 0.45073820174550305,
+                "max": 0.7924858695473411
+              },
+              "brier_score": {
+                "mean": 0.24457381025455072,
+                "std": 0.021335438373896117,
+                "min": 0.22216240016696362,
+                "max": 0.28117233790872537
+              },
+              "log_loss": {
+                "mean": 0.6877809736027419,
+                "std": 0.05058419254128793,
+                "min": 0.632585540882064,
+                "max": 0.77217658759885
+              }
+            },
+            "rows": {
+              "mean": 92.5,
+              "std": 12.96362432175337,
+              "min": 74,
+              "max": 108
+            },
+            "positive": {
+              "mean": 43.7,
+              "std": 9.580651798749859,
+              "min": 31,
+              "max": 55
+            }
+          },
+          "2": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7304270430217381,
+                "std": 0.030560493050648296,
+                "min": 0.689691279346328,
+                "max": 0.7770175256917777
+              },
+              "average_precision": {
+                "mean": 0.7137693119509063,
+                "std": 0.045763195841575566,
+                "min": 0.6580786005040657,
+                "max": 0.7725797067424744
+              },
+              "brier_score": {
+                "mean": 0.2107089621383103,
+                "std": 0.01019320031429906,
+                "min": 0.19387244201114712,
+                "max": 0.22289749624664873
+              },
+              "log_loss": {
+                "mean": 0.6126606717348362,
+                "std": 0.02462706728027707,
+                "min": 0.5715487156756338,
+                "max": 0.6372803205279292
+              }
+            },
+            "rows": {
+              "mean": 302.4,
+              "std": 11.452316602135813,
+              "min": 278,
+              "max": 317
+            },
+            "positive": {
+              "mean": 148.5,
+              "std": 12.69514342836136,
+              "min": 120,
+              "max": 168
+            }
+          }
+        },
+        "race": {
+          "1": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.6988285909049171,
+                "std": 0.027400265360629616,
+                "min": 0.6652254653099199,
+                "max": 0.7498983212431352
+              },
+              "average_precision": {
+                "mean": 0.7092089989689863,
+                "std": 0.056350517068167634,
+                "min": 0.6416902938460541,
+                "max": 0.8069598511472441
+              },
+              "brier_score": {
+                "mean": 0.2224744878263519,
+                "std": 0.009270778279973633,
+                "min": 0.20744851128734212,
+                "max": 0.23409237573866992
+              },
+              "log_loss": {
+                "mean": 0.6387609895201649,
+                "std": 0.02280254149057605,
+                "min": 0.6026149628937659,
+                "max": 0.6661313333030879
+              }
+            },
+            "rows": {
+              "mean": 286.1,
+              "std": 11.110055505411902,
+              "min": 269,
+              "max": 303
+            },
+            "positive": {
+              "mean": 145.8,
+              "std": 10.422198531126828,
+              "min": 127,
+              "max": 159
+            }
+          },
+          "2": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7434862962146168,
+                "std": 0.07423764349796183,
+                "min": 0.6336307613280142,
+                "max": 0.853085789787164
+              },
+              "average_precision": {
+                "mean": 0.615774183842937,
+                "std": 0.07780296951602977,
+                "min": 0.49827990970265496,
+                "max": 0.7646891431388834
+              },
+              "brier_score": {
+                "mean": 0.20459836613156437,
+                "std": 0.02918377306440812,
+                "min": 0.15684980634617898,
+                "max": 0.25715543936648044
+              },
+              "log_loss": {
+                "mean": 0.5993408078812373,
+                "std": 0.07317068152612628,
+                "min": 0.48811883753649754,
+                "max": 0.7411282141169614
+              }
+            },
+            "rows": {
+              "mean": 65.5,
+              "std": 6.132789830991366,
+              "min": 56,
+              "max": 74
+            },
+            "positive": {
+              "mean": 24.1,
+              "std": 4.094712037087183,
+              "min": 20,
+              "max": 31
+            }
+          },
+          "3": {
+            "reportable_splits": 0,
+            "total_splits": 10,
+            "status": "insufficient_repeated_support"
+          },
+          "4": {
+            "reportable_splits": 0,
+            "total_splits": 10,
+            "status": "insufficient_repeated_support"
+          }
+        },
+        "sex": {
+          "1": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7038728859565049,
+                "std": 0.04459561644888347,
+                "min": 0.6374077183927728,
+                "max": 0.7874591874115352
+              },
+              "average_precision": {
+                "mean": 0.7076003403154052,
+                "std": 0.048121518566917494,
+                "min": 0.6132332384175117,
+                "max": 0.7630574032201245
+              },
+              "brier_score": {
+                "mean": 0.22053484853831265,
+                "std": 0.01582730446852,
+                "min": 0.1925113377955509,
+                "max": 0.2418115281338515
+              },
+              "log_loss": {
+                "mean": 0.6350598936204828,
+                "std": 0.04104777284966313,
+                "min": 0.5653220063807618,
+                "max": 0.6916196544479776
+              }
+            },
+            "rows": {
+              "mean": 157.6,
+              "std": 6.6365988611972355,
+              "min": 146,
+              "max": 167
+            },
+            "positive": {
+              "mean": 79.7,
+              "std": 3.4009802508492557,
+              "min": 74,
+              "max": 85
+            }
+          },
+          "2": {
+            "reportable_splits": 10,
+            "total_splits": 10,
+            "status": "reported",
+            "weighted_metrics": {
+              "roc_auc": {
+                "mean": 0.7073429180380166,
+                "std": 0.03032425980756768,
+                "min": 0.6614142907047241,
+                "max": 0.7528910594209572
+              },
+              "average_precision": {
+                "mean": 0.68317600432716,
+                "std": 0.05428167439357298,
+                "min": 0.583267175770283,
+                "max": 0.7675188888124034
+              },
+              "brier_score": {
+                "mean": 0.2177656538804169,
+                "std": 0.010261647882803822,
+                "min": 0.20129472847061478,
+                "max": 0.23347912263413648
+              },
+              "log_loss": {
+                "mean": 0.6281684245665848,
+                "std": 0.02431115925249185,
+                "min": 0.5884474274505238,
+                "max": 0.6620586556794252
+              }
+            },
+            "rows": {
+              "mean": 237.3,
+              "std": 5.793674711844519,
+              "min": 230,
+              "max": 246
+            },
+            "positive": {
+              "mean": 112.5,
+              "std": 8.959786703810408,
+              "min": 95,
+              "max": 124
+            }
+          }
+        }
+      },
+      "splits": [
+        {
+          "seed": 699,
+          "rows": 395,
+          "positive": 204,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 159,
+                "positive": 80,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7292580770834476,
+                  "average_precision": 0.7376424115111929,
+                  "brier_score": 0.21018113673079053,
+                  "log_loss": 0.6071326145879253
+                }
+              },
+              "2": {
+                "rows": 236,
+                "positive": 124,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7447259824156114,
+                  "average_precision": 0.7675188888124034,
+                  "brier_score": 0.20908720364396272,
+                  "log_loss": 0.6115194507641728
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 283,
+                "positive": 157,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7056229382937098,
+                  "average_precision": 0.7826103447310652,
+                  "brier_score": 0.22101009571960814,
+                  "log_loss": 0.6358177219275093
+                }
+              },
+              "2": {
+                "rows": 74,
+                "positive": 23,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.8274306376639042,
+                  "average_precision": 0.6371235452657124,
+                  "brier_score": 0.16980410617087663,
+                  "log_loss": 0.5201084585471085
+                }
+              },
+              "3": {
+                "rows": 23,
+                "positive": 13,
+                "status": "insufficient_events"
+              },
+              "4": {
+                "rows": 15,
+                "positive": 11,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 78,
+                "positive": 36,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.671729251257645,
+                  "average_precision": 0.704095298569273,
+                  "brier_score": 0.23104146919198945,
+                  "log_loss": 0.6543010912236621
+                }
+              },
+              "2": {
+                "rows": 317,
+                "positive": 168,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7517206051190322,
+                  "average_precision": 0.7676774589067452,
+                  "brier_score": 0.20364159894881365,
+                  "log_loss": 0.5976104236625894
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 311,
+                "positive": 163,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7386049493216063,
+                  "average_precision": 0.7613283382457949,
+                  "brier_score": 0.20833595397772614,
+                  "log_loss": 0.6082992001472551
+                }
+              },
+              "2": {
+                "rows": 84,
+                "positive": 41,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7154500745709593,
+                  "average_precision": 0.7267036019049661,
+                  "brier_score": 0.21348553541777496,
+                  "log_loss": 0.6147150161596908
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 67,
+                "positive": 38,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6466501098884744,
+                  "average_precision": 0.7570758962183699,
+                  "brier_score": 0.22191723435394406,
+                  "log_loss": 0.6334235846604223
+                }
+              },
+              "30-44": {
+                "rows": 74,
+                "positive": 44,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.754930149934568,
+                  "average_precision": 0.8148618023380463,
+                  "brier_score": 0.20533253224879164,
+                  "log_loss": 0.6110688751516833
+                }
+              },
+              "45-59": {
+                "rows": 83,
+                "positive": 43,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.8038970476176536,
+                  "average_precision": 0.7447819057356413,
+                  "brier_score": 0.18814666776326808,
+                  "log_loss": 0.5639339790225774
+                }
+              },
+              "60-74": {
+                "rows": 104,
+                "positive": 49,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7800311758273022,
+                  "average_precision": 0.804044414232285,
+                  "brier_score": 0.19207191849631042,
+                  "log_loss": 0.5641243246854128
+                }
+              },
+              "75+": {
+                "rows": 67,
+                "positive": 30,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5619849982611516,
+                  "average_precision": 0.5986352574629142,
+                  "brier_score": 0.2685397392629476,
+                  "log_loss": 0.7358688041838353
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 700,
+          "rows": 386,
+          "positive": 175,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 153,
+                "positive": 74,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7333639001705503,
+                  "average_precision": 0.7070859504504927,
+                  "brier_score": 0.20811453756694162,
+                  "log_loss": 0.6034997134769218
+                }
+              },
+              "2": {
+                "rows": 233,
+                "positive": 101,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7140011003702809,
+                  "average_precision": 0.6613582343245196,
+                  "brier_score": 0.21563957360784128,
+                  "log_loss": 0.621503019488003
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 279,
+                "positive": 134,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7079536345795463,
+                  "average_precision": 0.677932758112711,
+                  "brier_score": 0.2182807561423957,
+                  "log_loss": 0.628975533367714
+                }
+              },
+              "2": {
+                "rows": 67,
+                "positive": 20,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7425099242127448,
+                  "average_precision": 0.5844870441480444,
+                  "brier_score": 0.19474158416571813,
+                  "log_loss": 0.5690716623172111
+                }
+              },
+              "3": {
+                "rows": 21,
+                "positive": 13,
+                "status": "insufficient_events"
+              },
+              "4": {
+                "rows": 19,
+                "positive": 8,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 108,
+                "positive": 55,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7111120339694639,
+                  "average_precision": 0.7132197174928914,
+                  "brier_score": 0.2263205184767452,
+                  "log_loss": 0.6420146582712709
+                }
+              },
+              "2": {
+                "rows": 278,
+                "positive": 120,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.743814260414143,
+                  "average_precision": 0.6862210143307443,
+                  "brier_score": 0.20752579513439015,
+                  "log_loss": 0.6039177019288091
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 290,
+                "positive": 127,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7070510605033404,
+                  "average_precision": 0.649316716423098,
+                  "brier_score": 0.21722635067167792,
+                  "log_loss": 0.6240204179031804
+                }
+              },
+              "2": {
+                "rows": 96,
+                "positive": 48,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7881794382138405,
+                  "average_precision": 0.8065931779816444,
+                  "brier_score": 0.19744585140241047,
+                  "log_loss": 0.582075923056023
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 79,
+                "positive": 43,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6431544272800239,
+                  "average_precision": 0.7219130555383122,
+                  "brier_score": 0.23383306380593424,
+                  "log_loss": 0.6616910201713301
+                }
+              },
+              "30-44": {
+                "rows": 80,
+                "positive": 40,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7557520283316641,
+                  "average_precision": 0.7535331739436557,
+                  "brier_score": 0.20401302988374845,
+                  "log_loss": 0.5922558231450379
+                }
+              },
+              "45-59": {
+                "rows": 66,
+                "positive": 23,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7644119315711642,
+                  "average_precision": 0.6479127895451006,
+                  "brier_score": 0.19976020378007114,
+                  "log_loss": 0.5967796621346524
+                }
+              },
+              "60-74": {
+                "rows": 109,
+                "positive": 45,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.770278852256315,
+                  "average_precision": 0.6975907228143885,
+                  "brier_score": 0.18867745695339236,
+                  "log_loss": 0.5503892541192534
+                }
+              },
+              "75+": {
+                "rows": 52,
+                "positive": 24,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6623378159923674,
+                  "average_precision": 0.6555813623984199,
+                  "brier_score": 0.24532355970959502,
+                  "log_loss": 0.6927142705442114
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 701,
+          "rows": 392,
+          "positive": 191,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 146,
+                "positive": 75,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6614899711639052,
+                  "average_precision": 0.7362616072771037,
+                  "brier_score": 0.23925710434155856,
+                  "log_loss": 0.6916196544479776
+                }
+              },
+              "2": {
+                "rows": 246,
+                "positive": 116,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7062298333595018,
+                  "average_precision": 0.6935716868388832,
+                  "brier_score": 0.21819844005317154,
+                  "log_loss": 0.6253780884603748
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 289,
+                "positive": 139,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6949669686258395,
+                  "average_precision": 0.714657485938656,
+                  "brier_score": 0.2224582221762191,
+                  "log_loss": 0.6377295844738876
+                }
+              },
+              "2": {
+                "rows": 59,
+                "positive": 31,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7486756936614161,
+                  "average_precision": 0.7646891431388834,
+                  "brier_score": 0.25715543936648044,
+                  "log_loss": 0.7411282141169614
+                }
+              },
+              "3": {
+                "rows": 20,
+                "positive": 12,
+                "status": "insufficient_events"
+              },
+              "4": {
+                "rows": 24,
+                "positive": 9,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 88,
+                "positive": 34,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5586975637163194,
+                  "average_precision": 0.45073820174550305,
+                  "brier_score": 0.2672283271925073,
+                  "log_loss": 0.7419100930413071
+                }
+              },
+              "2": {
+                "rows": 304,
+                "positive": 157,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7268977652950992,
+                  "average_precision": 0.7725797067424744,
+                  "brier_score": 0.21357098493004387,
+                  "log_loss": 0.622070529736784
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 287,
+                "positive": 136,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6998711517889686,
+                  "average_precision": 0.7254554708679166,
+                  "brier_score": 0.22047543900753575,
+                  "log_loss": 0.637342519099837
+                }
+              },
+              "2": {
+                "rows": 105,
+                "positive": 55,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6427304101383456,
+                  "average_precision": 0.6492506763455647,
+                  "brier_score": 0.24175714924587077,
+                  "log_loss": 0.6854562008670873
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 77,
+                "positive": 43,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6546836777999956,
+                  "average_precision": 0.7822006949893818,
+                  "brier_score": 0.23000356764726942,
+                  "log_loss": 0.6561704420233286
+                }
+              },
+              "30-44": {
+                "rows": 89,
+                "positive": 42,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6960384115410888,
+                  "average_precision": 0.7190650403226658,
+                  "brier_score": 0.2268164590677216,
+                  "log_loss": 0.6585918471858008
+                }
+              },
+              "45-59": {
+                "rows": 61,
+                "positive": 27,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6684350252885823,
+                  "average_precision": 0.6011749564862368,
+                  "brier_score": 0.22237687067467835,
+                  "log_loss": 0.6319535488234769
+                }
+              },
+              "60-74": {
+                "rows": 122,
+                "positive": 60,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7538025826608654,
+                  "average_precision": 0.7397612603974124,
+                  "brier_score": 0.202806583566867,
+                  "log_loss": 0.5993470094703801
+                }
+              },
+              "75+": {
+                "rows": 43,
+                "positive": 19,
+                "status": "insufficient_events"
+              }
+            }
+          }
+        },
+        {
+          "seed": 702,
+          "rows": 392,
+          "positive": 196,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 162,
+                "positive": 85,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7197899058078991,
+                  "average_precision": 0.7372216783952117,
+                  "brier_score": 0.21477964241826014,
+                  "log_loss": 0.6146300828874668
+                }
+              },
+              "2": {
+                "rows": 230,
+                "positive": 111,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6896727993463704,
+                  "average_precision": 0.6592732024869263,
+                  "brier_score": 0.22625958342751532,
+                  "log_loss": 0.653837360487754
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 269,
+                "positive": 140,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6699267965871505,
+                  "average_precision": 0.6902038538669315,
+                  "brier_score": 0.23303335406516532,
+                  "log_loss": 0.6661313333030879
+                }
+              },
+              "2": {
+                "rows": 72,
+                "positive": 31,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7695176994107066,
+                  "average_precision": 0.6223979912230899,
+                  "brier_score": 0.1971108957823694,
+                  "log_loss": 0.5751232552687693
+                }
+              },
+              "3": {
+                "rows": 30,
+                "positive": 15,
+                "status": "insufficient_events"
+              },
+              "4": {
+                "rows": 21,
+                "positive": 10,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 100,
+                "positive": 52,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6405008318659289,
+                  "average_precision": 0.6030835337988971,
+                  "brier_score": 0.23623185237948402,
+                  "log_loss": 0.664741361460968
+                }
+              },
+              "2": {
+                "rows": 292,
+                "positive": 144,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7185235709611861,
+                  "average_precision": 0.7168078908665043,
+                  "brier_score": 0.2158323021709967,
+                  "log_loss": 0.6265842428281605
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 297,
+                "positive": 142,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7084711066975682,
+                  "average_precision": 0.6766401147504718,
+                  "brier_score": 0.2177636366481124,
+                  "log_loss": 0.6275780413305915
+                }
+              },
+              "2": {
+                "rows": 95,
+                "positive": 54,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6636774426457287,
+                  "average_precision": 0.7377466691870815,
+                  "brier_score": 0.23368926317998906,
+                  "log_loss": 0.6693518227150026
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 60,
+                "positive": 28,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7422402338207931,
+                  "average_precision": 0.719264510625522,
+                  "brier_score": 0.21062572920619355,
+                  "log_loss": 0.6070945710372098
+                }
+              },
+              "30-44": {
+                "rows": 81,
+                "positive": 46,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.700441839414312,
+                  "average_precision": 0.7058473933700109,
+                  "brier_score": 0.2224412243977504,
+                  "log_loss": 0.6420259541174411
+                }
+              },
+              "45-59": {
+                "rows": 80,
+                "positive": 41,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7080317157789717,
+                  "average_precision": 0.7007835495486848,
+                  "brier_score": 0.22724317323881194,
+                  "log_loss": 0.661710879611233
+                }
+              },
+              "60-74": {
+                "rows": 122,
+                "positive": 60,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7240377869823821,
+                  "average_precision": 0.7074965479742441,
+                  "brier_score": 0.21344286588411804,
+                  "log_loss": 0.6110682855045593
+                }
+              },
+              "75+": {
+                "rows": 49,
+                "positive": 21,
+                "status": "insufficient_events"
+              }
+            }
+          }
+        },
+        {
+          "seed": 703,
+          "rows": 383,
+          "positive": 177,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 152,
+                "positive": 82,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6836424540361117,
+                  "average_precision": 0.7070193268286689,
+                  "brier_score": 0.22786079153440814,
+                  "log_loss": 0.6513852032656571
+                }
+              },
+              "2": {
+                "rows": 231,
+                "positive": 95,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6743109088992641,
+                  "average_precision": 0.583267175770283,
+                  "brier_score": 0.22464788202229236,
+                  "log_loss": 0.6454539024413753
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 278,
+                "positive": 127,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6845277575732887,
+                  "average_precision": 0.6416902938460541,
+                  "brier_score": 0.22631930732157526,
+                  "log_loss": 0.6483388744016111
+                }
+              },
+              "2": {
+                "rows": 59,
+                "positive": 24,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.756483867093432,
+                  "average_precision": 0.6244119290027418,
+                  "brier_score": 0.20167362752189597,
+                  "log_loss": 0.5865224368214288
+                }
+              },
+              "3": {
+                "rows": 18,
+                "positive": 10,
+                "status": "insufficient_events"
+              },
+              "4": {
+                "rows": 28,
+                "positive": 16,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 75,
+                "positive": 31,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5691667684924158,
+                  "average_precision": 0.5412472369591531,
+                  "brier_score": 0.2667207813763061,
+                  "log_loss": 0.7377732392208891
+                }
+              },
+              "2": {
+                "rows": 308,
+                "positive": 146,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7151447099554494,
+                  "average_precision": 0.6635261816417655,
+                  "brier_score": 0.21608108109158186,
+                  "log_loss": 0.6261036807510209
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 291,
+                "positive": 138,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7008119022231172,
+                  "average_precision": 0.6595980403654473,
+                  "brier_score": 0.22034829272961587,
+                  "log_loss": 0.6358693179046755
+                }
+              },
+              "2": {
+                "rows": 92,
+                "positive": 39,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6497879565955117,
+                  "average_precision": 0.6028500285579946,
+                  "brier_score": 0.2413292036597439,
+                  "log_loss": 0.6807980235305233
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 65,
+                "positive": 34,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6218201719471796,
+                  "average_precision": 0.6612807640226456,
+                  "brier_score": 0.2434072100349944,
+                  "log_loss": 0.679025534616596
+                }
+              },
+              "30-44": {
+                "rows": 65,
+                "positive": 30,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6799582904865618,
+                  "average_precision": 0.596757140074702,
+                  "brier_score": 0.22514433061927525,
+                  "log_loss": 0.6537097710140486
+                }
+              },
+              "45-59": {
+                "rows": 76,
+                "positive": 33,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7565913044543503,
+                  "average_precision": 0.7560218213060516,
+                  "brier_score": 0.198574954848215,
+                  "log_loss": 0.5933430432780813
+                }
+              },
+              "60-74": {
+                "rows": 120,
+                "positive": 55,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.673142811589136,
+                  "average_precision": 0.623906167083552,
+                  "brier_score": 0.23230420171048655,
+                  "log_loss": 0.6587211464701103
+                }
+              },
+              "75+": {
+                "rows": 57,
+                "positive": 25,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6651638789439447,
+                  "average_precision": 0.6637730205955581,
+                  "brier_score": 0.23108398022012025,
+                  "log_loss": 0.653876954339151
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 704,
+          "rows": 390,
+          "positive": 189,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 156,
+                "positive": 77,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7874591874115352,
+                  "average_precision": 0.750165920387679,
+                  "brier_score": 0.1925113377955509,
+                  "log_loss": 0.5653220063807618
+                }
+              },
+              "2": {
+                "rows": 234,
+                "positive": 112,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7368605371372366,
+                  "average_precision": 0.7186901971079419,
+                  "brier_score": 0.20448491692702256,
+                  "log_loss": 0.5967557239590485
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 285,
+                "positive": 148,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.734202634797794,
+                  "average_precision": 0.7578977525990671,
+                  "brier_score": 0.20888127378764146,
+                  "log_loss": 0.6026149628937659
+                }
+              },
+              "2": {
+                "rows": 62,
+                "positive": 20,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.853085789787164,
+                  "average_precision": 0.6663378002527045,
+                  "brier_score": 0.15684980634617898,
+                  "log_loss": 0.48811883753649754
+                }
+              },
+              "3": {
+                "rows": 21,
+                "positive": 11,
+                "status": "insufficient_events"
+              },
+              "4": {
+                "rows": 22,
+                "positive": 10,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 74,
+                "positive": 31,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6892653699990181,
+                  "average_precision": 0.6798941572634283,
+                  "brier_score": 0.22216240016696362,
+                  "log_loss": 0.632585540882064
+                }
+              },
+              "2": {
+                "rows": 316,
+                "positive": 158,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7770175256917777,
+                  "average_precision": 0.7519288753476097,
+                  "brier_score": 0.19387244201114712,
+                  "log_loss": 0.5715487156756338
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 297,
+                "positive": 148,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7626738633608048,
+                  "average_precision": 0.7446679312563564,
+                  "brier_score": 0.1989253912083204,
+                  "log_loss": 0.5822358328916243
+                }
+              },
+              "2": {
+                "rows": 93,
+                "positive": 41,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7784073829334625,
+                  "average_precision": 0.7484925977174094,
+                  "brier_score": 0.20157430086352568,
+                  "log_loss": 0.5888683939433776
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 66,
+                "positive": 43,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7659460336094724,
+                  "average_precision": 0.8188479694426777,
+                  "brier_score": 0.20478439880610222,
+                  "log_loss": 0.6002269393414368
+                }
+              },
+              "30-44": {
+                "rows": 65,
+                "positive": 25,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7167663495060735,
+                  "average_precision": 0.5852770875762305,
+                  "brier_score": 0.2305924273030254,
+                  "log_loss": 0.6568099587135857
+                }
+              },
+              "45-59": {
+                "rows": 95,
+                "positive": 40,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.877893781309045,
+                  "average_precision": 0.8613947342230017,
+                  "brier_score": 0.15221092816953927,
+                  "log_loss": 0.4802122690672773
+                }
+              },
+              "60-74": {
+                "rows": 108,
+                "positive": 48,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7851929745355795,
+                  "average_precision": 0.7476447905771784,
+                  "brier_score": 0.18509982227661623,
+                  "log_loss": 0.5424070342294557
+                }
+              },
+              "75+": {
+                "rows": 56,
+                "positive": 33,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.470562503455546,
+                  "average_precision": 0.617326537484107,
+                  "brier_score": 0.31116461540621526,
+                  "log_loss": 0.8287819547087162
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 705,
+          "rows": 401,
+          "positive": 197,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 155,
+                "positive": 80,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6787895434632508,
+                  "average_precision": 0.6495758870838638,
+                  "brier_score": 0.23148563481033343,
+                  "log_loss": 0.6732801646815625
+                }
+              },
+              "2": {
+                "rows": 246,
+                "positive": 117,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.688114939427637,
+                  "average_precision": 0.6313032724252705,
+                  "brier_score": 0.22481145497660243,
+                  "log_loss": 0.6458215881424323
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 295,
+                "positive": 153,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6747739252596727,
+                  "average_precision": 0.6419408452002273,
+                  "brier_score": 0.23149811715865393,
+                  "log_loss": 0.6632385188697484
+                }
+              },
+              "2": {
+                "rows": 67,
+                "positive": 25,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6444563005120827,
+                  "average_precision": 0.49947917893489646,
+                  "brier_score": 0.2235651817624965,
+                  "log_loss": 0.6624917332992785
+                }
+              },
+              "3": {
+                "rows": 20,
+                "positive": 12,
+                "status": "insufficient_events"
+              },
+              "4": {
+                "rows": 19,
+                "positive": 7,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 95,
+                "positive": 46,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6124320294960904,
+                  "average_precision": 0.6269097670332977,
+                  "brier_score": 0.25717801579723276,
+                  "log_loss": 0.7237415102887279
+                }
+              },
+              "2": {
+                "rows": 306,
+                "positive": 151,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7110372085979528,
+                  "average_precision": 0.6580786005040657,
+                  "brier_score": 0.2175568662937139,
+                  "log_loss": 0.6343667692681423
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 295,
+                "positive": 152,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.678598193055366,
+                  "average_precision": 0.6345820155919781,
+                  "brier_score": 0.23129555907347105,
+                  "log_loss": 0.6673421597317977
+                }
+              },
+              "2": {
+                "rows": 106,
+                "positive": 45,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7155982932740876,
+                  "average_precision": 0.6755532288985799,
+                  "brier_score": 0.21615746124555976,
+                  "log_loss": 0.6253757270128847
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 81,
+                "positive": 45,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6331343361171288,
+                  "average_precision": 0.670557108672494,
+                  "brier_score": 0.2459854005347987,
+                  "log_loss": 0.6913181085492578
+                }
+              },
+              "30-44": {
+                "rows": 76,
+                "positive": 33,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5959318095043814,
+                  "average_precision": 0.49068732372224655,
+                  "brier_score": 0.2669738102086877,
+                  "log_loss": 0.7678033385766854
+                }
+              },
+              "45-59": {
+                "rows": 80,
+                "positive": 39,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7370902578020465,
+                  "average_precision": 0.7303043090890042,
+                  "brier_score": 0.2064128963412341,
+                  "log_loss": 0.6022304356000358
+                }
+              },
+              "60-74": {
+                "rows": 111,
+                "positive": 55,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.8229018135712144,
+                  "average_precision": 0.7915010565437335,
+                  "brier_score": 0.173337719325412,
+                  "log_loss": 0.5262202154997949
+                }
+              },
+              "75+": {
+                "rows": 53,
+                "positive": 25,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6573367367005304,
+                  "average_precision": 0.6437477502136826,
+                  "brier_score": 0.243083051837611,
+                  "log_loss": 0.6913304286482478
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 706,
+          "rows": 395,
+          "positive": 191,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 159,
+                "positive": 81,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7345242021576885,
+                  "average_precision": 0.7630574032201245,
+                  "brier_score": 0.20976541643179264,
+                  "log_loss": 0.6095240747870386
+                }
+              },
+              "2": {
+                "rows": 236,
+                "positive": 110,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7528910594209572,
+                  "average_precision": 0.7462349561548761,
+                  "brier_score": 0.20129472847061478,
+                  "log_loss": 0.5884474274505238
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 278,
+                "positive": 149,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7498983212431352,
+                  "average_precision": 0.8069598511472441,
+                  "brier_score": 0.20744851128734212,
+                  "log_loss": 0.6045745292642581
+                }
+              },
+              "2": {
+                "rows": 69,
+                "positive": 21,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7903781606941678,
+                  "average_precision": 0.615357002467854,
+                  "brier_score": 0.19565822324333876,
+                  "log_loss": 0.5735921402581379
+                }
+              },
+              "3": {
+                "rows": 22,
+                "positive": 13,
+                "status": "insufficient_events"
+              },
+              "4": {
+                "rows": 26,
+                "positive": 8,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 98,
+                "positive": 50,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7281492592337051,
+                  "average_precision": 0.7924858695473411,
+                  "brier_score": 0.23124725035180624,
+                  "log_loss": 0.6628504243828918
+                }
+              },
+              "2": {
+                "rows": 297,
+                "positive": 141,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7747928969583998,
+                  "average_precision": 0.7613669500950112,
+                  "brier_score": 0.19543157442112025,
+                  "log_loss": 0.5739031337715451
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 288,
+                "positive": 141,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.762385308109467,
+                  "average_precision": 0.7605230765191789,
+                  "brier_score": 0.19841581542711909,
+                  "log_loss": 0.5803739588653373
+                }
+              },
+              "2": {
+                "rows": 107,
+                "positive": 50,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7044585060017068,
+                  "average_precision": 0.7447593975537656,
+                  "brier_score": 0.22185314206746243,
+                  "log_loss": 0.6420122501434599
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 74,
+                "positive": 43,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6312770259101128,
+                  "average_precision": 0.752906324869224,
+                  "brier_score": 0.2267573603175797,
+                  "log_loss": 0.6402888126660915
+                }
+              },
+              "30-44": {
+                "rows": 79,
+                "positive": 40,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7791978763418956,
+                  "average_precision": 0.8148404691355128,
+                  "brier_score": 0.19476701797531565,
+                  "log_loss": 0.5764567776687828
+                }
+              },
+              "45-59": {
+                "rows": 67,
+                "positive": 27,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7317046548676686,
+                  "average_precision": 0.7307425968938356,
+                  "brier_score": 0.19954253457810028,
+                  "log_loss": 0.5890561919157576
+                }
+              },
+              "60-74": {
+                "rows": 122,
+                "positive": 57,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7751233010893275,
+                  "average_precision": 0.7598130615461302,
+                  "brier_score": 0.1909593932902112,
+                  "log_loss": 0.568304504304485
+                }
+              },
+              "75+": {
+                "rows": 53,
+                "positive": 24,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6874464342894189,
+                  "average_precision": 0.6352736778740389,
+                  "brier_score": 0.21790874360821932,
+                  "log_loss": 0.6252390418525154
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 707,
+          "rows": 406,
+          "positive": 203,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 167,
+                "positive": 81,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6730038998778892,
+                  "average_precision": 0.6747399795822034,
+                  "brier_score": 0.22958135561963888,
+                  "log_loss": 0.6516807262048554
+                }
+              },
+              "2": {
+                "rows": 239,
+                "positive": 122,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7052077292985817,
+                  "average_precision": 0.6981228045962005,
+                  "brier_score": 0.21975363304100962,
+                  "log_loss": 0.6309090287927382
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 302,
+                "positive": 152,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7011874667791143,
+                  "average_precision": 0.6878517031290516,
+                  "brier_score": 0.2217228648662482,
+                  "log_loss": 0.6359177165330345
+                }
+              },
+              "2": {
+                "rows": 56,
+                "positive": 25,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.668694127782536,
+                  "average_precision": 0.6451782942927891,
+                  "brier_score": 0.22375460041547662,
+                  "log_loss": 0.6348098142281792
+                }
+              },
+              "3": {
+                "rows": 23,
+                "positive": 10,
+                "status": "insufficient_events"
+              },
+              "4": {
+                "rows": 25,
+                "positive": 16,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 102,
+                "positive": 52,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.678929663034547,
+                  "average_precision": 0.695574011923638,
+                  "brier_score": 0.22643514970374734,
+                  "log_loss": 0.6457152296567892
+                }
+              },
+              "2": {
+                "rows": 304,
+                "positive": 151,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.689691279346328,
+                  "average_precision": 0.6849414025390973,
+                  "brier_score": 0.22289749624664873,
+                  "log_loss": 0.6372803205279292
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 304,
+                "positive": 153,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7219037164455224,
+                  "average_precision": 0.717854835317633,
+                  "brier_score": 0.21494262518385296,
+                  "log_loss": 0.6205900528394301
+                }
+              },
+              "2": {
+                "rows": 102,
+                "positive": 50,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6098288837150729,
+                  "average_precision": 0.6178520379358721,
+                  "brier_score": 0.2470737569043479,
+                  "log_loss": 0.6890412861516657
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 67,
+                "positive": 41,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6652732009977834,
+                  "average_precision": 0.6925485215193605,
+                  "brier_score": 0.23266390589509847,
+                  "log_loss": 0.6640439612356617
+                }
+              },
+              "30-44": {
+                "rows": 84,
+                "positive": 45,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.646980632173744,
+                  "average_precision": 0.7376146002008065,
+                  "brier_score": 0.23694435185854124,
+                  "log_loss": 0.6688596155799431
+                }
+              },
+              "45-59": {
+                "rows": 73,
+                "positive": 25,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6903386867802694,
+                  "average_precision": 0.5056363688067608,
+                  "brier_score": 0.21546369759790085,
+                  "log_loss": 0.6180203592102625
+                }
+              },
+              "60-74": {
+                "rows": 124,
+                "positive": 64,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7199877173630335,
+                  "average_precision": 0.7422376640213862,
+                  "brier_score": 0.20994277604871678,
+                  "log_loss": 0.6062359531255067
+                }
+              },
+              "75+": {
+                "rows": 58,
+                "positive": 28,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7363074279383279,
+                  "average_precision": 0.7517757193262913,
+                  "brier_score": 0.20892771874033522,
+                  "log_loss": 0.6029950546862677
+                }
+              }
+            }
+          }
+        },
+        {
+          "seed": 708,
+          "rows": 409,
+          "positive": 199,
+          "subgroups": {
+            "sex": {
+              "1": {
+                "rows": 167,
+                "positive": 82,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6374077183927728,
+                  "average_precision": 0.6132332384175117,
+                  "brier_score": 0.2418115281338515,
+                  "log_loss": 0.6825246954846618
+                }
+              },
+              "2": {
+                "rows": 242,
+                "positive": 117,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6614142907047241,
+                  "average_precision": 0.6724196247542951,
+                  "brier_score": 0.23347912263413648,
+                  "log_loss": 0.6620586556794252
+                }
+              }
+            },
+            "race": {
+              "1": {
+                "rows": 303,
+                "positive": 159,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6652254653099199,
+                  "average_precision": 0.6903451011188553,
+                  "brier_score": 0.23409237573866992,
+                  "log_loss": 0.6642711201670324
+                }
+              },
+              "2": {
+                "rows": 70,
+                "positive": 21,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6336307613280142,
+                  "average_precision": 0.49827990970265496,
+                  "brier_score": 0.2256701965408121,
+                  "log_loss": 0.642441526418801
+                }
+              },
+              "3": {
+                "rows": 18,
+                "positive": 8,
+                "status": "insufficient_events"
+              },
+              "4": {
+                "rows": 18,
+                "positive": 11,
+                "status": "insufficient_events"
+              }
+            },
+            "hispanic_origin": {
+              "1": {
+                "rows": 107,
+                "positive": 50,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5435379376405102,
+                  "average_precision": 0.5431254234405192,
+                  "brier_score": 0.28117233790872537,
+                  "log_loss": 0.77217658759885
+                }
+              },
+              "2": {
+                "rows": 302,
+                "positive": 149,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6956306078780129,
+                  "average_precision": 0.6745650385350448,
+                  "brier_score": 0.22067948013464667,
+                  "log_loss": 0.6332211991977467
+                }
+              }
+            },
+            "born_in_us": {
+              "1": {
+                "rows": 293,
+                "positive": 149,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6734935705764785,
+                  "average_precision": 0.6678841042193693,
+                  "brier_score": 0.22773700094736074,
+                  "log_loss": 0.6475927364101182
+                }
+              },
+              "2": {
+                "rows": 116,
+                "positive": 50,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.6046147265036103,
+                  "average_precision": 0.5709381580846721,
+                  "brier_score": 0.25960854940191824,
+                  "log_loss": 0.727118458240911
+                }
+              }
+            },
+            "age_band": {
+              "18-29": {
+                "rows": 71,
+                "positive": 33,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5935194636375407,
+                  "average_precision": 0.5870360141134127,
+                  "brier_score": 0.2520193515566659,
+                  "log_loss": 0.7055878084592239
+                }
+              },
+              "30-44": {
+                "rows": 76,
+                "positive": 43,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5620587586080854,
+                  "average_precision": 0.6968469504804651,
+                  "brier_score": 0.260861930295698,
+                  "log_loss": 0.7278233592677688
+                }
+              },
+              "45-59": {
+                "rows": 82,
+                "positive": 32,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7545743884680344,
+                  "average_precision": 0.6130158142419928,
+                  "brier_score": 0.19436893514273307,
+                  "log_loss": 0.5732767005447538
+                }
+              },
+              "60-74": {
+                "rows": 119,
+                "positive": 60,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.7325565831078769,
+                  "average_precision": 0.7716428855068831,
+                  "brier_score": 0.2181746784370132,
+                  "log_loss": 0.6227428270920006
+                }
+              },
+              "75+": {
+                "rows": 61,
+                "positive": 31,
+                "status": "reported",
+                "weighted": {
+                  "roc_auc": 0.5170867808695205,
+                  "average_precision": 0.5670372484930474,
+                  "brier_score": 0.2903687889650265,
+                  "log_loss": 0.7966320021065418
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "workflow_run_id": 42098628774,
+    "head_sha": "0dea1c44778bdc52393ba2921db38793110bc3c1",
+    "artifact_id": 13448113862,
+    "note": "Repeated subgroup validation over ten household-grouped holdouts using the FINYR2-weighted regularized logistic benchmark."
+  }
+}

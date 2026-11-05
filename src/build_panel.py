@@ -1,9 +1,9 @@
+import csv
+import gzip
+import io
 import json
 from pathlib import Path
 import zipfile
-
-import numpy as np
-import pandas as pd
 
 from cohort import poverty_transition
 
@@ -37,6 +37,24 @@ REPLICATE_CHECK_COLUMNS = [
 ]
 
 
+def parse_float(value):
+    if value is None or value == "":
+        return None
+    try:
+        return float(value)
+    except ValueError:
+        return None
+
+
+def parse_int(value):
+    if value is None or value == "":
+        return None
+    try:
+        return int(float(value))
+    except ValueError:
+        return None
+
+
 def zip_member(path):
     with zipfile.ZipFile(path) as archive:
         members = [
@@ -52,240 +70,267 @@ def zip_member(path):
         return members[0]
 
 
-def read_zip_table(path, usecols):
+def selected_rows_from_zip(path, columns):
     member = zip_member(path)
     with zipfile.ZipFile(path) as archive:
-        with archive.open(member) as handle:
-            return pd.read_csv(
-                handle,
-                sep="|",
-                usecols=usecols,
-                low_memory=False,
-            )
+        with archive.open(member) as binary:
+            with io.TextIOWrapper(binary, encoding="utf-8", newline="") as text:
+                reader = csv.reader(text, delimiter="|")
+                header = next(reader)
+                missing = [column for column in columns if column not in header]
+                if missing:
+                    raise RuntimeError(
+                        f"{Path(path).name} missing columns: {missing}"
+                    )
+                indices = [header.index(column) for column in columns]
+                for row in reader:
+                    yield {
+                        column: row[index]
+                        for column, index in zip(columns, indices)
+                    }
 
 
-def collapse_person_year(frame, year):
-    required = set(PRIMARY_COLUMNS)
-    missing = required - set(frame.columns)
-    if missing:
-        raise RuntimeError(f"{year} primary file missing columns: {sorted(missing)}")
+def collapse_records(records, year):
+    persons = {}
 
-    frame = frame.copy()
-    frame["SSUID"] = frame["SSUID"].astype(str)
-    frame["PNUM"] = pd.to_numeric(frame["PNUM"], errors="coerce")
-    frame["MONTHCODE"] = pd.to_numeric(frame["MONTHCODE"], errors="coerce")
-    frame["TFCYINCPOV"] = pd.to_numeric(frame["TFCYINCPOV"], errors="coerce")
-    frame["AFCYINCPOV"] = pd.to_numeric(frame["AFCYINCPOV"], errors="coerce")
-    frame["TAGE"] = pd.to_numeric(frame["TAGE"], errors="coerce")
+    for row in records:
+        ssuid = str(row["SSUID"])
+        pnum = parse_int(row["PNUM"])
+        if pnum is None:
+            continue
+        key = (ssuid, pnum)
 
-    key = ["SSUID", "PNUM"]
+        month = parse_int(row["MONTHCODE"])
+        poverty = parse_float(row["TFCYINCPOV"])
+        poverty_flag = parse_int(row["AFCYINCPOV"])
+        age = parse_int(row["TAGE"])
 
-    poverty_nunique = (
-        frame.groupby(key, observed=True)["TFCYINCPOV"]
-        .nunique(dropna=True)
-    )
-    inconsistent_poverty = int((poverty_nunique > 1).sum())
-    if inconsistent_poverty:
-        raise RuntimeError(
-            f"{year} has {inconsistent_poverty} persons with inconsistent "
-            "annual TFCYINCPOV across monthly records."
+        person = persons.setdefault(
+            key,
+            {
+                "SSUID": ssuid,
+                "PNUM": pnum,
+                "month_mask": 0,
+                "poverty_ratio": None,
+                "poverty_status_flag": None,
+                "age": None,
+            },
         )
 
-    age_nunique = frame.groupby(key, observed=True)["TAGE"].nunique(dropna=True)
-    inconsistent_age = int((age_nunique > 1).sum())
-    if inconsistent_age:
-        raise RuntimeError(
-            f"{year} has {inconsistent_age} persons with inconsistent "
-            "annual TAGE across monthly records."
-        )
+        if month is not None and 1 <= month <= 12:
+            person["month_mask"] |= 1 << (month - 1)
 
-    grouped = frame.groupby(key, observed=True, as_index=False)
-    collapsed = grouped.agg(
-        month_count=("MONTHCODE", "nunique"),
-        poverty_ratio=("TFCYINCPOV", "first"),
-        poverty_status_flag=("AFCYINCPOV", "first"),
-        age=("TAGE", "first"),
+        if poverty is not None:
+            current = person["poverty_ratio"]
+            if current is not None and abs(current - poverty) > 1e-12:
+                raise RuntimeError(
+                    f"{year} has inconsistent TFCYINCPOV for person {key}: "
+                    f"{current} vs {poverty}"
+                )
+            person["poverty_ratio"] = poverty
+
+        if poverty_flag is not None and person["poverty_status_flag"] is None:
+            person["poverty_status_flag"] = poverty_flag
+
+        if age is not None:
+            current_age = person["age"]
+            if current_age is not None and current_age != age:
+                raise RuntimeError(
+                    f"{year} has inconsistent TAGE for person {key}: "
+                    f"{current_age} vs {age}"
+                )
+            person["age"] = age
+
+    for person in persons.values():
+        person["month_count"] = person.pop("month_mask").bit_count()
+        person["survey_year"] = year
+
+    return persons
+
+
+def load_person_year(path, year):
+    return collapse_records(
+        selected_rows_from_zip(path, PRIMARY_COLUMNS),
+        year,
     )
 
-    if collapsed.duplicated(key).any():
-        raise RuntimeError(f"{year} person-year collapse did not produce unique keys.")
 
-    collapsed["survey_year"] = year
-    return collapsed
+def load_weight_map(path):
+    result = {}
+    for row in selected_rows_from_zip(path, WEIGHT_COLUMNS):
+        key = (str(row["SSUID"]), parse_int(row["PNUM"]))
+        if key[1] is None:
+            continue
+        if key in result:
+            raise RuntimeError(f"Duplicate longitudinal weight key: {key}")
+        result[key] = {
+            "SPANEL": parse_int(row["SPANEL"]),
+            "FINYR2": parse_float(row["FINYR2"]),
+        }
+    return result
 
 
-def valid_poverty(series):
-    return series.notna() & (series >= 0)
+def load_replicate_full_weight(path):
+    result = {}
+    for row in selected_rows_from_zip(path, REPLICATE_CHECK_COLUMNS):
+        key = (str(row["SSUID"]), parse_int(row["PNUM"]))
+        if key[1] is None:
+            continue
+        if key in result:
+            raise RuntimeError(f"Duplicate replicate-weight key: {key}")
+        result[key] = parse_float(row["REPWGT0"])
+    return result
+
+
+def valid_poverty(value):
+    return value is not None and value >= 0
 
 
 def build_panel():
-    primary_2024 = read_zip_table(
-        RAW / "pu2024_csv.zip",
-        PRIMARY_COLUMNS,
-    )
-    primary_2025 = read_zip_table(
-        RAW / "pu2025_csv.zip",
-        PRIMARY_COLUMNS,
+    person_2024 = load_person_year(RAW / "pu2024_csv.zip", 2024)
+    person_2025 = load_person_year(RAW / "pu2025_csv.zip", 2025)
+    weights = load_weight_map(RAW / "lgtwgt2025yr2_csv.zip")
+    replicate = load_replicate_full_weight(
+        RAW / "lgtrw2025yr2_csv.zip"
     )
 
-    person_2024 = collapse_person_year(primary_2024, 2024)
-    person_2025 = collapse_person_year(primary_2025, 2025)
-
-    key = ["SSUID", "PNUM"]
-    panel = person_2024.merge(
-        person_2025,
-        on=key,
-        how="inner",
-        suffixes=("_2024", "_2025"),
-        validate="one_to_one",
+    linked_keys = (
+        set(person_2024)
+        & set(person_2025)
+        & set(weights)
+        & set(replicate)
     )
 
-    weights = read_zip_table(
-        RAW / "lgtwgt2025yr2_csv.zip",
-        WEIGHT_COLUMNS,
-    )
-    weights["SSUID"] = weights["SSUID"].astype(str)
-    weights["PNUM"] = pd.to_numeric(weights["PNUM"], errors="coerce")
-    weights["FINYR2"] = pd.to_numeric(weights["FINYR2"], errors="coerce")
+    panel = []
+    max_weight_difference = 0.0
 
-    if weights.duplicated(key).any():
-        raise RuntimeError("Two-year longitudinal weight file has duplicate person keys.")
+    for key in sorted(linked_keys):
+        baseline = person_2024[key]
+        followup = person_2025[key]
+        weight = weights[key]["FINYR2"]
+        repwgt0 = replicate[key]
 
-    panel = panel.merge(
-        weights,
-        on=key,
-        how="inner",
-        validate="one_to_one",
-    )
+        if weight is not None and repwgt0 is not None:
+            difference = abs(weight - repwgt0)
+            max_weight_difference = max(max_weight_difference, difference)
 
-    replicate = read_zip_table(
-        RAW / "lgtrw2025yr2_csv.zip",
-        REPLICATE_CHECK_COLUMNS,
-    )
-    replicate["SSUID"] = replicate["SSUID"].astype(str)
-    replicate["PNUM"] = pd.to_numeric(replicate["PNUM"], errors="coerce")
-    replicate["REPWGT0"] = pd.to_numeric(replicate["REPWGT0"], errors="coerce")
+        poverty_2024 = (
+            baseline["poverty_ratio"] < 1.0
+            if valid_poverty(baseline["poverty_ratio"])
+            else None
+        )
+        poverty_2025 = (
+            followup["poverty_ratio"] < 1.0
+            if valid_poverty(followup["poverty_ratio"])
+            else None
+        )
 
-    if replicate.duplicated(key).any():
-        raise RuntimeError("Two-year replicate-weight file has duplicate person keys.")
+        transition = None
+        if poverty_2024 is not None and poverty_2025 is not None:
+            transition = poverty_transition(poverty_2024, poverty_2025)
 
-    panel = panel.merge(
-        replicate,
-        on=key,
-        how="inner",
-        validate="one_to_one",
-    )
+        panel.append(
+            {
+                "SSUID": key[0],
+                "PNUM": key[1],
+                "month_count_2024": baseline["month_count"],
+                "month_count_2025": followup["month_count"],
+                "poverty_ratio_2024": baseline["poverty_ratio"],
+                "poverty_ratio_2025": followup["poverty_ratio"],
+                "age_2024": baseline["age"],
+                "age_2025": followup["age"],
+                "poverty_2024": poverty_2024,
+                "poverty_2025": poverty_2025,
+                "transition": transition,
+                "FINYR2": weight,
+                "REPWGT0": repwgt0,
+                "SPANEL": weights[key]["SPANEL"],
+                "adult_baseline": (
+                    baseline["age"] is not None and baseline["age"] >= 18
+                ),
+            }
+        )
 
-    valid_weight = panel["FINYR2"].notna() & panel["REPWGT0"].notna()
-    max_weight_difference = float(
-        np.abs(
-            panel.loc[valid_weight, "FINYR2"]
-            - panel.loc[valid_weight, "REPWGT0"]
-        ).max()
-    )
     if max_weight_difference > 1e-6:
         raise RuntimeError(
             "FINYR2 and REPWGT0 differ beyond tolerance: "
             f"{max_weight_difference}"
         )
 
-    valid_transition = (
-        valid_poverty(panel["poverty_ratio_2024"])
-        & valid_poverty(panel["poverty_ratio_2025"])
-    )
-    panel["poverty_2024"] = np.where(
-        valid_poverty(panel["poverty_ratio_2024"]),
-        panel["poverty_ratio_2024"] < 1.0,
-        pd.NA,
-    )
-    panel["poverty_2025"] = np.where(
-        valid_poverty(panel["poverty_ratio_2025"]),
-        panel["poverty_ratio_2025"] < 1.0,
-        pd.NA,
-    )
-
-    panel["transition"] = pd.NA
-    panel.loc[valid_transition, "transition"] = [
-        poverty_transition(baseline, followup)
-        for baseline, followup in zip(
-            panel.loc[valid_transition, "poverty_2024"],
-            panel.loc[valid_transition, "poverty_2025"],
-        )
-    ]
-
-    panel["adult_baseline"] = panel["age_2024"].ge(18)
-
     return person_2024, person_2025, panel, max_weight_difference
 
 
 def profile(person_2024, person_2025, panel, max_weight_difference):
-    adult = panel[
-        panel["adult_baseline"]
-        & panel["transition"].notna()
-        & panel["FINYR2"].notna()
-        & panel["FINYR2"].gt(0)
-    ].copy()
+    adult = [
+        row
+        for row in panel
+        if row["adult_baseline"]
+        and row["transition"] is not None
+        and row["FINYR2"] is not None
+        and row["FINYR2"] > 0
+    ]
 
-    counts = adult["transition"].value_counts().to_dict()
-    weighted = (
-        adult.groupby("transition", observed=True)["FINYR2"]
-        .sum()
-        .sort_index()
-        .to_dict()
-    )
-    weighted_total = float(adult["FINYR2"].sum())
+    counts = {}
+    weighted = {}
+    for row in adult:
+        transition = row["transition"]
+        counts[transition] = counts.get(transition, 0) + 1
+        weighted[transition] = weighted.get(transition, 0.0) + row["FINYR2"]
+
+    weighted_total = sum(weighted.values())
     weighted_share = {
-        name: float(value / weighted_total)
-        for name, value in weighted.items()
+        key: value / weighted_total
+        for key, value in weighted.items()
     }
 
     return {
         "person_years": {
-            "2024": int(len(person_2024)),
-            "2025": int(len(person_2025)),
+            "2024": len(person_2024),
+            "2025": len(person_2025),
         },
-        "linked_with_longitudinal_weights": int(len(panel)),
-        "adult_analysis_cohort": int(len(adult)),
+        "linked_with_longitudinal_weights": len(panel),
+        "adult_analysis_cohort": len(adult),
         "poverty_measure": {
             "variable": "TFCYINCPOV",
             "threshold": 1.0,
             "definition": "poverty_ratio < 1.0",
         },
-        "transition_counts_unweighted": {
-            key: int(value)
-            for key, value in counts.items()
-        },
-        "transition_weight_sums": {
-            key: float(value)
-            for key, value in weighted.items()
-        },
+        "transition_counts_unweighted": counts,
+        "transition_weight_sums": weighted,
         "transition_weighted_shares": weighted_share,
         "weight_validation": {
             "FINYR2_vs_REPWGT0_max_abs_difference": max_weight_difference,
         },
         "monthly_record_coverage": {
-            "2024_persons_with_12_months": int(
-                (person_2024["month_count"] == 12).sum()
+            "2024_persons_with_12_months": sum(
+                row["month_count"] == 12
+                for row in person_2024.values()
             ),
-            "2025_persons_with_12_months": int(
-                (person_2025["month_count"] == 12).sum()
+            "2025_persons_with_12_months": sum(
+                row["month_count"] == 12
+                for row in person_2025.values()
             ),
         },
     }
+
+
+def write_panel(panel):
+    PROCESSED.mkdir(parents=True, exist_ok=True)
+    path = PROCESSED / "panel_core.csv.gz"
+    fieldnames = list(panel[0]) if panel else []
+
+    with gzip.open(path, "wt", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(panel)
 
 
 def main():
     person_2024, person_2025, panel, max_diff = build_panel()
     result = profile(person_2024, person_2025, panel, max_diff)
 
-    PROCESSED.mkdir(parents=True, exist_ok=True)
     METADATA.mkdir(parents=True, exist_ok=True)
-
-    panel.to_csv(
-        PROCESSED / "panel_core.csv.gz",
-        index=False,
-        compression="gzip",
-    )
+    write_panel(panel)
     (METADATA / "panel_profile.json").write_text(
         json.dumps(result, indent=2) + "\n",
         encoding="utf-8",

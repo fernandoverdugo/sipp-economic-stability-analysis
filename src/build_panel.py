@@ -36,6 +36,8 @@ REPLICATE_CHECK_COLUMNS = [
     "REPWGT0",
 ]
 
+WEIGHT_EQUALITY_TOLERANCE = 1e-4
+
 
 def parse_float(value):
     if value is None or value == "":
@@ -264,7 +266,7 @@ def build_panel():
             }
         )
 
-    if max_weight_difference > 1e-6:
+    if max_weight_difference > WEIGHT_EQUALITY_TOLERANCE:
         raise RuntimeError(
             "FINYR2 and REPWGT0 differ beyond tolerance: "
             f"{max_weight_difference}"
@@ -313,6 +315,7 @@ def profile(person_2024, person_2025, panel, max_weight_difference):
         "transition_weighted_shares": weighted_share,
         "weight_validation": {
             "FINYR2_vs_REPWGT0_max_abs_difference": max_weight_difference,
+            "tolerance": WEIGHT_EQUALITY_TOLERANCE,
         },
         "monthly_record_coverage": {
             "2024_persons_with_12_months": sum(

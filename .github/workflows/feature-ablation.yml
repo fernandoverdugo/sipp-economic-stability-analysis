@@ -1,0 +1,92 @@
+name: feature-ablation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "config/predictors.json"
+      - "src/build_features.py"
+      - "src/train_baselines.py"
+      - "src/validate_models.py"
+      - "src/feature_ablation.py"
+      - "requirements.txt"
+      - "tests/test_feature_ablation.py"
+      - ".github/workflows/feature-ablation.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  ablate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Run tests
+        run: python -m pytest -q
+
+      - name: Download full registered assets
+        run: python src/download_assets.py --mode all
+
+      - name: Build longitudinal panel
+        run: python src/build_panel.py
+
+      - name: Build baseline feature matrix
+        run: python src/build_features.py
+
+      - name: Run feature ablation analysis
+        run: |
+          set -o pipefail
+          python src/feature_ablation.py | tee feature_ablation.log
+
+      - name: Validate ablation output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(
+              Path("data/metadata/feature_ablation.json").read_text()
+          )
+
+          assert result["contract_version"] == "0.3"
+
+          expected = {
+              "full",
+              "without_baseline_poverty_ratio",
+              "without_income_resources",
+              "without_assets",
+              "without_safety_net_housing",
+              "without_demographics",
+          }
+
+          for task in ("poverty_entry", "poverty_exit"):
+              details = result["tasks"][task]
+              assert set(details) == expected
+              for variant in details.values():
+                  metrics = variant["weighted_metrics"]
+                  assert 0 <= metrics["roc_auc"]["mean"] <= 1
+                  assert 0 <= metrics["average_precision"]["mean"] <= 1
+          PY
+
+      - name: Upload ablation artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: sipp-feature-ablation
+          path: |
+            data/metadata/feature_ablation.json
+            feature_ablation.log

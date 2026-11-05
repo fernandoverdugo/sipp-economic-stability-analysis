@@ -160,18 +160,20 @@ Validated panel profile:
 | Linked persons with longitudinal weights | 18,207 |
 | Adult analytical cohort | **15,034** |
 
-Initial weighted transition point estimates:
+Design-based longitudinal estimates:
 
-| Transition | Weighted share |
-| --- | ---: |
-| Stable above poverty | **86.28%** |
-| Entered poverty | **3.65%** |
-| Exited poverty | **4.88%** |
-| Persistent poverty | **5.20%** |
+| Estimand | Estimate | SE | 95% CI |
+| --- | ---: | ---: | ---: |
+| Stable above poverty | **86.28%** | 0.40 pp | 85.50–87.06% |
+| Entered poverty | **3.65%** | 0.22 pp | 3.21–4.08% |
+| Exited poverty | **4.88%** | 0.26 pp | 4.37–5.38% |
+| Persistent poverty | **5.20%** | 0.22 pp | 4.76–5.63% |
+| Baseline poverty prevalence | **10.07%** | 0.33 pp | 9.42–10.72% |
+| Follow-up poverty prevalence | **8.84%** | 0.31 pp | 8.24–9.44% |
+| Poverty entry among baseline nonpoor adults | **4.05%** | 0.25 pp | 3.57–4.54% |
+| Poverty exit among baseline poor adults | **48.43%** | 1.72 pp | 45.06–51.81% |
 
-Among adults above poverty at baseline, approximately **4.05%** entered poverty in the following year. Among adults below poverty at baseline, approximately **48.43%** exited poverty.
-
-These panel-profile values are point estimates. Milestone 4 now implements design-based standard errors and 95% confidence intervals using all 240 Census longitudinal replicate weights and Fay's BRR method.
+Standard errors and confidence intervals use all 240 Census longitudinal replicate weights with Fay's BRR method.
 
 The panel builder validates annual-variable consistency across monthly SIPP records, links on `SSUID + PNUM`, checks `FINYR2` against `REPWGT0`, and writes the person-level panel outside Git history.
 
@@ -195,13 +197,14 @@ Verified official asset registry, downloader, checksum generation, remote probin
 Validated person-year collapse, `SSUID + PNUM` linkage, adult analytical cohort, longitudinal-weight integration, replicate full-weight validation, and transition-state construction.
 
 ### Milestone 4 — poverty transition analysis
-**In progress**
+**Complete**
 
-The official annual family poverty ratio is selected, transition outcomes are constructed, and the survey-inference pipeline now estimates weighted rates, Fay-BRR standard errors, and bounded 95% confidence intervals from `REPWGT1`–`REPWGT240`.
+The official annual family poverty ratio is selected, transition outcomes are constructed, and the survey-inference pipeline estimates weighted rates, Fay-BRR standard errors, and bounded 95% confidence intervals from `REPWGT1`–`REPWGT240`.
 
-The dedicated workflow rebuilds the panel from official Census assets before producing `data/metadata/transition_analysis.json`.
+The dedicated workflow rebuilds the panel from official Census assets before producing `data/metadata/transition_analysis.json`. The full-data workflow and the standard quality-check workflow both pass successfully.
 
 ### Milestone 5 — prospective prediction
+**Next**
 
 Build baseline and machine-learning models using only baseline information to predict following-year poverty entry and exit.
 
@@ -234,7 +237,8 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   └── source_registry.json
 ├── data/
 │   ├── metadata/
-│   │   └── panel_profile.json
+│   │   ├── panel_profile.json
+│   │   └── transition_analysis.json
 │   ├── processed/
 │   └── raw/
 ├── docs/

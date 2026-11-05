@@ -8,6 +8,7 @@ on:
       - "src/build_panel.py"
       - "config/assets.json"
       - "src/download_assets.py"
+      - "requirements.txt"
       - ".github/workflows/panel-profile.yml"
 
 permissions:

@@ -1,0 +1,733 @@
+{
+  "policy_model_version": "1.0",
+  "predictor_contract_version": "0.3",
+  "feature_count": 10,
+  "features": [
+    "education",
+    "months_employed",
+    "months_unemployed",
+    "mean_weekly_hours",
+    "annual_person_earnings",
+    "annual_person_income",
+    "baseline_poverty_ratio",
+    "housing_tenure",
+    "housing_assistance_status",
+    "snap_received_year"
+  ],
+  "evaluation": {
+    "split_method": "10 repeated GroupShuffleSplit by SSUID",
+    "test_group_share": 0.25,
+    "seeds": [
+      699,
+      700,
+      701,
+      702,
+      703,
+      704,
+      705,
+      706,
+      707,
+      708
+    ],
+    "weighted_model_fit": true,
+    "weight": "FINYR2"
+  },
+  "tasks": {
+    "poverty_entry": {
+      "sample": {
+        "rows": 13464,
+        "positive": 587,
+        "unweighted_prevalence": 0.04359774212715389,
+        "weighted_prevalence": 0.04053620305886503
+      },
+      "repeats": 10,
+      "metrics": {
+        "unweighted": {
+          "roc_auc": {
+            "mean": 0.7344990588956158,
+            "std": 0.015852577242426398,
+            "min": 0.7050599836610014,
+            "max": 0.7569917625464476
+          },
+          "average_precision": {
+            "mean": 0.1640267797540615,
+            "std": 0.019071120679806805,
+            "min": 0.12822411999550123,
+            "max": 0.20294580120181901
+          },
+          "brier_score": {
+            "mean": 0.041222325055618333,
+            "std": 0.003415784913494886,
+            "min": 0.03697972387547757,
+            "max": 0.045945047861912454
+          },
+          "log_loss": {
+            "mean": 0.16927128321398505,
+            "std": 0.010996365980952423,
+            "min": 0.1544803029133682,
+            "max": 0.18373224860121543
+          }
+        },
+        "weighted": {
+          "roc_auc": {
+            "mean": 0.7203001222677143,
+            "std": 0.021125085754699072,
+            "min": 0.6810820372937045,
+            "max": 0.7436519576150618
+          },
+          "average_precision": {
+            "mean": 0.13315638167782604,
+            "std": 0.02701929594693554,
+            "min": 0.10348821433761232,
+            "max": 0.1914693599205182
+          },
+          "brier_score": {
+            "mean": 0.03941723444369864,
+            "std": 0.004160278539865062,
+            "min": 0.03275557939042675,
+            "max": 0.0437485343394101
+          },
+          "log_loss": {
+            "mean": 0.16395555672168644,
+            "std": 0.0134056694072496,
+            "min": 0.14323386380112657,
+            "max": 0.17965449822407087
+          }
+        }
+      },
+      "calibration": {
+        "unweighted": {
+          "intercept": {
+            "mean": 0.12153316890991565,
+            "std": 0.437544187677505,
+            "min": -0.6026839002481927,
+            "max": 0.7842271599956042
+          },
+          "slope": {
+            "mean": 0.9959026513797372,
+            "std": 0.1375317075595641,
+            "min": 0.8100550629023067,
+            "max": 1.2602828847913234
+          }
+        },
+        "weighted": {
+          "intercept": {
+            "mean": -0.17911605026565963,
+            "std": 0.5339139694261724,
+            "min": -0.9332190954689451,
+            "max": 0.6555753549902423
+          },
+          "slope": {
+            "mean": 0.917518527496916,
+            "std": 0.16377690375429213,
+            "min": 0.6958179128658951,
+            "max": 1.2267301323030468
+          }
+        }
+      },
+      "runs": [
+        {
+          "seed": 699,
+          "test_rows": 3394,
+          "test_positive": 156,
+          "unweighted": {
+            "roc_auc": 0.7292547631491424,
+            "average_precision": 0.16947335660010454,
+            "brier_score": 0.04142455451546096,
+            "log_loss": 0.17053636842591724
+          },
+          "weighted": {
+            "roc_auc": 0.7075919960570062,
+            "average_precision": 0.11621844460222888,
+            "brier_score": 0.03765853803093413,
+            "log_loss": 0.1593694527660732
+          },
+          "calibration_unweighted": {
+            "intercept": 0.08197198978607098,
+            "slope": 0.9827066773771999
+          },
+          "calibration_weighted": {
+            "intercept": -0.4523676213752643,
+            "slope": 0.8428473663517041
+          }
+        },
+        {
+          "seed": 700,
+          "test_rows": 3322,
+          "test_positive": 143,
+          "unweighted": {
+            "roc_auc": 0.7402270582515943,
+            "average_precision": 0.16366903198263977,
+            "brier_score": 0.039124137879375805,
+            "log_loss": 0.16051135736563976
+          },
+          "weighted": {
+            "roc_auc": 0.7381552480371728,
+            "average_precision": 0.12202432128174868,
+            "brier_score": 0.040658207533949435,
+            "log_loss": 0.1658895587451359
+          },
+          "calibration_unweighted": {
+            "intercept": 0.39337587923129497,
+            "slope": 1.0977781682217096
+          },
+          "calibration_weighted": {
+            "intercept": 0.12463784311204251,
+            "slope": 0.9885241381494643
+          }
+        },
+        {
+          "seed": 701,
+          "test_rows": 3362,
+          "test_positive": 151,
+          "unweighted": {
+            "roc_auc": 0.7562899470157426,
+            "average_precision": 0.16637473852217782,
+            "brier_score": 0.04061745911231364,
+            "log_loss": 0.16916139577634826
+          },
+          "weighted": {
+            "roc_auc": 0.7327596459245569,
+            "average_precision": 0.12166802405515169,
+            "brier_score": 0.04109526914807956,
+            "log_loss": 0.17053691512470334
+          },
+          "calibration_unweighted": {
+            "intercept": -0.05887052146877675,
+            "slope": 0.9431321616280244
+          },
+          "calibration_weighted": {
+            "intercept": -0.3138559585879519,
+            "slope": 0.856364686267644
+          }
+        },
+        {
+          "seed": 702,
+          "test_rows": 3329,
+          "test_positive": 139,
+          "unweighted": {
+            "roc_auc": 0.728181592656909,
+            "average_precision": 0.16961579290578913,
+            "brier_score": 0.037660263113791,
+            "log_loss": 0.16044448577107553
+          },
+          "weighted": {
+            "roc_auc": 0.7225856193266865,
+            "average_precision": 0.12111883307525234,
+            "brier_score": 0.03275557939042675,
+            "log_loss": 0.14323386380112657
+          },
+          "calibration_unweighted": {
+            "intercept": -0.356346404677475,
+            "slope": 0.893205669584417
+          },
+          "calibration_weighted": {
+            "intercept": -0.5687693408214355,
+            "slope": 0.8814340885496424
+          }
+        },
+        {
+          "seed": 703,
+          "test_rows": 3343,
+          "test_positive": 166,
+          "unweighted": {
+            "roc_auc": 0.7177567683386995,
+            "average_precision": 0.1710120500403643,
+            "brier_score": 0.04504904324065987,
+            "log_loss": 0.1824301365645253
+          },
+          "weighted": {
+            "roc_auc": 0.7114948727344128,
+            "average_precision": 0.14853870553635184,
+            "brier_score": 0.04172479913236712,
+            "log_loss": 0.17192334543695154
+          },
+          "calibration_unweighted": {
+            "intercept": 0.10591758901901303,
+            "slope": 0.9485020357257953
+          },
+          "calibration_weighted": {
+            "intercept": -0.23735531921982916,
+            "slope": 0.8715318117361154
+          }
+        },
+        {
+          "seed": 704,
+          "test_rows": 3378,
+          "test_positive": 168,
+          "unweighted": {
+            "roc_auc": 0.7370855585224745,
+            "average_precision": 0.14592726887153165,
+            "brier_score": 0.045469939787153704,
+            "log_loss": 0.18267662255431283
+          },
+          "weighted": {
+            "roc_auc": 0.6935306153921892,
+            "average_precision": 0.10348821433761232,
+            "brier_score": 0.04343179515009099,
+            "log_loss": 0.17965449822407087
+          },
+          "calibration_unweighted": {
+            "intercept": -0.11316026771966817,
+            "slope": 0.8700156566567245
+          },
+          "calibration_weighted": {
+            "intercept": -0.7138470334369519,
+            "slope": 0.6958179128658951
+          }
+        },
+        {
+          "seed": 705,
+          "test_rows": 3331,
+          "test_positive": 140,
+          "unweighted": {
+            "roc_auc": 0.7569917625464476,
+            "average_precision": 0.20294580120181901,
+            "brier_score": 0.037587282482480486,
+            "log_loss": 0.1544803029133682
+          },
+          "weighted": {
+            "roc_auc": 0.7436519576150618,
+            "average_precision": 0.1914693599205182,
+            "brier_score": 0.034959582673069235,
+            "log_loss": 0.14619566412901586
+          },
+          "calibration_unweighted": {
+            "intercept": 0.7842271599956042,
+            "slope": 1.2602828847913234
+          },
+          "calibration_weighted": {
+            "intercept": 0.6135519714171613,
+            "slope": 1.2267301323030468
+          }
+        },
+        {
+          "seed": 706,
+          "test_rows": 3348,
+          "test_positive": 170,
+          "unweighted": {
+            "roc_auc": 0.7344389738274165,
+            "average_precision": 0.15825101989660598,
+            "brier_score": 0.045945047861912454,
+            "log_loss": 0.18373224860121543
+          },
+          "weighted": {
+            "roc_auc": 0.7365662687893554,
+            "average_precision": 0.13027899252290465,
+            "brier_score": 0.04374074189400429,
+            "log_loss": 0.1760462970459711
+          },
+          "calibration_unweighted": {
+            "intercept": 0.2719913929973352,
+            "slope": 1.0032849138076128
+          },
+          "calibration_weighted": {
+            "intercept": 0.03448869673433522,
+            "slope": 0.9508928506982701
+          }
+        },
+        {
+          "seed": 707,
+          "test_rows": 3425,
+          "test_positive": 137,
+          "unweighted": {
+            "roc_auc": 0.7050599836610014,
+            "average_precision": 0.12822411999550123,
+            "brier_score": 0.03697972387547757,
+            "log_loss": 0.15718586858587918
+          },
+          "weighted": {
+            "roc_auc": 0.6810820372937045,
+            "average_precision": 0.11285868670459832,
+            "brier_score": 0.034399297144654756,
+            "log_loss": 0.15016845317299898
+          },
+          "calibration_unweighted": {
+            "intercept": -0.6026839002481927,
+            "slope": 0.8100550629023067
+          },
+          "calibration_weighted": {
+            "intercept": -0.9332190954689451,
+            "slope": 0.7337768034129846
+          }
+        },
+        {
+          "seed": 708,
+          "test_rows": 3452,
+          "test_positive": 161,
+          "unweighted": {
+            "roc_auc": 0.7397041809867302,
+            "average_precision": 0.16477461752408165,
+            "brier_score": 0.04236579868755788,
+            "log_loss": 0.17155404558156906
+          },
+          "weighted": {
+            "roc_auc": 0.7355829615069978,
+            "average_precision": 0.16390023474189336,
+            "brier_score": 0.0437485343394101,
+            "log_loss": 0.17653751877081722
+          },
+          "calibration_unweighted": {
+            "intercept": 0.7089087721839511,
+            "slope": 1.1500632831022584
+          },
+          "calibration_weighted": {
+            "intercept": 0.6555753549902423,
+            "slope": 1.1272654846343917
+          }
+        }
+      ]
+    },
+    "poverty_exit": {
+      "sample": {
+        "rows": 1570,
+        "positive": 757,
+        "unweighted_prevalence": 0.4821656050955414,
+        "weighted_prevalence": 0.4843139067867553
+      },
+      "repeats": 10,
+      "metrics": {
+        "unweighted": {
+          "roc_auc": {
+            "mean": 0.6976190563565821,
+            "std": 0.026927309518319932,
+            "min": 0.6343383584589615,
+            "max": 0.7245277692228724
+          },
+          "average_precision": {
+            "mean": 0.6785678835715074,
+            "std": 0.03917455395245731,
+            "min": 0.6109261468627429,
+            "max": 0.7322812600388328
+          },
+          "brier_score": {
+            "mean": 0.22129343840227428,
+            "std": 0.008861455289729817,
+            "min": 0.2115931355454817,
+            "max": 0.2422190533901706
+          },
+          "log_loss": {
+            "mean": 0.634012033736673,
+            "std": 0.019655454682676567,
+            "min": 0.6122873626009484,
+            "max": 0.6795619906690183
+          }
+        },
+        "weighted": {
+          "roc_auc": {
+            "mean": 0.7123468069637172,
+            "std": 0.0325083375889526,
+            "min": 0.6621316612214618,
+            "max": 0.7569945185955
+          },
+          "average_precision": {
+            "mean": 0.6932298198065361,
+            "std": 0.046218425237156906,
+            "min": 0.629191512951476,
+            "max": 0.7599053562214044
+          },
+          "brier_score": {
+            "mean": 0.21698652871410556,
+            "std": 0.010672075807602713,
+            "min": 0.2019383961976866,
+            "max": 0.23343288577307436
+          },
+          "log_loss": {
+            "mean": 0.6251048251629878,
+            "std": 0.024194314507645427,
+            "min": 0.5915360288404526,
+            "max": 0.661177783372442
+          }
+        }
+      },
+      "calibration": {
+        "unweighted": {
+          "intercept": {
+            "mean": 0.02627877708117554,
+            "std": 0.10405484221713028,
+            "min": -0.14443718248222673,
+            "max": 0.21746552828660776
+          },
+          "slope": {
+            "mean": 0.8920093354385144,
+            "std": 0.17522646329314626,
+            "min": 0.5544166144160735,
+            "max": 1.1455005721104852
+          }
+        },
+        "weighted": {
+          "intercept": {
+            "mean": 0.008089844232657236,
+            "std": 0.12498296487213541,
+            "min": -0.16644795777867885,
+            "max": 0.24403035407909518
+          },
+          "slope": {
+            "mean": 0.9404866918043941,
+            "std": 0.21451183099307278,
+            "min": 0.6722913866595197,
+            "max": 1.2887469639873264
+          }
+        }
+      },
+      "runs": [
+        {
+          "seed": 699,
+          "test_rows": 395,
+          "test_positive": 204,
+          "unweighted": {
+            "roc_auc": 0.7233856893542757,
+            "average_precision": 0.7124549271229552,
+            "brier_score": 0.21513464667822774,
+            "log_loss": 0.6202607364013807
+          },
+          "weighted": {
+            "roc_auc": 0.7449730771935783,
+            "average_precision": 0.7501988871888037,
+            "brier_score": 0.2082118383105938,
+            "log_loss": 0.6068916693394991
+          },
+          "calibration_unweighted": {
+            "intercept": 0.21746552828660776,
+            "slope": 1.0237063122493468
+          },
+          "calibration_weighted": {
+            "intercept": 0.24403035407909518,
+            "slope": 1.0790498596511302
+          }
+        },
+        {
+          "seed": 700,
+          "test_rows": 386,
+          "test_positive": 175,
+          "unweighted": {
+            "roc_auc": 0.7126743398781313,
+            "average_precision": 0.654737700326782,
+            "brier_score": 0.2150766222068209,
+            "log_loss": 0.6189198816954327
+          },
+          "weighted": {
+            "roc_auc": 0.732593051455967,
+            "average_precision": 0.6884291900320301,
+            "brier_score": 0.20966711946263547,
+            "log_loss": 0.6074114299911044
+          },
+          "calibration_unweighted": {
+            "intercept": -0.14443718248222673,
+            "slope": 1.029009238297742
+          },
+          "calibration_weighted": {
+            "intercept": -0.034438732294071614,
+            "slope": 1.1553406986660377
+          }
+        },
+        {
+          "seed": 701,
+          "test_rows": 392,
+          "test_positive": 191,
+          "unweighted": {
+            "roc_auc": 0.7048266520799146,
+            "average_precision": 0.6932308982282164,
+            "brier_score": 0.21893235982608628,
+            "log_loss": 0.63130184326628
+          },
+          "weighted": {
+            "roc_auc": 0.7037149360742092,
+            "average_precision": 0.7286322339670606,
+            "brier_score": 0.21930024266607148,
+            "log_loss": 0.6306234633736887
+          },
+          "calibration_unweighted": {
+            "intercept": 0.04151899697544096,
+            "slope": 0.8838697381947727
+          },
+          "calibration_weighted": {
+            "intercept": 0.14422499572835146,
+            "slope": 0.8724502203347161
+          }
+        },
+        {
+          "seed": 702,
+          "test_rows": 392,
+          "test_positive": 196,
+          "unweighted": {
+            "roc_auc": 0.6884110787172012,
+            "average_precision": 0.6872549111628645,
+            "brier_score": 0.22416482408454852,
+            "log_loss": 0.6394596123984669
+          },
+          "weighted": {
+            "roc_auc": 0.7129125718629686,
+            "average_precision": 0.7020151734841308,
+            "brier_score": 0.21690019721479542,
+            "log_loss": 0.6261640408692464
+          },
+          "calibration_unweighted": {
+            "intercept": 0.11566987466329491,
+            "slope": 0.8170653957183176
+          },
+          "calibration_weighted": {
+            "intercept": 0.07258321154603983,
+            "slope": 0.8629420775343185
+          }
+        },
+        {
+          "seed": 703,
+          "test_rows": 383,
+          "test_positive": 177,
+          "unweighted": {
+            "roc_auc": 0.6766085239427349,
+            "average_precision": 0.6236163297803414,
+            "brier_score": 0.2270330258334078,
+            "log_loss": 0.6454905610997159
+          },
+          "weighted": {
+            "roc_auc": 0.6899628694225535,
+            "average_precision": 0.6475428839009605,
+            "brier_score": 0.22327123672843666,
+            "log_loss": 0.6373121176656918
+          },
+          "calibration_unweighted": {
+            "intercept": -0.10659848938918022,
+            "slope": 0.7613156253029123
+          },
+          "calibration_weighted": {
+            "intercept": -0.16644795777867885,
+            "slope": 0.7961898745548229
+          }
+        },
+        {
+          "seed": 704,
+          "test_rows": 390,
+          "test_positive": 189,
+          "unweighted": {
+            "roc_auc": 0.7149832846350259,
+            "average_precision": 0.7108717568476552,
+            "brier_score": 0.21482242454048117,
+            "log_loss": 0.6180190495706293
+          },
+          "weighted": {
+            "roc_auc": 0.7497298561241277,
+            "average_precision": 0.7182041976959954,
+            "brier_score": 0.204218514408645,
+            "log_loss": 0.5946115464404803
+          },
+          "calibration_unweighted": {
+            "intercept": -0.014146691056337484,
+            "slope": 1.0317791631753368
+          },
+          "calibration_weighted": {
+            "intercept": -0.15516659409815586,
+            "slope": 1.1546301396018428
+          }
+        },
+        {
+          "seed": 705,
+          "test_rows": 401,
+          "test_positive": 197,
+          "unweighted": {
+            "roc_auc": 0.6945978899173884,
+            "average_precision": 0.6683973106621146,
+            "brier_score": 0.22405217872008137,
+            "log_loss": 0.6431437572617226
+          },
+          "weighted": {
+            "roc_auc": 0.6790020965988626,
+            "average_precision": 0.64174523260182,
+            "brier_score": 0.22870687811451507,
+            "log_loss": 0.6534683170134036
+          },
+          "calibration_unweighted": {
+            "intercept": 0.07235236847153939,
+            "slope": 0.7542988638816581
+          },
+          "calibration_weighted": {
+            "intercept": 0.007304311501162232,
+            "slope": 0.6722913866595197
+          }
+        },
+        {
+          "seed": 706,
+          "test_rows": 395,
+          "test_positive": 191,
+          "unweighted": {
+            "roc_auc": 0.7245277692228724,
+            "average_precision": 0.7322812600388328,
+            "brier_score": 0.2115931355454817,
+            "log_loss": 0.6122873626009484
+          },
+          "weighted": {
+            "roc_auc": 0.7569945185955,
+            "average_precision": 0.7599053562214044,
+            "brier_score": 0.2019383961976866,
+            "log_loss": 0.5915360288404526
+          },
+          "calibration_unweighted": {
+            "intercept": 0.06329478476696272,
+            "slope": 1.1455005721104852
+          },
+          "calibration_weighted": {
+            "intercept": 0.01509356050988574,
+            "slope": 1.2887469639873264
+          }
+        },
+        {
+          "seed": 707,
+          "test_rows": 406,
+          "test_positive": 203,
+          "unweighted": {
+            "roc_auc": 0.7018369773593147,
+            "average_precision": 0.6919075946825691,
+            "brier_score": 0.21990611319743678,
+            "log_loss": 0.6316755424031345
+          },
+          "weighted": {
+            "roc_auc": 0.6914534310879443,
+            "average_precision": 0.6664335300216788,
+            "brier_score": 0.22421797826460158,
+            "log_loss": 0.6418518547238703
+          },
+          "calibration_unweighted": {
+            "intercept": 0.0006130045718876047,
+            "slope": 0.9191318310384985
+          },
+          "calibration_weighted": {
+            "intercept": -0.04864938416045764,
+            "slope": 0.8460201234512964
+          }
+        },
+        {
+          "seed": 708,
+          "test_rows": 409,
+          "test_positive": 199,
+          "unweighted": {
+            "roc_auc": 0.6343383584589615,
+            "average_precision": 0.6109261468627429,
+            "brier_score": 0.2422190533901706,
+            "log_loss": 0.6795619906690183
+          },
+          "weighted": {
+            "roc_auc": 0.6621316612214618,
+            "average_precision": 0.629191512951476,
+            "brier_score": 0.23343288577307436,
+            "log_loss": 0.661177783372442
+          },
+          "calibration_unweighted": {
+            "intercept": 0.017055576003766462,
+            "slope": 0.5544166144160735
+          },
+          "calibration_weighted": {
+            "intercept": 0.002364677293401887,
+            "slope": 0.6772055736029307
+          }
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "workflow_run_id": 42101998203,
+    "head_sha": "efe109e52650d17edda390e1c02e88ec44452785",
+    "artifact_id": 13450317261,
+    "note": "Ten repeated household-grouped holdouts for policy_model v1.0 using FINYR2-weighted logistic regression."
+  }
+}

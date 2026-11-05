@@ -123,13 +123,28 @@ def build_pipeline(contract):
         (
             "model",
             LogisticRegression(
-                penalty="l2",
                 C=1.0,
                 solver="lbfgs",
                 max_iter=2000,
             ),
         ),
     ])
+
+
+def readable_feature_name(name, predictor_names):
+    result = str(name)
+    for index, predictor in reversed(list(enumerate(predictor_names))):
+        result = result.replace(
+            f"missingindicator_x{index}",
+            f"missing_{predictor}",
+        )
+        result = result.replace(
+            f"x{index}_",
+            f"{predictor}=",
+        )
+        if result.endswith(f"x{index}"):
+            result = result[: -len(f"x{index}")] + predictor
+    return result.replace("continuous__", "").replace("categorical__", "")
 
 
 def metrics(y_true, probabilities):
@@ -171,9 +186,17 @@ def evaluate_task(X, groups, transitions, baseline_poverty, contract, task):
     logistic_probability = pipeline.predict_proba(X_test)[:, 1]
 
     feature_names = pipeline.named_steps["preprocess"].get_feature_names_out()
+    predictor_names = [
+        predictor["feature"]
+        for predictor in contract["predictors"]
+    ]
+    readable_names = [
+        readable_feature_name(name, predictor_names)
+        for name in feature_names
+    ]
     coefficients = pipeline.named_steps["model"].coef_[0]
     ranked = sorted(
-        zip(feature_names, coefficients),
+        zip(readable_names, coefficients),
         key=lambda item: abs(item[1]),
         reverse=True,
     )[:15]

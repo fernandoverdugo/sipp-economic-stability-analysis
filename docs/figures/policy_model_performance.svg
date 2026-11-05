@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+<title id="title">Policy model repeated validation</title>
+<desc id="desc">Weighted ROC-AUC and average precision for the final ten-feature policy model. Entry AUC 0.720 and AP 0.133. Exit AUC 0.712 and AP 0.693.</desc>
+<rect width="960" height="540" fill="#ffffff"/>
+<text x="60" y="58" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#111827">Validated 10-feature policy model</text>
+<text x="60" y="88" font-family="Arial, sans-serif" font-size="16" fill="#4b5563">Mean weighted performance across 10 household-grouped holdouts</text>
+<text x="60" y="150" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">Poverty entry</text>
+<text x="60" y="205" font-family="Arial, sans-serif" font-size="16" fill="#374151">ROC-AUC</text>
+<rect x="185" y="184" width="504" height="28" rx="5" fill="#2563eb"/>
+<text x="705" y="205" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">0.720</text>
+<text x="60" y="260" font-family="Arial, sans-serif" font-size="16" fill="#374151">Avg. precision</text>
+<rect x="185" y="239" width="93" height="28" rx="5" fill="#60a5fa"/>
+<text x="294" y="260" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">0.133</text>
+<text x="60" y="340" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">Poverty exit</text>
+<text x="60" y="395" font-family="Arial, sans-serif" font-size="16" fill="#374151">ROC-AUC</text>
+<rect x="185" y="374" width="498" height="28" rx="5" fill="#059669"/>
+<text x="699" y="395" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">0.712</text>
+<text x="60" y="450" font-family="Arial, sans-serif" font-size="16" fill="#374151">Avg. precision</text>
+<rect x="185" y="429" width="485" height="28" rx="5" fill="#34d399"/>
+<text x="686" y="450" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">0.693</text>
+<text x="60" y="505" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">FINYR2-weighted logistic regression; demographic fields excluded from prediction.</text>
+</svg>

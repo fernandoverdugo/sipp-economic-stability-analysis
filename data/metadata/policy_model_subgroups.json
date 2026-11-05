@@ -1,0 +1,615 @@
+{
+  "policy_model_version": "1.0",
+  "predictor_contract_version": "0.3",
+  "audit_only_features": [
+    "age",
+    "sex",
+    "race",
+    "hispanic_origin",
+    "born_in_us",
+    "citizenship"
+  ],
+  "tasks": {
+    "poverty_entry": {
+      "holdout": {
+        "seed": 699,
+        "rows": 3394,
+        "positive": 156,
+        "households": 1855
+      },
+      "subgroups": {
+        "sex": {
+          "1": {
+            "rows": 1664,
+            "positive": 78,
+            "prevalence": 0.046875,
+            "weighted_prevalence": 0.044452752948875525,
+            "unweighted": {
+              "roc_auc": 0.724164969120833,
+              "average_precision": 0.17582098745048527,
+              "brier_score": 0.042412688696058146,
+              "log_loss": 0.17450156227791508
+            },
+            "weighted": {
+              "roc_auc": 0.7145758602912716,
+              "average_precision": 0.13607724376104843,
+              "brier_score": 0.040991049035367294,
+              "log_loss": 0.17021889904866508
+            },
+            "households": 1411,
+            "status": "reported"
+          },
+          "2": {
+            "rows": 1730,
+            "positive": 78,
+            "prevalence": 0.04508670520231214,
+            "weighted_prevalence": 0.036739072778488306,
+            "unweighted": {
+              "roc_auc": 0.7353479853479854,
+              "average_precision": 0.1774611147486858,
+              "brier_score": 0.040474117939441466,
+              "log_loss": 0.16672244786538293
+            },
+            "weighted": {
+              "roc_auc": 0.7018816125112295,
+              "average_precision": 0.11031779839929734,
+              "brier_score": 0.03443901375405874,
+              "log_loss": 0.14888785025943688
+            },
+            "households": 1484,
+            "status": "reported"
+          }
+        },
+        "race": {
+          "1": {
+            "rows": 2766,
+            "positive": 120,
+            "prevalence": 0.04338394793926247,
+            "weighted_prevalence": 0.03726611627795653,
+            "unweighted": {
+              "roc_auc": 0.7356859410430839,
+              "average_precision": 0.16360457464478212,
+              "brier_score": 0.03938973382558477,
+              "log_loss": 0.16261276031472452
+            },
+            "weighted": {
+              "roc_auc": 0.7398489801535051,
+              "average_precision": 0.11151317584353473,
+              "brier_score": 0.0346911531085913,
+              "log_loss": 0.14680062810844843
+            },
+            "households": 1565,
+            "status": "reported"
+          },
+          "2": {
+            "rows": 269,
+            "positive": 20,
+            "prevalence": 0.07434944237918216,
+            "weighted_prevalence": 0.07261842747897498,
+            "unweighted": {
+              "roc_auc": 0.6506024096385542,
+              "average_precision": 0.16096546925957939,
+              "brier_score": 0.06754684185726058,
+              "log_loss": 0.2643650440088963
+            },
+            "weighted": {
+              "roc_auc": 0.5342971473162909,
+              "average_precision": 0.120382110804214,
+              "brier_score": 0.06859863468141124,
+              "log_loss": 0.2814540895711785
+            },
+            "households": 165,
+            "status": "reported"
+          },
+          "3": {
+            "rows": 245,
+            "positive": 10,
+            "prevalence": 0.04081632653061224,
+            "weighted_prevalence": 0.026281361453230522,
+            "unweighted": {
+              "roc_auc": 0.7885106382978724,
+              "average_precision": 0.413973147463366,
+              "brier_score": 0.030998300186002907,
+              "log_loss": 0.13267979948821382
+            },
+            "weighted": {
+              "roc_auc": 0.8023038519764433,
+              "average_precision": 0.4112939368206702,
+              "brier_score": 0.020724664759934137,
+              "log_loss": 0.09493625368236568
+            },
+            "households": 130,
+            "status": "reported"
+          },
+          "4": {
+            "rows": 114,
+            "positive": 6,
+            "status": "insufficient_events"
+          }
+        },
+        "hispanic_origin": {
+          "1": {
+            "rows": 483,
+            "positive": 34,
+            "prevalence": 0.07039337474120083,
+            "weighted_prevalence": 0.05218894913032222,
+            "unweighted": {
+              "roc_auc": 0.7005109393423293,
+              "average_precision": 0.1301456680880984,
+              "brier_score": 0.0643623308639905,
+              "log_loss": 0.24165113571093258
+            },
+            "weighted": {
+              "roc_auc": 0.6966977586046188,
+              "average_precision": 0.08849077693804078,
+              "brier_score": 0.049579153572342,
+              "log_loss": 0.196532442111658
+            },
+            "households": 257,
+            "status": "reported"
+          },
+          "2": {
+            "rows": 2911,
+            "positive": 122,
+            "prevalence": 0.04190999656475438,
+            "weighted_prevalence": 0.038290193161991684,
+            "unweighted": {
+              "roc_auc": 0.7228015211986198,
+              "average_precision": 0.18803338959504226,
+              "brier_score": 0.03761866445144867,
+              "log_loss": 0.15873683816186285
+            },
+            "weighted": {
+              "roc_auc": 0.7029066951835532,
+              "average_precision": 0.1377940439885473,
+              "brier_score": 0.03536918934533657,
+              "log_loss": 0.15223231789953406
+            },
+            "households": 1669,
+            "status": "reported"
+          }
+        },
+        "born_in_us": {
+          "1": {
+            "rows": 2849,
+            "positive": 123,
+            "prevalence": 0.04317304317304317,
+            "weighted_prevalence": 0.040222428618126777,
+            "unweighted": {
+              "roc_auc": 0.7243109114876916,
+              "average_precision": 0.1493659572164832,
+              "brier_score": 0.03947265115585915,
+              "log_loss": 0.16391971986228257
+            },
+            "weighted": {
+              "roc_auc": 0.7023125152042504,
+              "average_precision": 0.10798965254304439,
+              "brier_score": 0.03760732677371027,
+              "log_loss": 0.15925154904546127
+            },
+            "households": 1656,
+            "status": "reported"
+          },
+          "2": {
+            "rows": 545,
+            "positive": 33,
+            "prevalence": 0.060550458715596334,
+            "weighted_prevalence": 0.04193307310331724,
+            "unweighted": {
+              "roc_auc": 0.7464488636363636,
+              "average_precision": 0.2529899121517894,
+              "brier_score": 0.05162817409620512,
+              "log_loss": 0.20512505055031213
+            },
+            "weighted": {
+              "roc_auc": 0.7329073473822191,
+              "average_precision": 0.1679178506678235,
+              "brier_score": 0.03789270600757052,
+              "log_loss": 0.15990857789578664
+            },
+            "households": 335,
+            "status": "reported"
+          }
+        },
+        "age_band": {
+          "18-29": {
+            "rows": 447,
+            "positive": 28,
+            "prevalence": 0.06263982102908278,
+            "weighted_prevalence": 0.05732812764308515,
+            "unweighted": {
+              "roc_auc": 0.6351858165700648,
+              "average_precision": 0.1608415598371607,
+              "brier_score": 0.05790131506078257,
+              "log_loss": 0.2288297559123637
+            },
+            "weighted": {
+              "roc_auc": 0.600436685452363,
+              "average_precision": 0.17185637764900213,
+              "brier_score": 0.05329279837489404,
+              "log_loss": 0.21624173939913266
+            },
+            "households": 324,
+            "status": "reported"
+          },
+          "30-44": {
+            "rows": 742,
+            "positive": 31,
+            "prevalence": 0.04177897574123989,
+            "weighted_prevalence": 0.03690917313345538,
+            "unweighted": {
+              "roc_auc": 0.6510140193276166,
+              "average_precision": 0.08118400471475223,
+              "brier_score": 0.03970614445420955,
+              "log_loss": 0.17088495675252768
+            },
+            "weighted": {
+              "roc_auc": 0.6819352563201777,
+              "average_precision": 0.06583764879108576,
+              "brier_score": 0.03557941494783669,
+              "log_loss": 0.15295340206269128
+            },
+            "households": 512,
+            "status": "reported"
+          },
+          "45-59": {
+            "rows": 725,
+            "positive": 31,
+            "prevalence": 0.04275862068965517,
+            "weighted_prevalence": 0.0323341791841526,
+            "unweighted": {
+              "roc_auc": 0.787115366737938,
+              "average_precision": 0.2182936684858166,
+              "brier_score": 0.03845136685880846,
+              "log_loss": 0.15699184944210365
+            },
+            "weighted": {
+              "roc_auc": 0.8125157942468235,
+              "average_precision": 0.17672357731858884,
+              "brier_score": 0.029616077844732323,
+              "log_loss": 0.12482828123548156
+            },
+            "households": 522,
+            "status": "reported"
+          },
+          "60-74": {
+            "rows": 979,
+            "positive": 48,
+            "prevalence": 0.049029622063329927,
+            "weighted_prevalence": 0.04194889541124798,
+            "unweighted": {
+              "roc_auc": 0.7786654135338346,
+              "average_precision": 0.32722917257569034,
+              "brier_score": 0.04168870464791024,
+              "log_loss": 0.16956782243365107
+            },
+            "weighted": {
+              "roc_auc": 0.7156929656796043,
+              "average_precision": 0.2232950004781311,
+              "brier_score": 0.03738114604557341,
+              "log_loss": 0.1634239976934955
+            },
+            "households": 724,
+            "status": "reported"
+          },
+          "75+": {
+            "rows": 501,
+            "positive": 18,
+            "prevalence": 0.03592814371257485,
+            "weighted_prevalence": 0.03426655107670992,
+            "unweighted": {
+              "roc_auc": 0.7355647573038877,
+              "average_precision": 0.15033994645585022,
+              "brier_score": 0.03305510615836515,
+              "log_loss": 0.13950280763730832
+            },
+            "weighted": {
+              "roc_auc": 0.7230367156330282,
+              "average_precision": 0.11770380409061523,
+              "brier_score": 0.03257774284644736,
+              "log_loss": 0.1387848614571838
+            },
+            "households": 411,
+            "status": "reported"
+          }
+        }
+      }
+    },
+    "poverty_exit": {
+      "holdout": {
+        "seed": 699,
+        "rows": 395,
+        "positive": 204,
+        "households": 303
+      },
+      "subgroups": {
+        "sex": {
+          "1": {
+            "rows": 159,
+            "positive": 80,
+            "prevalence": 0.5031446540880503,
+            "weighted_prevalence": 0.512555368473401,
+            "unweighted": {
+              "roc_auc": 0.7009493670886076,
+              "average_precision": 0.6804589140531698,
+              "brier_score": 0.21883886038633582,
+              "log_loss": 0.6277953253846179
+            },
+            "weighted": {
+              "roc_auc": 0.7360151772990806,
+              "average_precision": 0.7258215793596661,
+              "brier_score": 0.2063010887305512,
+              "log_loss": 0.599306125810303
+            },
+            "households": 150,
+            "status": "reported"
+          },
+          "2": {
+            "rows": 236,
+            "positive": 124,
+            "prevalence": 0.5254237288135594,
+            "weighted_prevalence": 0.5628874354266306,
+            "unweighted": {
+              "roc_auc": 0.7398833525345623,
+              "average_precision": 0.7358264402234864,
+              "brier_score": 0.21263901117149392,
+              "log_loss": 0.6151844667050471
+            },
+            "weighted": {
+              "roc_auc": 0.7475313651606618,
+              "average_precision": 0.7638630408995377,
+              "brier_score": 0.2094713107188448,
+              "log_loss": 0.611891687592229
+            },
+            "households": 210,
+            "status": "reported"
+          }
+        },
+        "race": {
+          "1": {
+            "rows": 283,
+            "positive": 157,
+            "prevalence": 0.5547703180212014,
+            "weighted_prevalence": 0.6040130568318431,
+            "unweighted": {
+              "roc_auc": 0.6952532605398847,
+              "average_precision": 0.7278614222207085,
+              "brier_score": 0.22439380873591008,
+              "log_loss": 0.6407305375630279
+            },
+            "weighted": {
+              "roc_auc": 0.6977617303292497,
+              "average_precision": 0.7737363197718232,
+              "brier_score": 0.2234157890857427,
+              "log_loss": 0.64054791862712
+            },
+            "households": 216,
+            "status": "reported"
+          },
+          "2": {
+            "rows": 74,
+            "positive": 23,
+            "prevalence": 0.3108108108108108,
+            "weighted_prevalence": 0.32470437568789456,
+            "unweighted": {
+              "roc_auc": 0.814151747655584,
+              "average_precision": 0.5983217601396605,
+              "brier_score": 0.16826580665194002,
+              "log_loss": 0.5149416087990976
+            },
+            "weighted": {
+              "roc_auc": 0.851553710015372,
+              "average_precision": 0.6525703298930723,
+              "brier_score": 0.1622080328145928,
+              "log_loss": 0.5036160554670881
+            },
+            "households": 64,
+            "status": "reported"
+          },
+          "3": {
+            "rows": 23,
+            "positive": 13,
+            "status": "insufficient_events"
+          },
+          "4": {
+            "rows": 15,
+            "positive": 11,
+            "status": "insufficient_events"
+          }
+        },
+        "hispanic_origin": {
+          "1": {
+            "rows": 78,
+            "positive": 36,
+            "prevalence": 0.46153846153846156,
+            "weighted_prevalence": 0.5252207758771175,
+            "unweighted": {
+              "roc_auc": 0.6617063492063493,
+              "average_precision": 0.6121505973145839,
+              "brier_score": 0.22880503226010268,
+              "log_loss": 0.6487381427012416
+            },
+            "weighted": {
+              "roc_auc": 0.6654760695512175,
+              "average_precision": 0.6852588580908232,
+              "brier_score": 0.228816054283183,
+              "log_loss": 0.6491959283702617
+            },
+            "households": 54,
+            "status": "reported"
+          },
+          "2": {
+            "rows": 317,
+            "positive": 168,
+            "prevalence": 0.5299684542586751,
+            "weighted_prevalence": 0.5477198706807523,
+            "unweighted": {
+              "roc_auc": 0.7382550335570469,
+              "average_precision": 0.7390991214516822,
+              "brier_score": 0.21177095558868123,
+              "log_loss": 0.613253677438008
+            },
+            "weighted": {
+              "roc_auc": 0.7667064067385486,
+              "average_precision": 0.7732203347853956,
+              "brier_score": 0.202581778319436,
+              "log_loss": 0.5953321168410429
+            },
+            "households": 254,
+            "status": "reported"
+          }
+        },
+        "born_in_us": {
+          "1": {
+            "rows": 311,
+            "positive": 163,
+            "prevalence": 0.5241157556270096,
+            "weighted_prevalence": 0.5541565475082303,
+            "unweighted": {
+              "roc_auc": 0.7467667053556624,
+              "average_precision": 0.7369579262680275,
+              "brier_score": 0.21042886054792606,
+              "log_loss": 0.6104030974598037
+            },
+            "weighted": {
+              "roc_auc": 0.7560158758795166,
+              "average_precision": 0.7601900884188965,
+              "brier_score": 0.20694485115725242,
+              "log_loss": 0.6049158278490632
+            },
+            "households": 253,
+            "status": "reported"
+          },
+          "2": {
+            "rows": 84,
+            "positive": 41,
+            "prevalence": 0.4880952380952381,
+            "weighted_prevalence": 0.5052373968764775,
+            "unweighted": {
+              "roc_auc": 0.6551332955190017,
+              "average_precision": 0.6716543955489169,
+              "brier_score": 0.2325572596130352,
+              "log_loss": 0.656757471054124
+            },
+            "weighted": {
+              "roc_auc": 0.7206638789278472,
+              "average_precision": 0.7527939771347738,
+              "brier_score": 0.21244677404484327,
+              "log_loss": 0.6134959681368412
+            },
+            "households": 64,
+            "status": "reported"
+          }
+        },
+        "age_band": {
+          "18-29": {
+            "rows": 67,
+            "positive": 38,
+            "prevalence": 0.5671641791044776,
+            "weighted_prevalence": 0.6250761585661504,
+            "unweighted": {
+              "roc_auc": 0.6819419237749547,
+              "average_precision": 0.70127604239957,
+              "brier_score": 0.222159473475083,
+              "log_loss": 0.6359190089675933
+            },
+            "weighted": {
+              "roc_auc": 0.6827138744959433,
+              "average_precision": 0.7584315146169758,
+              "brier_score": 0.21618359195337486,
+              "log_loss": 0.6234647311495057
+            },
+            "households": 60,
+            "status": "reported"
+          },
+          "30-44": {
+            "rows": 74,
+            "positive": 44,
+            "prevalence": 0.5945945945945946,
+            "weighted_prevalence": 0.592962997050222,
+            "unweighted": {
+              "roc_auc": 0.7106060606060607,
+              "average_precision": 0.7895431262558426,
+              "brier_score": 0.21516956398934545,
+              "log_loss": 0.6263551134959472
+            },
+            "weighted": {
+              "roc_auc": 0.7357872609102187,
+              "average_precision": 0.7990799004853287,
+              "brier_score": 0.20506720968269188,
+              "log_loss": 0.6080773541003098
+            },
+            "households": 66,
+            "status": "reported"
+          },
+          "45-59": {
+            "rows": 83,
+            "positive": 43,
+            "prevalence": 0.5180722891566265,
+            "weighted_prevalence": 0.4781207771841032,
+            "unweighted": {
+              "roc_auc": 0.7656976744186046,
+              "average_precision": 0.7221566645227231,
+              "brier_score": 0.20209086665312917,
+              "log_loss": 0.5926952776027298
+            },
+            "weighted": {
+              "roc_auc": 0.8057673979878638,
+              "average_precision": 0.7589499065279341,
+              "brier_score": 0.18774889399081232,
+              "log_loss": 0.5607796086384382
+            },
+            "households": 71,
+            "status": "reported"
+          },
+          "60-74": {
+            "rows": 104,
+            "positive": 49,
+            "prevalence": 0.47115384615384615,
+            "weighted_prevalence": 0.47641210300176634,
+            "unweighted": {
+              "roc_auc": 0.7690166975881262,
+              "average_precision": 0.7653948278661421,
+              "brier_score": 0.19920940702460385,
+              "log_loss": 0.5829973535799083
+            },
+            "weighted": {
+              "roc_auc": 0.7789911353140782,
+              "average_precision": 0.7789105389919032,
+              "brier_score": 0.19628452990275325,
+              "log_loss": 0.5765602493789965
+            },
+            "households": 92,
+            "status": "reported"
+          },
+          "75+": {
+            "rows": 67,
+            "positive": 30,
+            "prevalence": 0.44776119402985076,
+            "weighted_prevalence": 0.4857224863006703,
+            "unweighted": {
+              "roc_auc": 0.5698198198198199,
+              "average_precision": 0.5311205481282302,
+              "brier_score": 0.24894974204610915,
+              "log_loss": 0.6898612845623804
+            },
+            "weighted": {
+              "roc_auc": 0.5363842210862722,
+              "average_precision": 0.5827422790136477,
+              "brier_score": 0.2639090024885534,
+              "log_loss": 0.7234869758995393
+            },
+            "households": 64,
+            "status": "reported"
+          }
+        }
+      }
+    }
+  },
+  "provenance": {
+    "workflow_run_id": 42101998203,
+    "head_sha": "efe109e52650d17edda390e1c02e88ec44452785",
+    "artifact_id": 13450317261,
+    "note": "Fixed seed-699 subgroup audit of policy_model v1.0; demographic fields were excluded from prediction and retained only for audit."
+  }
+}

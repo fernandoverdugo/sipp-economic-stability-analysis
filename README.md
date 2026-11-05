@@ -208,7 +208,9 @@ The dedicated workflow rebuilds the panel from official Census assets before pro
 
 The baseline predictor contract is now frozen in `config/predictors.json` and validated against both registered Census primary-file schemas. It defines the first leakage-safe feature domains, monthly aggregation rules, explicit exclusions, and preprocessing constraints before model fitting.
 
-Next: construct the baseline feature matrix, profile missingness and distributions, then build prevalence-only and regularized-logistic baselines before introducing gradient boosting.
+The baseline feature builder is now implemented in `src/build_features.py`. It streams the 2024 person-month file, aggregates monthly employment and income measures, preserves missingness, and writes the person-level modeling matrix outside Git history.
+
+Next: validate the full-data feature profile, then build prevalence-only and regularized-logistic baselines before introducing gradient boosting.
 
 ### Milestone 6 — diagnostics and independent validation
 
@@ -231,6 +233,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 ```text
 .
 ├── .github/workflows/
+│   ├── feature-profile.yml
 │   ├── panel-profile.yml
 │   ├── quality-checks.yml
 │   └── transition-analysis.yml
@@ -253,6 +256,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 ├── src/
 │   ├── analyze_transitions.py
 │   ├── assets.py
+│   ├── build_features.py
 │   ├── build_panel.py
 │   ├── cohort.py
 │   ├── download_assets.py
@@ -299,7 +303,13 @@ The discovery output is written to:
 data/metadata/discovered_assets.json
 ```
 
-After the full Census assets have been downloaded and the panel has been built, run the replicate-weight transition analysis:
+After the full Census assets have been downloaded and the panel has been built, construct the baseline feature matrix:
+
+```bash
+python src/build_features.py
+```
+
+Then run the replicate-weight transition analysis:
 
 ```bash
 python src/analyze_transitions.py

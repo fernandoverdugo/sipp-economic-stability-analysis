@@ -1,5 +1,5 @@
 {
-  "version": "0.1",
+  "version": "0.2",
   "baseline_release": 2024,
   "reference_year": 2023,
   "outcome_release": 2025,
@@ -141,41 +141,24 @@
       "type": "categorical"
     },
     {
-      "feature": "rent_subsidy",
+      "feature": "housing_assistance_status",
       "domain": "safety_net",
       "source": [
-        "ERENTSUB"
-      ],
-      "aggregation": "annual_constant",
-      "type": "categorical"
-    },
-    {
-      "feature": "housing_voucher",
-      "domain": "safety_net",
-      "source": [
+        "ETENURE",
+        "ERENTSUB",
         "EVOUCHER"
       ],
-      "aggregation": "annual_constant",
+      "aggregation": "derive_housing_assistance_status",
       "type": "categorical"
     },
     {
-      "feature": "energy_assistance",
+      "feature": "snap_received_year",
       "domain": "safety_net",
       "source": [
-        "EENERGY_ASST"
+        "RSNAP_YRYN"
       ],
       "aggregation": "annual_constant",
       "type": "categorical"
-    },
-    {
-      "feature": "snap_receipt_observed",
-      "domain": "safety_net",
-      "source": [
-        "ESNAP_BMONTH",
-        "ESNAP_EMONTH"
-      ],
-      "aggregation": "derive_any_receipt_from_spell_months",
-      "type": "binary"
     },
     {
       "feature": "person_net_worth",
@@ -225,6 +208,10 @@
     {
       "pattern": "transition and follow-up poverty status",
       "reason": "Direct outcome leakage."
+    },
+    {
+      "pattern": "EENERGY_ASST",
+      "reason": "Deferred from the initial model because its first full-data profile showed universe-dependent sparsity; reconsider only after its universe is explicitly encoded."
     }
   ]
 }

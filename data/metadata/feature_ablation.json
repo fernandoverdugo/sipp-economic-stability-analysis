@@ -31,6 +31,17 @@
         "hispanic_origin",
         "born_in_us",
         "citizenship"
+      ],
+      "without_demographics_and_assets": [
+        "age",
+        "sex",
+        "race",
+        "hispanic_origin",
+        "born_in_us",
+        "citizenship",
+        "person_net_worth",
+        "person_assets",
+        "person_debt"
       ]
     },
     "hyperparameter_retuning": false
@@ -273,6 +284,52 @@
           "brier_score": -0.00016380383468257015,
           "log_loss": -0.0006306940121658111
         }
+      },
+      "without_demographics_and_assets": {
+        "excluded_features": [
+          "age",
+          "sex",
+          "race",
+          "hispanic_origin",
+          "born_in_us",
+          "citizenship",
+          "person_net_worth",
+          "person_assets",
+          "person_debt"
+        ],
+        "remaining_features": 10,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.7203001222677143,
+            "std": 0.021125085754699072,
+            "min": 0.6810820372937045,
+            "max": 0.7436519576150618
+          },
+          "average_precision": {
+            "mean": 0.13315638167782604,
+            "std": 0.02701929594693554,
+            "min": 0.10348821433761232,
+            "max": 0.1914693599205182
+          },
+          "brier_score": {
+            "mean": 0.03941723444369889,
+            "std": 0.004160278539865569,
+            "min": 0.03275557939042755,
+            "max": 0.04374853433941029
+          },
+          "log_loss": {
+            "mean": 0.1639555567216922,
+            "std": 0.013405669407255828,
+            "min": 0.14323386380113387,
+            "max": 0.179654498224135
+          }
+        },
+        "change_from_full": {
+          "roc_auc": 0.0024785832264035967,
+          "average_precision": 0.006064331170546722,
+          "brier_score": -0.00017993634179749862,
+          "log_loss": -0.0007755189833010268
+        }
       }
     },
     "poverty_exit": {
@@ -512,13 +569,59 @@
           "brier_score": -0.002047865082638156,
           "log_loss": -0.005930266456066868
         }
+      },
+      "without_demographics_and_assets": {
+        "excluded_features": [
+          "age",
+          "sex",
+          "race",
+          "hispanic_origin",
+          "born_in_us",
+          "citizenship",
+          "person_net_worth",
+          "person_assets",
+          "person_debt"
+        ],
+        "remaining_features": 10,
+        "weighted_metrics": {
+          "roc_auc": {
+            "mean": 0.7123468069637172,
+            "std": 0.0325083375889526,
+            "min": 0.6621316612214618,
+            "max": 0.7569945185955
+          },
+          "average_precision": {
+            "mean": 0.6932298198065361,
+            "std": 0.046218425237156906,
+            "min": 0.629191512951476,
+            "max": 0.7599053562214044
+          },
+          "brier_score": {
+            "mean": 0.21698652217743666,
+            "std": 0.010672071347715122,
+            "min": 0.20193839619851686,
+            "max": 0.23343288651084465
+          },
+          "log_loss": {
+            "mean": 0.6251048071004082,
+            "std": 0.02419430369565394,
+            "min": 0.5915360288417735,
+            "max": 0.6611777849292968
+          }
+        },
+        "change_from_full": {
+          "roc_auc": 0.005965833954906574,
+          "average_precision": 0.0023025116408273982,
+          "brier_score": -0.0018062918149018559,
+          "log_loss": -0.005546220585813333
+        }
       }
     }
   },
   "provenance": {
-    "workflow_run_id": 42099337973,
-    "head_sha": "8057df75e534af8728863af4e4517594e97e6d22",
-    "artifact_id": 13449421582,
-    "note": "Ten repeated household-grouped FINYR2-weighted logistic-regression feature-ablation comparisons without retuning."
+    "workflow_run_id": 42100179827,
+    "head_sha": "491159da09facec0b5e4e4a9387f1a0cb8de098b",
+    "artifact_id": 13450235789,
+    "note": "Ten repeated household-grouped FINYR2-weighted logistic-regression feature-ablation comparisons without retuning, including the combined demographic-and-asset ablation."
   }
 }

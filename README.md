@@ -204,7 +204,7 @@ The official annual family poverty ratio is selected, transition outcomes are co
 The dedicated workflow rebuilds the panel from official Census assets before producing `data/metadata/transition_analysis.json`. The full-data workflow and the standard quality-check workflow both pass successfully.
 
 ### Milestone 5 — prospective prediction
-**In progress**
+**Complete**
 
 The baseline predictor contract is frozen in `config/predictors.json` and validated against both registered Census primary-file schemas. After a full-data profiling pass, universe-dependent assistance fields were refined before modeling; the current contract contains **19 baseline features**.
 
@@ -253,7 +253,18 @@ The preferred policy-facing candidate is now defined in `config/policy_model.jso
 
 The lean model raises weighted entry ROC-AUC from **0.718 to 0.720** and exit ROC-AUC from **0.706 to 0.712**, while also improving average precision, Brier score, and log loss on both tasks.
 
-Next: run the lean specification through its own repeated validation and subgroup-audit workflow before promoting it to the final policy-facing benchmark.
+The 10-feature lean specification has now passed its own repeated validation and subgroup audit and is promoted as the preferred policy-facing logistic benchmark.
+
+Across 10 household-grouped holdouts, the validated policy model averages:
+
+| Task | Weighted ROC-AUC | Weighted average precision | Brier score | Log loss |
+| --- | ---: | ---: | ---: | ---: |
+| Poverty entry | **0.720** | **0.133** | **0.0394** | **0.1640** |
+| Poverty exit | **0.712** | **0.693** | **0.2170** | **0.6251** |
+
+Demographic variables remain available for subgroup auditing but are excluded from risk-score fitting. Asset variables are also excluded because repeated ablation showed negligible incremental value.
+
+Milestone 5 is complete: the repository now contains a reproducible baseline model, repeated validation, weighted sensitivity analysis, calibration testing, nonlinear benchmarking, risk concentration, subgroup auditing, repeated subgroup validation, feature ablation, and a validated policy-facing specification.
 
 ### Milestone 6 — diagnostics and independent validation
 
@@ -283,6 +294,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   ├── model-calibration.yml
 │   ├── model-validation.yml
 │   ├── policy-diagnostics.yml
+│   ├── policy-model-validation.yml
 │   ├── subgroup-validation.yml
 │   ├── panel-profile.yml
 │   ├── quality-checks.yml
@@ -299,6 +311,8 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   │   ├── feature_profile.json
 │   │   ├── model_validation.json
 │   │   ├── policy_diagnostics.json
+│   │   ├── policy_model_subgroups.json
+│   │   ├── policy_model_validation.json
 │   │   ├── subgroup_validation.json
 │   │   ├── panel_profile.json
 │   │   └── transition_analysis.json
@@ -324,6 +338,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   ├── build_panel.py
 │   ├── feature_ablation.py
 │   ├── calibrate_models.py
+│   ├── audit_policy_model.py
 │   ├── policy_diagnostics.py
 │   ├── cohort.py
 │   ├── download_assets.py

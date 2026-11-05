@@ -146,30 +146,46 @@ Large raw Census files will not be committed to Git history.
 
 ## Current milestone
 
-### Milestone 1 — longitudinal design and source foundation
-**Current**
+### Milestone 2 — verified data acquisition
+**Complete**
 
 Implemented:
 
 - official Census source registry
-- 2024 and 2025 SIPP release registration
-- explicit 2-year longitudinal-weight requirements
-- reproducible source-asset discovery
-- poverty-transition state logic
-- research-design documentation
-- raw/processed data separation
-- automated validation tests
+- exact 2024 and 2025 primary-data URLs
+- exact 2-year longitudinal-weight and longitudinal replicate-weight URLs
+- reproducible streaming downloader
+- SHA-256 checksum manifest generation
+- remote byte-range verification for large assets
+- lightweight metadata downloads in ordinary CI
+- schema validation for linkage, poverty, and longitudinal survey-design variables
+- automated verification of all 240 longitudinal replicate weights
 - GitHub Actions quality checks
 
-See [`docs/RESEARCH_DESIGN.md`](docs/RESEARCH_DESIGN.md) for the analytical design and [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md) for source provenance.
+The initial variable contract is now explicit:
+
+- person key: `SSUID + PNUM`
+- annual family poverty ratio: `TFCYINCPOV`
+- two-year longitudinal person weight: `FINYR2`
+- replicate full weight: `REPWGT0`
+- replicate weights: `REPWGT1` through `REPWGT240`
+
+See [`docs/ACQUISITION.md`](docs/ACQUISITION.md), [`docs/VARIABLES.md`](docs/VARIABLES.md), and [`docs/RESEARCH_DESIGN.md`](docs/RESEARCH_DESIGN.md).
 
 ## Planned milestones
 
-### Milestone 2 — verified data acquisition
+### Milestone 1 — longitudinal design and source foundation
+**Complete**
 
-Resolve the official primary-data, dictionary, two-year longitudinal-weight, and two-year longitudinal replicate-weight assets; download them reproducibly; record checksums; and validate file schemas.
+Research design, source provenance, transition-state logic, and reproducible source discovery.
+
+### Milestone 2 — verified data acquisition
+**Complete**
+
+Verified official asset registry, downloader, checksum generation, remote probing, and schema validation.
 
 ### Milestone 3 — longitudinal cohort construction
+**Next**
 
 Identify stable person keys, link 2024 and 2025 records, merge longitudinal weights, and construct a validated person-level panel.
 
@@ -210,14 +226,21 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   ├── processed/
 │   └── raw/
 ├── docs/
+│   ├── ACQUISITION.md
 │   ├── DATA_SOURCES.md
-│   └── RESEARCH_DESIGN.md
+│   ├── RESEARCH_DESIGN.md
+│   └── VARIABLES.md
 ├── src/
+│   ├── assets.py
 │   ├── cohort.py
+│   ├── download_assets.py
 │   ├── registry.py
-│   └── source_discovery.py
+│   ├── source_discovery.py
+│   ├── validate_schemas.py
+│   └── verify_remote_assets.py
 ├── tests/
-│   └── test_milestone1.py
+│   ├── test_milestone1.py
+│   └── test_milestone2.py
 ├── .gitignore
 ├── requirements.txt
 └── README.md

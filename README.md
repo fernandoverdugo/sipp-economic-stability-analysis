@@ -204,9 +204,11 @@ The official annual family poverty ratio is selected, transition outcomes are co
 The dedicated workflow rebuilds the panel from official Census assets before producing `data/metadata/transition_analysis.json`. The full-data workflow and the standard quality-check workflow both pass successfully.
 
 ### Milestone 5 — prospective prediction
-**Next**
+**In progress**
 
-Build baseline and machine-learning models using only baseline information to predict following-year poverty entry and exit.
+The baseline predictor contract is now frozen in `config/predictors.json` and validated against both registered Census primary-file schemas. It defines the first leakage-safe feature domains, monthly aggregation rules, explicit exclusions, and preprocessing constraints before model fitting.
+
+Next: construct the baseline feature matrix, profile missingness and distributions, then build prevalence-only and regularized-logistic baselines before introducing gradient boosting.
 
 ### Milestone 6 — diagnostics and independent validation
 

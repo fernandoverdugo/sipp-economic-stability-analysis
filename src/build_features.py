@@ -85,7 +85,8 @@ def load_panel(path=PROCESSED / "panel_core.csv.gz"):
 
 
 def collect_baseline_rows(panel_keys, contract):
-    columns = ID_COLUMNS + feature_sources(contract)
+    sources = feature_sources(contract)
+    columns = ID_COLUMNS + sources
     people = {}
 
     for row in selected_rows_from_zip(RAW / "pu2024_csv.zip", columns):
@@ -98,7 +99,7 @@ def collect_baseline_rows(panel_keys, contract):
             continue
 
         person = people.setdefault(key, {})
-        for variable in feature_sources(contract):
+        for variable in sources:
             person.setdefault(variable, [])
             person[variable].append(row.get(variable))
 

@@ -297,3 +297,8 @@ The predictive models are intended as methodological demonstrations of prospecti
 **Core analysis complete and portfolio-ready.**
 
 Optional future extensions include external validation on a later SIPP release, event-history models for monthly transitions, material-hardship outcomes, and longer longitudinal cohorts.
+
+
+## License
+
+This project is released under the [MIT License](LICENSE).

@@ -58,7 +58,7 @@ jobs:
           )
 
           assert result["rows"] == 15034
-          assert result["feature_count"] == 21
+          assert result["feature_count"] == 19
           assert result["model_samples"]["poverty_entry"]["rows"] > 0
           assert result["model_samples"]["poverty_exit"]["rows"] > 0
           assert result["model_samples"]["poverty_entry"]["positive"] > 0

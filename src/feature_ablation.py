@@ -43,6 +43,17 @@ ABLATIONS = {
         "born_in_us",
         "citizenship",
     ],
+    "without_demographics_and_assets": [
+        "age",
+        "sex",
+        "race",
+        "hispanic_origin",
+        "born_in_us",
+        "citizenship",
+        "person_net_worth",
+        "person_assets",
+        "person_debt",
+    ],
 }
 
 

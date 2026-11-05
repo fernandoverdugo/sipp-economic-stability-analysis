@@ -224,7 +224,18 @@ The first household-grouped holdout benchmark is now complete:
 
 Train/test separation is grouped by `SSUID`, so members of the same sampled household cannot appear on opposite sides of the holdout.
 
-Next: repeated household-grouped evaluation, calibration diagnostics, weighted sensitivity analysis, and a gradient-boosting benchmark.
+Repeated household-grouped validation, weighted sensitivity analysis, probability calibration, and a gradient-boosting benchmark are now complete.
+
+Across 10 household-grouped holdouts, the weighted logistic model averages ROC-AUC **0.718** for poverty entry and **0.706** for poverty exit. Gradient boosting raises weighted entry ROC-AUC to **0.743**, but slightly reduces entry average precision; for poverty exit, logistic regression remains better across ROC-AUC, average precision, Brier score, and log loss.
+
+A separate group-aware sigmoid-calibration analysis did not improve overall probability accuracy, so the project retains the raw logistic probabilities.
+
+Current model-selection conclusion:
+
+- **poverty exit:** regularized logistic regression remains the preferred benchmark
+- **poverty entry:** logistic regression remains the interpretable benchmark, with histogram gradient boosting retained as a nonlinear challenger
+
+Next: subgroup diagnostics, risk concentration, performance-difference uncertainty, and feature-ablation sensitivity.
 
 ### Milestone 6 — diagnostics and independent validation
 
@@ -248,7 +259,10 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 .
 ├── .github/workflows/
 │   ├── baseline-models.yml
+│   ├── boosting-benchmark.yml
 │   ├── feature-profile.yml
+│   ├── model-calibration.yml
+│   ├── model-validation.yml
 │   ├── panel-profile.yml
 │   ├── quality-checks.yml
 │   └── transition-analysis.yml
@@ -258,7 +272,10 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 ├── data/
 │   ├── metadata/
 │   │   ├── baseline_models.json
+│   │   ├── boosting_benchmark.json
+│   │   ├── calibration_analysis.json
 │   │   ├── feature_profile.json
+│   │   ├── model_validation.json
 │   │   ├── panel_profile.json
 │   │   └── transition_analysis.json
 │   ├── processed/
@@ -267,6 +284,8 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   ├── ACQUISITION.md
 │   ├── BASELINE_MODELING.md
 │   ├── DATA_SOURCES.md
+│   ├── MODEL_SELECTION.md
+│   ├── MODEL_VALIDATION.md
 │   ├── PANEL_CONSTRUCTION.md
 │   ├── RESEARCH_DESIGN.md
 │   ├── TRANSITION_ANALYSIS.md
@@ -274,8 +293,10 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 ├── src/
 │   ├── analyze_transitions.py
 │   ├── assets.py
+│   ├── benchmark_boosting.py
 │   ├── build_features.py
 │   ├── build_panel.py
+│   ├── calibrate_models.py
 │   ├── cohort.py
 │   ├── download_assets.py
 │   ├── registry.py

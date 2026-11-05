@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" role="img" aria-labelledby="title desc">
+<title id="title">Poverty entry risk concentration</title>
+<desc id="desc">The highest-risk 5 percent captures 20.5 percent of observed entries, top 10 percent captures 32.1 percent, and top 20 percent captures 48.7 percent.</desc>
+<rect width="960" height="520" fill="#ffffff"/>
+<text x="60" y="58" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#111827">Poverty-entry risk concentration</text>
+<text x="60" y="88" font-family="Arial, sans-serif" font-size="16" fill="#4b5563">Share of observed poverty entries captured in highest predicted-risk groups</text>
+<line x1="120" y1="430" x2="880" y2="430" stroke="#d1d5db"/>
+<line x1="120" y1="140" x2="120" y2="430" stroke="#d1d5db"/>
+<text x="80" y="435" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">0%</text>
+<text x="72" y="290" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">25%</text>
+<text x="72" y="145" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">50%</text>
+<line x1="120" y1="285" x2="880" y2="285" stroke="#e5e7eb" stroke-dasharray="5 5"/>
+<line x1="120" y1="140" x2="880" y2="140" stroke="#e5e7eb" stroke-dasharray="5 5"/>
+<rect x="180" y="311" width="150" height="119" rx="6" fill="#f87171"/>
+<text x="205" y="302" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">20.5%</text>
+<text x="215" y="465" font-family="Arial, sans-serif" font-size="16" fill="#374151">Top 5%</text>
+<rect x="405" y="244" width="150" height="186" rx="6" fill="#ef4444"/>
+<text x="430" y="235" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">32.1%</text>
+<text x="433" y="465" font-family="Arial, sans-serif" font-size="16" fill="#374151">Top 10%</text>
+<rect x="630" y="148" width="150" height="282" rx="6" fill="#b91c1c"/>
+<text x="655" y="139" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">48.7%</text>
+<text x="658" y="465" font-family="Arial, sans-serif" font-size="16" fill="#374151">Top 20%</text>
+<text x="60" y="500" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">Fixed seed-699 household-grouped holdout; unweighted capture shown. Weighted capture: 14.9%, 27.1%, 41.1%.</text>
+</svg>

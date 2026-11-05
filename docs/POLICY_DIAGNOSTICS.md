@@ -134,7 +134,7 @@ Examples from the weighted analysis include:
 
 These differences are **review signals**, not final fairness conclusions.
 
-Several subgroup cells contain relatively few positive events, and these results come from one fixed holdout. The next fairness-oriented step should therefore evaluate subgroup metrics across repeated household-grouped splits and summarize their uncertainty before making any stronger claim about differential performance.
+Several subgroup cells contain relatively few positive events, so the fixed-holdout results are not used alone for conclusions. The project follows them with repeated household-grouped subgroup validation, summarized below.
 
 Race, sex, Hispanic-origin, and nativity codes in the diagnostic JSON retain their underlying SIPP category codes. Interpretive labels should be added only from the official data dictionary rather than inferred from numeric order.
 

@@ -1,0 +1,77 @@
+{
+  "method": {
+    "survey": "Survey of Income and Program Participation",
+    "weight": "FINYR2",
+    "replicate_weights": "REPWGT1-REPWGT240",
+    "replicate_count": 240,
+    "variance_method": "Fay BRR",
+    "fay_coefficient": 0.5,
+    "variance_scale_denominator": 60,
+    "confidence_interval": "normal 95%, bounded to [0, 1]"
+  },
+  "analytical_cohort": 15034,
+  "estimates": {
+    "stable_above_poverty_share": {
+      "estimate": 0.8628017384544706,
+      "standard_error": 0.003984184631675459,
+      "variance": 0.000015873727179278915,
+      "ci95_lower": 0.8549928800686287,
+      "ci95_upper": 0.8706105968403125
+    },
+    "entered_poverty_share": {
+      "estimate": 0.03645234617609843,
+      "standard_error": 0.002207737761356295,
+      "variance": 0.000004874106022918504,
+      "ci95_lower": 0.03212525967653101,
+      "ci95_upper": 0.040779432675665854
+    },
+    "exited_poverty_share": {
+      "estimate": 0.048792647865377584,
+      "standard_error": 0.002576124911085575,
+      "variance": 0.000006636419557515662,
+      "ci95_lower": 0.04374353581997341,
+      "ci95_upper": 0.05384175991078176
+    },
+    "persistent_poverty_share": {
+      "estimate": 0.05195326750405471,
+      "standard_error": 0.0022050481966451882,
+      "variance": 0.0000048622375495281966,
+      "ci95_lower": 0.047631452454455145,
+      "ci95_upper": 0.05627508255365428
+    },
+    "baseline_poverty_share": {
+      "estimate": 0.10074591536943228,
+      "standard_error": 0.003318377834386301,
+      "variance": 0.000011011631451746316,
+      "ci95_lower": 0.09424201432693911,
+      "ci95_upper": 0.10724981641192545
+    },
+    "followup_poverty_share": {
+      "estimate": 0.08840561368015325,
+      "standard_error": 0.0030772019646227717,
+      "variance": 0.000009469171931078246,
+      "ci95_lower": 0.08237440865633672,
+      "ci95_upper": 0.09443681870396978
+    },
+    "poverty_entry_rate_among_baseline_nonpoor": {
+      "estimate": 0.04053620305886495,
+      "standard_error": 0.002460212137083316,
+      "variance": 0.000006052643759452056,
+      "ci95_lower": 0.03571427587585333,
+      "ci95_upper": 0.045358130241876564
+    },
+    "poverty_exit_rate_among_baseline_poor": {
+      "estimate": 0.48431390678675545,
+      "standard_error": 0.017223668822329393,
+      "variance": 0.0002966547677012816,
+      "ci95_lower": 0.45055613621334445,
+      "ci95_upper": 0.5180716773601665
+    }
+  },
+  "provenance": {
+    "workflow_run_id": 42081425536,
+    "head_sha": "a6073e9dff4e7f24fbcc8313bbeba908e7ed0c48",
+    "artifact_id": 13440956730,
+    "note": "Generated from official Census 2024 and 2025 SIPP primary files plus 2025 two-year longitudinal and replicate-weight files."
+  }
+}

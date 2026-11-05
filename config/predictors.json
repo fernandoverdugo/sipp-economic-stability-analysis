@@ -1,5 +1,5 @@
 {
-  "version": "0.2",
+  "version": "0.3",
   "baseline_release": 2024,
   "reference_year": 2023,
   "outcome_release": 2025,
@@ -157,8 +157,8 @@
       "source": [
         "RSNAP_YRYN"
       ],
-      "aggregation": "annual_constant",
-      "type": "categorical"
+      "aggregation": "annual_yes_no_recode",
+      "type": "binary"
     },
     {
       "feature": "person_net_worth",

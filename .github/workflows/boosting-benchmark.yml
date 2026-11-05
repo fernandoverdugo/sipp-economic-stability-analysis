@@ -1,0 +1,87 @@
+name: boosting-benchmark
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "config/predictors.json"
+      - "src/build_features.py"
+      - "src/train_baselines.py"
+      - "src/validate_models.py"
+      - "src/benchmark_boosting.py"
+      - "requirements.txt"
+      - "tests/test_boosting_benchmark.py"
+      - ".github/workflows/boosting-benchmark.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Run tests
+        run: python -m pytest -q
+
+      - name: Download full registered assets
+        run: python src/download_assets.py --mode all
+
+      - name: Build longitudinal panel
+        run: python src/build_panel.py
+
+      - name: Build baseline feature matrix
+        run: python src/build_features.py
+
+      - name: Compare logistic and gradient boosting
+        run: |
+          set -o pipefail
+          python src/benchmark_boosting.py | tee boosting_benchmark.log
+
+      - name: Validate benchmark output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(
+              Path("data/metadata/boosting_benchmark.json").read_text()
+          )
+
+          assert result["contract_version"] == "0.3"
+
+          for task in ("poverty_entry", "poverty_exit"):
+              details = result["tasks"][task]
+              assert details["repeats"] == 10
+
+              for model in ("logistic", "hist_gradient_boosting"):
+                  for weighting in ("unweighted", "weighted"):
+                      metrics = details["metrics"][model][weighting]
+                      assert 0 <= metrics["roc_auc"]["mean"] <= 1
+                      assert 0 <= metrics["average_precision"]["mean"] <= 1
+                      assert metrics["brier_score"]["mean"] >= 0
+                      assert metrics["log_loss"]["mean"] >= 0
+          PY
+
+      - name: Upload benchmark artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: sipp-boosting-benchmark
+          path: |
+            data/metadata/boosting_benchmark.json
+            boosting_benchmark.log

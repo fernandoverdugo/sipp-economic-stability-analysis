@@ -45,6 +45,9 @@ jobs:
       - name: Validate prospective predictor contract
         run: python src/validate_predictors.py
 
+      - name: Validate final project integrity
+        run: python src/validate_project.py
+
       - name: Validate discovery output
         run: |
           python - <<'PY'

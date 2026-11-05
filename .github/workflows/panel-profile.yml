@@ -41,7 +41,9 @@ jobs:
         run: python src/download_assets.py --mode all
 
       - name: Build longitudinal panel profile
-        run: python src/build_panel.py | tee panel_profile.log
+        run: |
+          set -o pipefail
+          python src/build_panel.py | tee panel_profile.log
 
       - name: Validate panel profile
         run: |

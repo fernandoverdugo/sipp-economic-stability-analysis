@@ -75,8 +75,10 @@ def selected_rows_from_zip(path, columns):
     with zipfile.ZipFile(path) as archive:
         with archive.open(member) as binary:
             with io.TextIOWrapper(binary, encoding="utf-8", newline="") as text:
-                reader = csv.reader(text, delimiter="|")
-                header = next(reader)
+                header_line = text.readline()
+                delimiter = "|" if header_line.count("|") > header_line.count(",") else ","
+                header = next(csv.reader([header_line], delimiter=delimiter))
+                reader = csv.reader(text, delimiter=delimiter)
                 missing = [column for column in columns if column not in header]
                 if missing:
                     raise RuntimeError(

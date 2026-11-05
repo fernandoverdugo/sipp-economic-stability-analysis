@@ -137,3 +137,36 @@ These differences are **review signals**, not final fairness conclusions.
 Several subgroup cells contain relatively few positive events, and these results come from one fixed holdout. The next fairness-oriented step should therefore evaluate subgroup metrics across repeated household-grouped splits and summarize their uncertainty before making any stronger claim about differential performance.
 
 Race, sex, Hispanic-origin, and nativity codes in the diagnostic JSON retain their underlying SIPP category codes. Interpretive labels should be added only from the official data dictionary rather than inferred from numeric order.
+
+
+## Repeated subgroup validation
+
+The fixed-holdout review was followed by ten household-grouped holdouts using the same seeds as the main model-validation workflow.
+
+A subgroup receives an aggregate headline only if it satisfies the per-split minimum event rule in at least five of the ten splits.
+
+### Persistent review signals
+
+Weighted ROC-AUC means across repeated splits include:
+
+| Task | Subgroup | Mean weighted ROC-AUC | Std. dev. |
+| --- | --- | ---: | ---: |
+| Poverty entry | Age 18–29 | 0.661 | 0.057 |
+| Poverty entry | Age 45–59 | 0.759 | 0.034 |
+| Poverty entry | U.S.-born code 1 | 0.733 | 0.039 |
+| Poverty entry | U.S.-born code 2 | 0.644 | 0.047 |
+| Poverty entry | Hispanic-origin code 1 | 0.640 | 0.057 |
+| Poverty entry | Hispanic-origin code 2 | 0.730 | 0.035 |
+| Poverty exit | Age 60–74 | 0.754 | 0.042 |
+| Poverty exit | Age 75+ | 0.620 | 0.092 |
+| Poverty exit | Hispanic-origin code 1 | 0.640 | 0.066 |
+| Poverty exit | Hispanic-origin code 2 | 0.730 | 0.031 |
+
+Sex-group ROC-AUC means are comparatively close in both tasks:
+
+- poverty entry: 0.730 versus 0.706
+- poverty exit: 0.704 versus 0.707
+
+Race-coded subgroup results are more variable. For poverty entry, race code 2 averages 0.652 ROC-AUC with a relatively large standard deviation of 0.085; race code 4 does not meet the repeated-support rule. For poverty exit, race codes 3 and 4 do not meet the repeated-support rule.
+
+These patterns strengthen the case for subgroup-specific review, but they still do not establish discrimination, causation, or an appropriate intervention threshold. Official SIPP category labels should be used whenever these numeric codes are translated for presentation.

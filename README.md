@@ -235,7 +235,11 @@ Current model-selection conclusion:
 - **poverty exit:** regularized logistic regression remains the preferred benchmark
 - **poverty entry:** logistic regression remains the interpretable benchmark, with histogram gradient boosting retained as a nonlinear challenger
 
-Next: subgroup diagnostics, risk concentration, performance-difference uncertainty, and feature-ablation sensitivity.
+Policy-facing diagnostics are now implemented on the fixed household-grouped holdout. For poverty entry, the highest-risk **10%** contains **32.1%** of observed entries (**27.1%** after longitudinal weighting), while the highest-risk 20% contains **48.7%** (**41.1% weighted**).
+
+Subgroup diagnostics also identify review signals—for example, weighted entry discrimination varies substantially across some age bands. These are treated as prompts for repeated-split fairness analysis rather than definitive subgroup conclusions because some cells have limited positive events.
+
+Next: repeated subgroup uncertainty and feature-ablation sensitivity.
 
 ### Milestone 6 — diagnostics and independent validation
 
@@ -263,6 +267,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   ├── feature-profile.yml
 │   ├── model-calibration.yml
 │   ├── model-validation.yml
+│   ├── policy-diagnostics.yml
 │   ├── panel-profile.yml
 │   ├── quality-checks.yml
 │   └── transition-analysis.yml
@@ -276,6 +281,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   │   ├── calibration_analysis.json
 │   │   ├── feature_profile.json
 │   │   ├── model_validation.json
+│   │   ├── policy_diagnostics.json
 │   │   ├── panel_profile.json
 │   │   └── transition_analysis.json
 │   ├── processed/
@@ -286,6 +292,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   ├── DATA_SOURCES.md
 │   ├── MODEL_SELECTION.md
 │   ├── MODEL_VALIDATION.md
+│   ├── POLICY_DIAGNOSTICS.md
 │   ├── PANEL_CONSTRUCTION.md
 │   ├── RESEARCH_DESIGN.md
 │   ├── TRANSITION_ANALYSIS.md
@@ -297,6 +304,7 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 │   ├── build_features.py
 │   ├── build_panel.py
 │   ├── calibrate_models.py
+│   ├── policy_diagnostics.py
 │   ├── cohort.py
 │   ├── download_assets.py
 │   ├── registry.py

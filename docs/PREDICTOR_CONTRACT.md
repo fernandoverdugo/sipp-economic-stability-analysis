@@ -33,7 +33,8 @@ The first contract includes:
 - nativity and citizenship
 - employment: monthly employment-status summaries and hours
 - economic resources: earnings, personal income, baseline poverty ratio
-- housing and selected safety-net measures
+- housing tenure and a universe-aware housing-assistance status
+- annual SNAP receipt using the Census `RSNAP_YRYN` recode
 - assets, debt, and net worth
 
 ## Monthly variables
@@ -47,9 +48,11 @@ The first feature-construction pass will derive:
 - mean weekly hours
 - annual earnings from monthly earnings
 - annual personal income from monthly income
-- any observed SNAP receipt from SNAP spell months
+- annual SNAP receipt from the Census-created `RSNAP_YRYN` recode
 
-The precise code-to-category mapping for `RMESR` will be documented and tested before modeling.
+The employment grouping treats `RMESR` codes 1–5 as months with employment and 6–7 as months with unemployment or layoff activity. Code 8 is retained as neither employed nor unemployed for these counts.
+
+A first full-data profiling pass also showed that several assistance questions are nested within narrower universes. The contract was therefore revised before modeling: raw `ERENTSUB` and `EVOUCHER` are combined with `ETENURE` into one universe-aware housing-assistance feature, and SNAP receipt uses the annual Census recode `RSNAP_YRYN` rather than inferring nonreceipt from missing spell dates. `EENERGY_ASST` is deferred from the initial model until its universe is encoded explicitly.
 
 ## Explicit exclusions
 

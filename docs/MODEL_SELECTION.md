@@ -69,14 +69,10 @@ The evidence supports a task-specific conclusion:
 
 This is preferable to selecting one algorithm solely because it is more complex.
 
-## Next validation work
+## Final model-selection status
 
-The remaining Milestone 5 work should focus on:
+Those follow-up diagnostics are now complete. Repeated subgroup validation, risk concentration, calibration testing, and feature ablation all informed the final specification.
 
-- subgroup performance diagnostics
-- risk concentration / top-decile capture
-- uncertainty around performance differences
-- sensitivity to the baseline poverty-ratio predictor
-- possible feature-ablation analysis
+The preferred policy-facing model is the 10-feature regularized logistic regression defined in `config/policy_model.json`. Demographic variables are retained for auditing only, and asset variables are excluded because they add negligible incremental predictive value.
 
-These diagnostics are more informative at this stage than broad hyperparameter tuning.
+Histogram gradient boosting remains documented as a useful nonlinear challenger for poverty entry, but it is not the preferred policy-facing model because its higher ROC-AUC does not translate into better average precision for the rare entry outcome.

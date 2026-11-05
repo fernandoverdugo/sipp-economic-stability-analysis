@@ -7,9 +7,9 @@ sys.path.insert(0, str(ROOT / "src"))
 from build_features import (
     EMPLOYED_RMESR,
     UNEMPLOYED_RMESR,
+    housing_assistance_status,
     safe_mean,
     safe_sum,
-    snap_any,
     unique_or_none,
 )
 
@@ -28,10 +28,12 @@ def test_safe_aggregations_preserve_missingness():
     assert safe_mean([2.0, None, 4.0]) == 3.0
 
 
-def test_snap_receipt_derivation():
-    assert snap_any([None, None], [None, None]) is None
-    assert snap_any([0.0, 0.0], [0.0, 0.0]) == 0
-    assert snap_any([0.0, 3.0], [0.0, 5.0]) == 1
+def test_housing_assistance_status_respects_nested_universes():
+    assert housing_assistance_status(1, None, None) == 0
+    assert housing_assistance_status(2, 2, None) == 1
+    assert housing_assistance_status(2, 1, 2) == 2
+    assert housing_assistance_status(2, 1, 1) == 3
+    assert housing_assistance_status(2, 1, None) is None
 
 
 def test_unique_or_none_rejects_inconsistent_annual_values():

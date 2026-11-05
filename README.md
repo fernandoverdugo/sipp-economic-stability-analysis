@@ -224,11 +224,14 @@ Nativity may be examined descriptively, but SIPP does not identify refugees and 
 ```text
 .
 ├── .github/workflows/
+│   ├── panel-profile.yml
 │   └── quality-checks.yml
 ├── config/
+│   ├── assets.json
 │   └── source_registry.json
 ├── data/
 │   ├── metadata/
+│   │   └── panel_profile.json
 │   ├── processed/
 │   └── raw/
 ├── docs/

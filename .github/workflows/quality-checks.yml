@@ -1,0 +1,47 @@
+name: quality-checks
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Run tests
+        run: python -m pytest -q
+
+      - name: Discover official Census assets
+        run: python src/source_discovery.py
+
+      - name: Validate discovery output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(
+              Path("data/metadata/discovered_assets.json").read_text()
+          )
+          assert len(result["sources"]) == 2
+          assert {source["survey_year"] for source in result["sources"]} == {2024, 2025}
+          PY

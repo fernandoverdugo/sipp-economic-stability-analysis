@@ -7,6 +7,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from build_features import (
     EMPLOYED_RMESR,
     UNEMPLOYED_RMESR,
+    annual_yes_no,
     housing_assistance_status,
     safe_mean,
     safe_sum,
@@ -26,6 +27,13 @@ def test_safe_aggregations_preserve_missingness():
     assert safe_mean([None, None]) is None
     assert safe_sum([1.0, None, 2.0]) == 3.0
     assert safe_mean([2.0, None, 4.0]) == 3.0
+
+
+def test_annual_yes_no_recode_treats_indeterminate_as_missing():
+    assert annual_yes_no(1) == 1
+    assert annual_yes_no(2) == 0
+    assert annual_yes_no(9) is None
+    assert annual_yes_no(None) is None
 
 
 def test_housing_assistance_status_respects_nested_universes():

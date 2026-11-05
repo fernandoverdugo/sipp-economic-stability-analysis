@@ -1,0 +1,50 @@
+{
+  "person_years": {
+    "2024": 36915,
+    "2025": 32052
+  },
+  "linked_with_longitudinal_weights": 18207,
+  "adult_analysis_cohort": 15034,
+  "poverty_measure": {
+    "variable": "TFCYINCPOV",
+    "threshold": 1,
+    "definition": "poverty_ratio < 1.0"
+  },
+  "transition_counts_unweighted": {
+    "stable_above_poverty": 12877,
+    "persistent_poverty": 813,
+    "exited_poverty": 757,
+    "entered_poverty": 587
+  },
+  "transition_weight_sums": {
+    "stable_above_poverty": 221342219.27434435,
+    "persistent_poverty": 13328034.721510896,
+    "exited_poverty": 12517212.798087304,
+    "entered_poverty": 9351445.228688598
+  },
+  "transition_weighted_shares": {
+    "stable_above_poverty": 0.8628017384544694,
+    "persistent_poverty": 0.05195326750405464,
+    "exited_poverty": 0.048792647865377514,
+    "entered_poverty": 0.036452346176098376
+  },
+  "derived_weighted_rates": {
+    "baseline_poverty_share": 0.10074591536943217,
+    "followup_poverty_share": 0.08840561368015303,
+    "poverty_entry_rate_among_baseline_nonpoor": 0.0405362030588649,
+    "poverty_exit_rate_among_baseline_poor": 0.4843139067867554
+  },
+  "weight_validation": {
+    "FINYR2_vs_REPWGT0_max_abs_difference": 0.000010000003385357559,
+    "tolerance": 0.0001
+  },
+  "monthly_record_coverage": {
+    "2024_persons_with_12_months": 35976,
+    "2025_persons_with_12_months": 31202
+  },
+  "provenance": {
+    "workflow_run_id": 42077728809,
+    "head_sha": "7195df14a8f19cce51a5ba03d02605c129994e10",
+    "note": "Generated from official Census 2024 and 2025 SIPP primary files plus 2025 two-year longitudinal and replicate-weight files."
+  }
+}

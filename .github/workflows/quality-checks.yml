@@ -33,6 +33,15 @@ jobs:
       - name: Discover official Census assets
         run: python src/source_discovery.py
 
+      - name: Probe registered Census assets
+        run: python src/verify_remote_assets.py
+
+      - name: Download lightweight metadata assets
+        run: python src/download_assets.py --mode metadata
+
+      - name: Validate official schemas
+        run: python src/validate_schemas.py
+
       - name: Validate discovery output
         run: |
           python - <<'PY'
@@ -44,4 +53,17 @@ jobs:
           )
           assert len(result["sources"]) == 2
           assert {source["survey_year"] for source in result["sources"]} == {2024, 2025}
+
+          checksums = json.loads(
+              Path("data/metadata/checksums.json").read_text()
+          )
+          assert checksums["mode"] == "metadata"
+          assert len(checksums["assets"]) >= 6
+          assert all(len(asset["sha256"]) == 64 for asset in checksums["assets"])
+
+          schema = json.loads(
+              Path("data/metadata/schema_validation.json").read_text()
+          )
+          assert schema["longitudinal_weight"]["required_found"]
+          assert schema["longitudinal_replicate"]["replicate_weights"] == 240
           PY

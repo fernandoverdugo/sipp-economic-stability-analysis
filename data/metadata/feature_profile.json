@@ -1,0 +1,205 @@
+{
+  "contract_version": "0.3",
+  "baseline_release": 2024,
+  "reference_year": 2023,
+  "feature_count": 19,
+  "rows": 15034,
+  "model_samples": {
+    "poverty_entry": {
+      "rows": 13464,
+      "positive": 587
+    },
+    "poverty_exit": {
+      "rows": 1570,
+      "positive": 757
+    }
+  },
+  "features": {
+    "age": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "min": 18,
+      "max": 89,
+      "mean": 53.660569376080886
+    },
+    "sex": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "levels": {
+        "1": 7212,
+        "2": 7822
+      }
+    },
+    "race": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "levels": {
+        "1": 12124,
+        "2": 1330,
+        "3": 1027,
+        "4": 553
+      }
+    },
+    "hispanic_origin": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "levels": {
+        "1": 2518,
+        "2": 12516
+      }
+    },
+    "education": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "levels": {
+        "31": 36,
+        "32": 127,
+        "33": 224,
+        "34": 213,
+        "35": 158,
+        "36": 190,
+        "37": 250,
+        "38": 224,
+        "39": 3978,
+        "40": 894,
+        "41": 1677,
+        "42": 1395,
+        "43": 3326,
+        "44": 1739,
+        "45": 232,
+        "46": 371
+      }
+    },
+    "born_in_us": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "levels": {
+        "1": 12238,
+        "2": 2796
+      }
+    },
+    "citizenship": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "levels": {
+        "1": 14044,
+        "2": 990
+      }
+    },
+    "months_employed": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "min": 0,
+      "max": 12,
+      "mean": 6.629639483836637
+    },
+    "months_unemployed": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "min": 0,
+      "max": 12,
+      "mean": 0.18664360782226952
+    },
+    "mean_weekly_hours": {
+      "observed": 8800,
+      "missing": 6234,
+      "missing_share": 0.4146601037647998,
+      "min": 0,
+      "max": 99,
+      "mean": 37.200133100485374
+    },
+    "annual_person_earnings": {
+      "observed": 8801,
+      "missing": 6233,
+      "missing_share": 0.41459358786750033,
+      "min": -130575,
+      "max": 1833515,
+      "mean": 72695.9943188274
+    },
+    "annual_person_income": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "min": -124452,
+      "max": 1837332,
+      "mean": 61440.93508048423
+    },
+    "baseline_poverty_ratio": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "min": 0,
+      "max": 87.535,
+      "mean": 5.397795197552215
+    },
+    "housing_tenure": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "levels": {
+        "1": 10869,
+        "2": 3899,
+        "3": 266
+      }
+    },
+    "housing_assistance_status": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "levels": {
+        "0": 10869,
+        "1": 3634,
+        "2": 354,
+        "3": 177
+      }
+    },
+    "snap_received_year": {
+      "observed": 14990,
+      "missing": 44,
+      "missing_share": 0.002926699481176001,
+      "levels": {
+        "0": 13634,
+        "1": 1356
+      }
+    },
+    "person_net_worth": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "min": -1436695,
+      "max": 95709590,
+      "mean": 440975.65910602635
+    },
+    "person_assets": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "min": 0,
+      "max": 95709590,
+      "mean": 509522.75954503124
+    },
+    "person_debt": {
+      "observed": 15034,
+      "missing": 0,
+      "missing_share": 0,
+      "min": 0,
+      "max": 37440002,
+      "mean": 68547.10043900492
+    }
+  },
+  "provenance": {
+    "workflow_run_id": 42090796064,
+    "head_sha": "027733c63721b8788914118e0a4e7346c0d8fc75",
+    "artifact_id": 13445721411,
+    "note": "Generated from the validated 2024→2025 longitudinal cohort and official 2024 SIPP baseline primary file."
+  }
+}

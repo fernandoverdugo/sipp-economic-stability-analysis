@@ -294,7 +294,7 @@ The predictive models are intended as methodological demonstrations of prospecti
 
 ## Status
 
-**Core analysis complete and portfolio-ready.**
+**Core analysis complete.**
 
 Optional future extensions include external validation on a later SIPP release, event-history models for monthly transitions, material-hardship outcomes, and longer longitudinal cohorts.
 

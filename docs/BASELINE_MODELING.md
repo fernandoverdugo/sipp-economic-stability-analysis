@@ -90,4 +90,4 @@ The next modeling stage should add:
 - gradient boosting benchmark
 - subgroup diagnostics
 
-The single fixed holdout remains useful as a stable portfolio benchmark while those richer diagnostics are developed.
+The single fixed holdout remains useful as a stable reference benchmark while those richer diagnostics are developed.

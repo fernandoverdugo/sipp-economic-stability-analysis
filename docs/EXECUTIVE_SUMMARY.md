@@ -110,6 +110,6 @@ The project includes:
 
 ## Bottom line
 
-The project demonstrates a complete public-policy analytics workflow rather than simply training a classifier.
+The analysis follows a complete public-policy analytics workflow rather than stopping at classifier training.
 
 It moves from survey design and population inference through prospective modeling, validation, responsible-use diagnostics, and model simplification, ending with a more interpretable policy-facing specification that performs slightly better than the larger original model while excluding demographic characteristics from prediction.

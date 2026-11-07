@@ -74,4 +74,4 @@ Both weighted and unweighted versions are produced.
 
 Repeated validation is the main checkpoint for deciding whether the initial logistic model is stable enough to serve as the primary benchmark.
 
-Gradient boosting should only be treated as an improvement if it demonstrates a repeatable gain in discrimination or calibration rather than a favorable result on one split.
+Gradient boosting should only be treated as an improvement if it shows a repeatable gain in discrimination or calibration rather than a favorable result on one split.

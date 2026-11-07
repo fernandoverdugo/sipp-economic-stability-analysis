@@ -86,4 +86,4 @@ The validator checks every contracted source variable against both official Cens
 data/metadata/predictor_validation.json
 ```
 
-The next Milestone 5 step is to construct these features from the baseline person-month records and report missingness and distribution diagnostics before fitting any predictive model.
+The modeling pipeline constructs these features from the baseline person-month records and reports missingness and distribution diagnostics before fitting predictive models.

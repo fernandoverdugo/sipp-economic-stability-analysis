@@ -38,7 +38,7 @@ Across ten household-grouped holdouts, the model averages:
 | Poverty entry | **0.720** | **0.133** | **0.0394** | **0.1640** |
 | Poverty exit | **0.712** | **0.693** | **0.2170** | **0.6251** |
 
-The model therefore demonstrates moderate prospective discrimination without relying on demographic characteristics as predictive inputs.
+The model therefore shows moderate prospective discrimination without relying on demographic characteristics as predictive inputs.
 
 ## Why the final model is deliberately lean
 

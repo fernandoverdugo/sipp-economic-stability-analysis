@@ -58,7 +58,7 @@ For poverty entry, calibrated probabilities produced essentially unchanged discr
 
 For poverty exit, calibration worsened both Brier score and log loss.
 
-The project therefore retains the raw logistic probabilities rather than adding a calibration layer that does not demonstrate repeatable benefit.
+The project therefore retains the raw logistic probabilities rather than adding a calibration layer that does not provide repeatable benefit.
 
 ## Current model-selection conclusion
 

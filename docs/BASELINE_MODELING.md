@@ -82,7 +82,7 @@ These results show that the baseline feature set contains prospective signal bey
 
 They do **not** establish causal relationships, and the coefficient ranking should not be interpreted as causal feature importance.
 
-The next modeling stage should add:
+The extended validation stage adds:
 
 - repeated or cross-validated household-grouped evaluation
 - calibration diagnostics
@@ -90,4 +90,4 @@ The next modeling stage should add:
 - gradient boosting benchmark
 - subgroup diagnostics
 
-The single fixed holdout remains useful as a stable reference benchmark while those richer diagnostics are developed.
+The single fixed holdout remains useful as a stable reference benchmark alongside those richer diagnostics.
